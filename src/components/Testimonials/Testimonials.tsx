@@ -1,25 +1,27 @@
 import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
-import React from 'react'
-import { Avatar, Box, Typography } from '@mui/material'
-import { cardsData } from './utils'
+import React from 'react';
+import { Avatar, Box, Typography } from '@mui/material';
+import { cardsData } from './utils';
 import {
   avatarStyles,
   cardsRendererContainer,
-  cardStyles, 
+  cardStyles,
   cardTextStyle,
   mainContainer,
   nameStyle,
   quoteStyle,
   subtitleStyle,
-  titleStyle
-} from './Testimonials.styles'
-
+  titleStyle,
+} from './Testimonials.styles';
 
 function Testimonials() {
   return (
     <Box sx={mainContainer}>
       <Typography sx={titleStyle}>What our clients say</Typography>
-      <Typography sx={subtitleStyle}>Hear from our satisfied customers about their experience with our products and services.</Typography>
+      <Typography sx={subtitleStyle}>
+        Hear from our satisfied customers about their experience with our
+        products and services.
+      </Typography>
       <Box sx={cardsRendererContainer}>
         {cardsData.map(({ text, photoUrl, name }) => (
           <Box key={name} sx={cardStyles}>
@@ -31,7 +33,7 @@ function Testimonials() {
         ))}
       </Box>
     </Box>
-  )
+  );
 }
 
-export default Testimonials
+export default Testimonials;

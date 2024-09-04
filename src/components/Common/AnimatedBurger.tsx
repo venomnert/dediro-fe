@@ -1,9 +1,9 @@
-'use client'
-import * as React from "react";
-import { motion, useCycle } from "framer-motion";
-import { MenuToggle } from "./MenuToggle";
-import { FramerNav } from "./FramerNav";
-import { useEffect, useRef } from "react";
+'use client';
+import * as React from 'react';
+import { motion, useCycle } from 'framer-motion';
+import { MenuToggle } from './MenuToggle';
+import { FramerNav } from './FramerNav';
+import { useEffect, useRef } from 'react';
 import './styles.css';
 
 // Naive implementation - in reality would want to attach
@@ -16,6 +16,7 @@ const useDimensions = (ref: any) => {
   useEffect(() => {
     dimensions.current.width = ref.current.offsetWidth;
     dimensions.current.height = ref.current.offsetHeight;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return dimensions.current;
@@ -25,20 +26,20 @@ const sidebar = {
   open: (height = 1000) => ({
     clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
     transition: {
-      type: "spring",
+      type: 'spring',
       stiffness: 20,
-      restDelta: 2
-    }
+      restDelta: 2,
+    },
   }),
   closed: {
-    clipPath: "circle(30px at 40px 40px)",
+    clipPath: 'circle(30px at 40px 40px)',
     transition: {
       delay: 0.5,
-      type: "spring",
+      type: 'spring',
       stiffness: 400,
-      damping: 40
-    }
-  }
+      damping: 40,
+    },
+  },
 };
 
 export const AnimatedBurger = () => {
@@ -49,7 +50,7 @@ export const AnimatedBurger = () => {
   return (
     <motion.nav
       initial={false}
-      animate={isOpen ? "open" : "closed"}
+      animate={isOpen ? 'open' : 'closed'}
       custom={height}
       ref={containerRef}
     >

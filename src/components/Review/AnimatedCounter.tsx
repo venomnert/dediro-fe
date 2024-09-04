@@ -1,13 +1,13 @@
-"use client";
+'use client';
 
-import { Typography } from "@mui/material";
+import { Typography } from '@mui/material';
 import {
   KeyframeOptions,
   animate,
   useInView,
   useIsomorphicLayoutEffect,
-} from "framer-motion";
-import { useRef } from "react";
+} from 'framer-motion';
+import { useRef } from 'react';
 
 type AnimatedCounterProps = {
   from: number;
@@ -19,8 +19,8 @@ const numberStyles = {
   color: 'var(--black)',
   fontWeight: 600,
   fontSize: '40px',
-  width: 'fit-content'
-}
+  width: 'fit-content',
+};
 
 const AnimatedCounter = ({
   from,
@@ -38,14 +38,14 @@ const AnimatedCounter = ({
 
     element.textContent = String(from);
 
-    if (window.matchMedia("(prefers-reduced-motion)").matches) {
+    if (window.matchMedia('(prefers-reduced-motion)').matches) {
       element.textContent = String(to);
       return;
     }
 
     const controls = animate(from, to, {
       duration: 1.5,
-      ease: "easeOut",
+      ease: 'easeOut',
       ...animationOptions,
       onUpdate(value) {
         element.textContent = value.toFixed(0);

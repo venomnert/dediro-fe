@@ -1,7 +1,13 @@
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import React from 'react'
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from '@mui/material'
-import { questionsList } from './utils'
+import React from 'react';
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Box,
+  Typography,
+} from '@mui/material';
+import { questionsList } from './utils';
 import {
   accordionContainer,
   backgroundOnly,
@@ -9,7 +15,7 @@ import {
   questionsContainer,
   questionStyle,
   responseStyle,
-  sectionTitle
+  sectionTitle,
 } from './FAQs.styles';
 
 function FAQs() {
@@ -28,15 +34,13 @@ function FAQs() {
               >
                 {question}
               </AccordionSummary>
-              <AccordionDetails sx={responseStyle}>
-                {response}
-              </AccordionDetails>
+              <AccordionDetails sx={responseStyle}>{response}</AccordionDetails>
             </Accordion>
           ))}
         </Box>
       </Box>
     </Box>
-  )
+  );
 }
 
-export default FAQs
+export default FAQs;

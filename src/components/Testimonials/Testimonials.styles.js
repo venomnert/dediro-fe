@@ -1,26 +1,26 @@
 export const titleStyle = {
   fontWeight: 700,
   fontSize: '40px',
-  marginBottom: '40px'
-}
+  marginBottom: '40px',
+};
 export const subtitleStyle = {
   fontWeight: 500,
   fontSize: '20px',
-  marginBottom: '100px'
-}
+  marginBottom: '100px',
+};
 
 export const cardTextStyle = {
   fontWeight: 400,
   fontFamily: 'Poppins !important',
   fontSize: '16px',
-  marginBottom: '30px'
-}
+  marginBottom: '30px',
+};
 
 export const nameStyle = {
   fontWeight: 500,
   fontFamily: 'Poppins !important',
   fontSize: '20px',
-}
+};
 
 export const cardStyles = {
   width: { xs: '100%', md: '30%' },
@@ -28,20 +28,20 @@ export const cardStyles = {
   display: 'flex',
   flexDirection: 'column',
   textAlign: 'center',
-  alignItems: 'center'
-}
+  alignItems: 'center',
+};
 
 export const quoteStyle = {
   fontSize: '58px',
   color: 'var(--blue)',
-  marginBottom: '40px'
-}
+  marginBottom: '40px',
+};
 
 export const avatarStyles = {
   width: '80px',
   height: '80px',
-  marginBottom: '15px'
-}
+  marginBottom: '15px',
+};
 
 export const mainContainer = {
   padding: { xs: 'var(--xs-padding)', md: 'var(--lg-padding)' },
@@ -51,10 +51,10 @@ export const mainContainer = {
   alignItems: 'center',
   maxWidth: 'var(--max-width) !important',
   margin: '0 auto',
-}
+};
 
 export const cardsRendererContainer = {
   display: 'flex',
   flexDirection: { xs: 'column', md: 'row' },
-  justifyContent: 'space-between'
-}
+  justifyContent: 'space-between',
+};

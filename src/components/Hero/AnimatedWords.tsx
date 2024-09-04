@@ -1,8 +1,12 @@
-'use client'
+'use client';
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Box, Typography } from '@mui/material';
-import { wordMainContainer, wordPlaceholder, wordStyle } from './AnimatedWords.styles'
+import {
+  wordMainContainer,
+  wordPlaceholder,
+  wordStyle,
+} from './AnimatedWords.styles';
 
 const words = [
   'Leadership',
@@ -21,9 +25,8 @@ const words = [
   'Wars',
   'Conflicts',
   'Politics',
-  'Technology'
+  'Technology',
 ];
-
 
 const AnimatedWordList = () => {
   const [index, setIndex] = useState(0);
@@ -50,7 +53,7 @@ const AnimatedWordList = () => {
             fontSize: '48px',
             position: 'absolute',
             width: '100%',
-            top: 0
+            top: 0,
           }}
         >
           <Typography sx={wordStyle}>{words[index]}</Typography>

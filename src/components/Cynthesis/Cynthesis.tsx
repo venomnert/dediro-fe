@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 function Cynthesis() {
-  return (
-    <div>Cynthesis</div>
-  )
+  return <div>Cynthesis</div>;
 }
 
-export default Cynthesis
+export default Cynthesis;

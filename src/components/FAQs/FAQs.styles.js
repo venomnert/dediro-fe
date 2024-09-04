@@ -3,22 +3,20 @@ export const sectionTitle = {
   fontWeight: 700,
   color: 'var(--white)',
   marginBottom: '20px',
-}
+};
 
-export const questionsContainer = {
-
-}
+export const questionsContainer = {};
 
 export const questionStyle = {
   fontWeight: 600,
-  fontSize: '20px'
-}
+  fontSize: '20px',
+};
 
 export const responseStyle = {
   fontWeight: 500,
   fontSize: '16px',
-  padding: '20px'
-}
+  padding: '20px',
+};
 
 export const mainContainer = {
   display: 'flex',
@@ -28,17 +26,17 @@ export const mainContainer = {
   paddingY: '120px !important',
   maxWidth: 'var(--max-width) !important',
   margin: '0 auto',
-}
+};
 
 export const accordionContainer = {
   color: 'white',
   backgroundColor: 'var(--blue)',
   border: '1px solid var(--white)',
   '& .MuiAccordionSummary-expandIconWrapper': {
-    color: 'white'
-  }
-}
+    color: 'white',
+  },
+};
 
 export const backgroundOnly = {
   backgroundColor: 'var(--blue)',
-}
+};

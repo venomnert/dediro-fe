@@ -3,20 +3,20 @@ export const heroSubtitle = {
   fontSize: { xs: '24px', md: '32px' },
   color: 'var(--white)',
   marginBottom: '15px',
-  marginTop: { xs: '10px', md: '30px' }
+  marginTop: { xs: '10px', md: '30px' },
 };
 
 export const heroStyle = {
   width: '100%',
   display: 'flex',
-  flexDirection: { xs: 'column', md:'row' },
+  flexDirection: { xs: 'column', md: 'row' },
   padding: { xs: '30px', md: '80px' },
-  paddingTop: { xs: '137px', md: '137px'},
-  paddingBottom: { xs: '20px', md: '40px'},
+  paddingTop: { xs: '137px', md: '137px' },
+  paddingBottom: { xs: '20px', md: '40px' },
   boxSizing: 'border-box',
   maxWidth: 'var(--max-width) !important',
   margin: '0 auto',
-}
+};
 
 export const heroBackground = {
   position: 'relative',
@@ -26,7 +26,7 @@ export const heroBackground = {
   backgroundSize: 'cover',
   width: '100%',
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
 };
 
 export const overlayStyle = {
@@ -45,35 +45,35 @@ export const contentStyle = {
 };
 
 export const leftContainer = {
-  width: { xs: '100%', md:'50%' },
+  width: { xs: '100%', md: '50%' },
   marginBottom: { xs: '35px' },
-  flexGrow: 1
-}
+  flexGrow: 1,
+};
 
 export const rightContainer = {
   position: 'relative',
   width: { xs: '100%', md: '45%' },
   display: 'flex',
-  justifyContent: { xs: 'center', md: 'flex-end'}
-}
+  justifyContent: { xs: 'center', md: 'flex-end' },
+};
 
 export const heroTitle = {
   fontWeight: 700,
-  fontSize: { xs: '32px', md: '48px'},
-  color: 'var(--white)'
-}
+  fontSize: { xs: '32px', md: '48px' },
+  color: 'var(--white)',
+};
 
 export const imageContainer = {
-  width:'470px',
-}
+  width: '470px',
+};
 
 export const heroTextStyles = {
-  fontWeight: { xs: 400, md:500 },
+  fontWeight: { xs: 400, md: 500 },
   fontSize: '16px',
   color: 'var(--white)',
   width: { xs: '100%', md: '80%' },
-  marginBottom: '60px'
-}
+  marginBottom: '60px',
+};
 
 export const ctaButton = {
   color: 'var(--white)',
@@ -84,5 +84,5 @@ export const ctaButton = {
   fontSize: '18px',
   fontWeight: 600,
   borderRadius: 'var(--border-radius)',
-  padding: '10px 20px'
-}
+  padding: '10px 20px',
+};

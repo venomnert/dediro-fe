@@ -4,20 +4,20 @@ export const empoweringCard = {
   flexDirection: 'column',
   alignItems: 'center',
   textAlign: 'center',
-  marginBottom: { xs: '70px', md: 0 }
-}
+  marginBottom: { xs: '70px', md: 0 },
+};
 
 export const titleStyle = {
   fontSize: '24px',
   fontWeight: 600,
-  marginBottom: '20px'
-}
+  marginBottom: '20px',
+};
 
 export const textStyle = {
   fontSize: '16px',
   fontWeight: 400,
-  marginBottom: '40px'
-}
+  marginBottom: '40px',
+};
 
 export const cardsContainer = {
   display: 'flex',
@@ -25,7 +25,7 @@ export const cardsContainer = {
   width: '100%',
   justifyContent: 'space-around',
   alignItems: 'center',
-}
+};
 
 export const mainContainer = {
   display: 'flex',
@@ -34,18 +34,18 @@ export const mainContainer = {
   paddingY: '120px !important',
   maxWidth: 'var(--max-width) !important',
   margin: '0 auto',
-}
+};
 
 export const sectionTitle = {
   fontSize: '40px',
   fontWeight: 700,
   marginBottom: '20px',
-  textAlign: 'center'
-}
+  textAlign: 'center',
+};
 
 export const sectionSubtitle = {
   fontSize: '20px',
   fontWeight: 500,
   marginBottom: '100px',
-  textAlign: 'center'
-}
+  textAlign: 'center',
+};

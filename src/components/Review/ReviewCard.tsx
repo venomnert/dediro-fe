@@ -1,5 +1,5 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react'
+import React from 'react';
 import AnimatedCounter from './AnimatedCounter';
 
 interface ReviewProps {
@@ -12,16 +12,16 @@ const titleStyles = {
   fontWeight: 500,
   fontSize: '16px',
   marginTop: '10px',
-  width: '300px'
-}
+  width: '300px',
+};
 
 const cardContainer = {
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
   textAlign: 'center',
-  alignItems: 'center'
-}
+  alignItems: 'center',
+};
 
 function ReviewCard({ number, title }: ReviewProps) {
   return (
@@ -29,7 +29,7 @@ function ReviewCard({ number, title }: ReviewProps) {
       <AnimatedCounter from={0} to={number} />
       <Typography sx={titleStyles}>{title}</Typography>
     </Box>
-  )
+  );
 }
 
-export default ReviewCard
+export default ReviewCard;

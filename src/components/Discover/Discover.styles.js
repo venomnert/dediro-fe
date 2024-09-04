@@ -1,14 +1,14 @@
 export const titleStyle = {
   fontWeight: '700',
   fontSize: '48px',
-  marginBottom: '20px'
-}
+  marginBottom: '20px',
+};
 
 export const textStyle = {
   fontWeight: '500',
   fontSize: '24px',
-  marginBottom: '40px'
-}
+  marginBottom: '40px',
+};
 
 export const mainContainer = {
   display: 'flex',
@@ -19,13 +19,13 @@ export const mainContainer = {
   paddingY: '120px !important',
   maxWidth: 'var(--max-width) !important',
   margin: '0 auto',
-}
+};
 
 export const bottomContainer = {
   display: 'flex',
   flexDirection: { xs: 'column', md: 'row' },
   justifyContent: 'space-between',
-}
+};
 
 export const inputStyles = {
   height: '100%',
@@ -33,18 +33,18 @@ export const inputStyles = {
   boxShadow: 'var(--hard-shadow)',
   backgroundColor: 'var(--white)',
   borderRadius: 'var(--border-radius)',
-  "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-          border: 'none'
-      },
-      "&.Mui-focused fieldset": {
-          border: 'none'
-      },
-      "&:hover fieldset": {
-          border: 'none'
-      },
-  }
-}
+  '& .MuiOutlinedInput-root': {
+    '& fieldset': {
+      border: 'none',
+    },
+    '&.Mui-focused fieldset': {
+      border: 'none',
+    },
+    '&:hover fieldset': {
+      border: 'none',
+    },
+  },
+};
 
 export const ctaButton = {
   color: 'var(--white)',
@@ -59,11 +59,11 @@ export const ctaButton = {
   height: '100%',
   width: { xs: '100%', md: '70%' },
   marginTop: '20px',
-  zIndex: 2
-}
+  zIndex: 2,
+};
 
-export const leftSide = {}
+export const leftSide = {};
 
 export const rightSide = {
-  marginTop: { xs: '35px', md: 0 }
-}
+  marginTop: { xs: '35px', md: 0 },
+};

@@ -3,41 +3,39 @@
 
 :root {
   --max-width: 1440px;
-  --font-mono: "Montserrat", Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  --font-mono: 'Montserrat', Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   /* Colors */
   --blue: #343967;
-  --gray: #8D99AD;
-  --green: #55D6BE;
-  --white: #FFFFFF;
+  --gray: #8d99ad;
+  --green: #55d6be;
+  --white: #ffffff;
   --black: #292727;
-  --orange: #C53E00;
+  --orange: #c53e00;
 
   /* Other */
   --border-radius: 100px;
   --lg-padding: 80px;
   --xs-padding: 30px;
 
-  --hard-shadow: 0px 2px 3px 0px #0000001A,
-  0px 6px 6px 0px #00000017,
-  0px 14px 8px 0px #0000000D,
-  0px 25px 10px 0px #00000003,
-  0px 39px 11px 0px #00000000;
+  --hard-shadow: 0px 2px 3px 0px #0000001a, 0px 6px 6px 0px #00000017,
+    0px 14px 8px 0px #0000000d, 0px 25px 10px 0px #00000003,
+    0px 39px 11px 0px #00000000;
 }
 
 body {
   margin: 0;
-  font-family: "Montserrat", Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+  font-family: 'Montserrat', Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 }
 
-.MuiTypography-root{
-  font-family: "Montserrat", Monaco, "Cascadia Mono", "Segoe UI Mono",
-    "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-    "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
+.MuiTypography-root {
+  font-family: 'Montserrat', Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+    'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+    'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
 
   line-height: 1.2;
 }

@@ -1,6 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
-import { Avatar, Box, Typography } from '@mui/material'
-import { cardsData } from './utils'
+import { Box, Typography } from '@mui/material';
+import { cardsData } from './utils';
 import {
   cardsContainer,
   empoweringCard,
@@ -8,17 +7,18 @@ import {
   sectionSubtitle,
   sectionTitle,
   textStyle,
-  titleStyle
-} from './Empowering.styles'
-import React from 'react'
-
+  titleStyle,
+} from './Empowering.styles';
+import React from 'react';
 
 function Empowering() {
   return (
     <Box sx={mainContainer}>
       <Typography sx={sectionTitle}>How Dediro Empowers You</Typography>
       <Typography sx={sectionSubtitle}>
-        We go beyond the headlines to provide you with in-depth, accurate information. Here’s how we ensure you<br />
+        We go beyond the headlines to provide you with in-depth, accurate
+        information. Here’s how we ensure you
+        <br />
         get the facts
       </Typography>
       <Box sx={cardsContainer}>
@@ -31,7 +31,7 @@ function Empowering() {
                 borderRadius: '500px',
                 objectFit: 'cover',
                 width: '260px',
-                height: '260px'
+                height: '260px',
               }}
               src={imageUrl}
               alt={title}
@@ -40,7 +40,7 @@ function Empowering() {
         ))}
       </Box>
     </Box>
-  )
+  );
 }
 
-export default Empowering
+export default Empowering;
