@@ -1,0 +1,12 @@
+.ctaImage {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .ctaImage {
+    opacity: 0.3;
+  }
+}
