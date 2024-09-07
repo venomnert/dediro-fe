@@ -4,8 +4,8 @@ import Head from 'next/head';
 import './globals.css';
 import { Montserrat, Poppins } from 'next/font/google';
 
-export const montserrat = Montserrat({ subsets: ['latin'] });
-export const poppins = Poppins({
+const montserrat = Montserrat({ subsets: ['latin'] });
+const poppins = Poppins({
   subsets: ['latin'],
   weight: ['500', '600'],
 });
