@@ -16,7 +16,6 @@ import {
   titleStyles,
 } from './SynthesisCard.styles';
 
-
 function SynthesisCard({
   title,
   isTrending,

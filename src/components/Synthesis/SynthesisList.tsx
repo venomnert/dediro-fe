@@ -14,29 +14,34 @@ interface SynthesisListProps {
 }
 
 function SynthesisList({ selectedCategory }: SynthesisListProps) {
-  const [synthesisListData, setSynthesisListData] = useState<Synthesis[]>([])
+  const [synthesisListData, setSynthesisListData] = useState<Synthesis[]>([]);
 
   useEffect(() => {
-
-    if (selectedCategory.title === "Personal Feed") {
-      setSynthesisListData(synthesisMock)
+    if (selectedCategory.title === 'Personal Feed') {
+      setSynthesisListData(synthesisMock);
     } else {
-      const res: Synthesis[] = synthesisMock.filter((s) => s.categories.includes(selectedCategory.title.toLowerCase()))
-      setSynthesisListData(res)
+      const res: Synthesis[] = synthesisMock.filter((s) =>
+        s.categories.includes(selectedCategory.title.toLowerCase())
+      );
+      setSynthesisListData(res);
     }
 
     return () => {
       setSynthesisListData([]);
-    }
-  }, [selectedCategory])
+    };
+  }, [selectedCategory]);
   return (
     <Box sx={cardsContainer}>
       {synthesisListData?.map((synthesis) => (
         <SynthesisCard key={synthesis?.title} {...synthesis} />
       ))}
-      {synthesisListData.length === 0 ? <Box>
-        <Typography sx={noSynthesisText}>No Synthesis in this category yet.</Typography>
-      </Box> : null}
+      {synthesisListData.length === 0 ? (
+        <Box>
+          <Typography sx={noSynthesisText}>
+            No Synthesis in this category yet.
+          </Typography>
+        </Box>
+      ) : null}
     </Box>
   );
 }

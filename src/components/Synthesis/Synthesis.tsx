@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { Box, Button, Tab, Tabs, Typography } from '@mui/material';
 import {
   backgroundOnly,
@@ -43,12 +43,16 @@ function Synthesis() {
           sx={tabsContainer}
           TabIndicatorProps={{
             style: {
-              backgroundColor: "var(--white)"
-            }
+              backgroundColor: 'var(--white)',
+            },
           }}
         >
           {categories.map((c, i) => (
-            <Tab label={c.title} key={c.title} sx={tabValue === i ? selectedTabStyle : tabStyle} />
+            <Tab
+              label={c.title}
+              key={c.title}
+              sx={tabValue === i ? selectedTabStyle : tabStyle}
+            />
           ))}
         </Tabs>
         <SynthesisList selectedCategory={categories[tabValue]} />
