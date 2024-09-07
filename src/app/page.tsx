@@ -3,7 +3,7 @@ import Hero from '@/components/Hero/Hero';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import Review from '@/components/Review/Review';
-import Cynthesis from '@/components/Cynthesis/Cynthesis';
+import Synthesis from '@/components/Synthesis/Synthesis';
 import Empowering from '@/components/Empowering/Empowering';
 import StayInformed from '@/components/StayInformed/StayInformed';
 import Testimonials from '@/components/Testimonials/Testimonials';
@@ -17,7 +17,7 @@ export default function Home() {
       <Header />
       <Hero />
       <Review />
-      {/* <Cynthesis /> */}
+      <Synthesis />
       <Empowering />
       <StayInformed />
       <WhyUs />
