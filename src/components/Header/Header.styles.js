@@ -4,7 +4,7 @@ export const linksContainer = {
   fontWeight: 600,
   height: '100%',
   alignItems: 'center',
-  display: { xs: 'none', md: 'flex' },
+  display: { xs: 'none', lg: 'flex' },
   gap: '64px',
 };
 
@@ -39,7 +39,7 @@ export const ctaButton = {
   width: '155px',
   height: '100%',
   fontWeight: 600,
-  fontSize: { xs: '16px', md: '12px' },
+  fontSize: { xs: '16px', md: '16px' },
   textTransform: 'none',
   boxShadow: 'var(--hard-shadow)',
   borderRadius: 'var(--border-radius)',

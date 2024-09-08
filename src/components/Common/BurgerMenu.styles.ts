@@ -27,7 +27,7 @@ export const slotPaperStyles = {
 export const menuBtnStyle = { color: 'var(--white)', width: 32, height: 32 };
 
 export const containerStyles = {
-  display: 'flex',
+  display: { xs: 'flex', lg: 'none' },
   alignItems: 'center',
   textAlign: 'center',
 };
