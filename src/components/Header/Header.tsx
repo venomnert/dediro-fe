@@ -1,4 +1,5 @@
 import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import { links } from './utils';
 import {
   ctaButton,
   headerContainer,
@@ -10,17 +11,9 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import React from 'react';
-// import { AnimatedBurger } from '../Common/AnimatedBurger';
+import BurgerMenu from '../Common/BurgerMenu';
 
 function Header() {
-  const links = [
-    { url: '/', title: 'HOME' },
-    { url: '/topics', title: 'EXPLORE TOPICS' },
-    { url: '/faq', title: 'FAQ' },
-    { url: '/testimonials', title: 'TESTIMONIALS' },
-    { url: '/about-us', title: 'OUR STORY' },
-  ];
-
   return (
     <Box sx={headerStyles}>
       <Box sx={headerContainer}>
@@ -34,7 +27,7 @@ function Header() {
         </Box>
         <TextField
           id="search"
-          placeholder='Search...'
+          placeholder="Search..."
           sx={inputStyles}
           slotProps={{
             input: {
@@ -48,7 +41,7 @@ function Header() {
           variant="outlined"
         />
         <Button sx={ctaButton}>Join for free</Button>
-        {/* <AnimatedBurger /> */}
+        <BurgerMenu />
       </Box>
     </Box>
   );

@@ -31,16 +31,14 @@ function StayInformed() {
           </Typography>
           <Box sx={btnContainer}>
             <TextField sx={inputStyles} placeholder="Email address" />
-            <Button sx={ctaButton}>
-              Subscribe
-            </Button>
+            <Button sx={ctaButton}>Subscribe</Button>
           </Box>
         </Box>
         <Box sx={rightSide}>
           <img
             style={{ width: '100%', borderRadius: '20px' }}
             src="images/stay-informed/space.webp"
-            loading='lazy'
+            loading="lazy"
             alt="space"
           />
         </Box>

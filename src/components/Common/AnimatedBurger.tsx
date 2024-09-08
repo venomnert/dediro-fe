@@ -54,7 +54,7 @@ export const AnimatedBurger = () => {
       custom={height}
       ref={containerRef}
     >
-      <motion.div className="background" variants={sidebar} />
+      <motion.div className="backgroundMotion" variants={sidebar} />
       <FramerNav />
       <MenuToggle toggle={() => toggleOpen()} />
     </motion.nav>

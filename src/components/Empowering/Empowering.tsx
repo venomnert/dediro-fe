@@ -33,7 +33,7 @@ function Empowering() {
                 width: '260px',
                 height: '260px',
               }}
-              loading='lazy'
+              loading="lazy"
               src={imageUrl}
               alt={title}
             />

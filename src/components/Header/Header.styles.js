@@ -3,6 +3,7 @@ export const linksContainer = {
   fontSize: '14px',
   fontWeight: 600,
   height: '100%',
+  alignItems: 'center',
   display: { xs: 'none', md: 'flex' },
   gap: '64px',
 };
@@ -23,6 +24,7 @@ export const headerContainer = {
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+  height: '90px',
   width: '100%',
   paddingX: { xs: 'var(--xs-padding)', md: 'var(--lg-padding)' },
   paddingTop: { xs: '20px', md: '30px' },
@@ -35,17 +37,20 @@ export const ctaButton = {
   color: 'var(--white)',
   backgroundColor: 'var(--orange)',
   width: '155px',
+  height: '100%',
   fontWeight: 600,
-  fontSize: '12px',
+  fontSize: { xs: '16px', md: '12px' },
   textTransform: 'none',
   boxShadow: 'var(--hard-shadow)',
   borderRadius: 'var(--border-radius)',
   fontFamily: 'Poppins',
-  padding: '5px 15px',
+  // padding: '5px 15px',
+  display: { xs: 'none', md: 'block' },
 };
 
 export const inputStyles = {
   backgroundColor: 'var(--white)',
+  display: { xs: 'none', md: 'block' },
   borderRadius: 'var(--border-radius)',
   '& .MuiOutlinedInput-root': {
     '& fieldset': {

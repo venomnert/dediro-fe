@@ -19,7 +19,7 @@ function WhyUs() {
         <Box sx={leftSide}>
           <img
             style={leftImgStyle}
-            loading='lazy'
+            loading="lazy"
             src="images/why-choose-us/left-img-fix.webp"
             alt="girl reading a book"
           />
