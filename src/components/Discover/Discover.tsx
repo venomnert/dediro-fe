@@ -20,7 +20,8 @@ function Discover() {
           borderRadius: '100px',
           marginBottom: '90px',
         }}
-        src="images/discover/large-app.png"
+        loading='lazy'
+        src="images/discover/large-app.webp"
         alt="app screenshot"
       />
       <Box sx={bottomContainer}>
@@ -44,7 +45,7 @@ function Discover() {
           <Box>
             <TextField sx={inputStyles} placeholder="Email address" />
             <Button sx={ctaButton}>
-              Get Weekly insights on your preferred topics
+              Get our newsletter
             </Button>
           </Box>
         </Box>
@@ -54,7 +55,8 @@ function Discover() {
               borderRadius: '10px',
               width: '100%',
             }}
-            src="images/discover/open-mind.png"
+            loading='lazy'
+            src="images/discover/open-mind.webp"
             alt="open mind"
           />
         </Box>

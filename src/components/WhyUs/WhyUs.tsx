@@ -19,7 +19,8 @@ function WhyUs() {
         <Box sx={leftSide}>
           <img
             style={leftImgStyle}
-            src="images/why-choose-us/left-img-fix.png"
+            loading='lazy'
+            src="images/why-choose-us/left-img-fix.webp"
             alt="girl reading a book"
           />
           <Button sx={ctaButton}>

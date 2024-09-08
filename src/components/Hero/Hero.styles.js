@@ -20,7 +20,7 @@ export const heroStyle = {
 
 export const heroBackground = {
   position: 'relative',
-  backgroundImage: 'url("images/hero/hero-bg.png")',
+  backgroundImage: 'url("images/hero/hero-bg.webp")',
   backgroundRepeat: 'no-repeat',
   backgroundPosition: 'center',
   backgroundSize: 'cover',

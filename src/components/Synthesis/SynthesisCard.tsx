@@ -40,7 +40,7 @@ function SynthesisCard({
           <Typography sx={descriptionStyles}>{briefDescription}</Typography>
         </Box>
         <Box sx={authorAndDateContainer}>
-          <Avatar src={author.profilePicture} sx={authorPicStyles} />
+          <Avatar src={author.profilePicture} sx={authorPicStyles} alt={author.name} />
           <Typography sx={authorAndDateTextStyles}>
             {author.name} | Last updated: {dateToShow}
           </Typography>

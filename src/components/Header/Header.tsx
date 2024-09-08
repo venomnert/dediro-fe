@@ -10,7 +10,7 @@ import {
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import React from 'react';
-import { AnimatedBurger } from '../Common/AnimatedBurger';
+// import { AnimatedBurger } from '../Common/AnimatedBurger';
 
 function Header() {
   const links = [
@@ -34,6 +34,7 @@ function Header() {
         </Box>
         <TextField
           id="search"
+          placeholder='Search...'
           sx={inputStyles}
           slotProps={{
             input: {
@@ -46,7 +47,7 @@ function Header() {
           }}
           variant="outlined"
         />
-        <Button sx={ctaButton}>Subscribe to the stories that matter</Button>
+        <Button sx={ctaButton}>Join for free</Button>
         {/* <AnimatedBurger /> */}
       </Box>
     </Box>

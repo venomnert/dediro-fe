@@ -29,7 +29,7 @@ function Hero() {
             See All Sides of Every Story
           </Typography>
           <AnimatedWordList />
-          <Typography sx={heroSubtitle}>
+          <Typography variant="h2" sx={heroSubtitle}>
             Because Somewhere, Something Incredible is Waiting to be Known.
           </Typography>
           <Typography sx={heroTextStyles}>{heroText}</Typography>
@@ -39,7 +39,7 @@ function Hero() {
           <Box sx={imageContainer}>
             <img
               style={{ width: '100%' }}
-              src="images/hero/side-hero-images.png"
+              src="images/hero/side-hero-images.webp"
               alt="info images"
             />
           </Box>

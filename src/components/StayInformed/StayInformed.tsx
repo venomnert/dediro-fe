@@ -32,14 +32,15 @@ function StayInformed() {
           <Box sx={btnContainer}>
             <TextField sx={inputStyles} placeholder="Email address" />
             <Button sx={ctaButton}>
-              Subscribe to the topics you care about
+              Subscribe
             </Button>
           </Box>
         </Box>
         <Box sx={rightSide}>
           <img
             style={{ width: '100%', borderRadius: '20px' }}
-            src="images/stay-informed/space.jpg"
+            src="images/stay-informed/space.webp"
+            loading='lazy'
             alt="space"
           />
         </Box>
