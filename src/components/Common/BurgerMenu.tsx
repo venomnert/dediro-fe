@@ -26,7 +26,7 @@ import {
 import Link from 'next/link';
 
 interface BurgerProps {
-  anchorOrigin?: number | "right" | "center" | "left";
+  anchorOrigin?: number | 'right' | 'center' | 'left';
 }
 
 export default function BurgerMenu({ anchorOrigin = 'right' }: BurgerProps) {
