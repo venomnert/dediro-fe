@@ -19,9 +19,23 @@ export const headerStyles = {
   zIndex: 3,
 };
 
-export const headerContainer = {
+export const desktopHeaderContainer = {
   boxSizing: 'border-box',
-  display: 'flex',
+  display: { xs: 'none', sm: 'flex' },
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  height: '90px',
+  width: '100%',
+  paddingX: { xs: 'var(--xs-padding)', md: 'var(--lg-padding)' },
+  paddingTop: { xs: '20px', md: '30px' },
+  zIndex: 3,
+  maxWidth: 'var(--max-width) !important',
+  margin: '0 auto',
+};
+
+export const mobileHeaderContainer = {
+  boxSizing: 'border-box',
+  display: { xs: 'flex', sm: 'none' },
   justifyContent: 'space-between',
   alignItems: 'center',
   height: '90px',
@@ -50,7 +64,7 @@ export const ctaButton = {
 
 export const inputStyles = {
   backgroundColor: 'var(--white)',
-  display: { xs: 'none', md: 'block' },
+  display: { xs: 'none', sm: 'block' },
   borderRadius: 'var(--border-radius)',
   '& .MuiOutlinedInput-root': {
     '& fieldset': {

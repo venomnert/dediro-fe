@@ -12,7 +12,7 @@ export interface Synthesis {
 }
 
 export const categories = [
-  { title: 'Personal Feed', value: 0 },
+  { title: 'Featured Feed', value: 0 },
   { title: 'Significant', value: 1 },
   { title: 'Insignificant', value: 2 },
   { title: 'World', value: 3 },

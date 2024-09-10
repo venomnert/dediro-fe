@@ -2,7 +2,8 @@ import { Box, Button, InputAdornment, TextField } from '@mui/material';
 import { links } from './utils';
 import {
   ctaButton,
-  headerContainer,
+  desktopHeaderContainer,
+  mobileHeaderContainer,
   headerStyles,
   inputStyles,
   linksContainer,
@@ -12,11 +13,12 @@ import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
 import React from 'react';
 import BurgerMenu from '../Common/BurgerMenu';
+import MobileHeader from './MobileHeader';
 
 function Header() {
   return (
     <Box sx={headerStyles}>
-      <Box sx={headerContainer}>
+      <Box sx={desktopHeaderContainer}>
         <img src="images/dediro-logo.svg" alt="Dediro" />
         <Box sx={linksContainer}>
           {links.map((link) => (
@@ -42,6 +44,9 @@ function Header() {
         />
         <Button sx={ctaButton}>Join for free</Button>
         <BurgerMenu />
+      </Box>
+      <Box sx={mobileHeaderContainer}>
+        <MobileHeader />
       </Box>
     </Box>
   );

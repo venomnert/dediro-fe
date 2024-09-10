@@ -17,7 +17,7 @@ function SynthesisList({ selectedCategory }: SynthesisListProps) {
   const [synthesisListData, setSynthesisListData] = useState<Synthesis[]>([]);
 
   useEffect(() => {
-    if (selectedCategory.title === 'Personal Feed') {
+    if (selectedCategory.title === 'Featured Feed') {
       setSynthesisListData(synthesisMock);
     } else {
       const res: Synthesis[] = synthesisMock.filter((s) =>

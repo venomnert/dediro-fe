@@ -25,7 +25,11 @@ import {
 } from './BurgerMenu.styles';
 import Link from 'next/link';
 
-export default function BurgerMenu() {
+interface BurgerProps {
+  anchorOrigin?: number | "right" | "center" | "left";
+}
+
+export default function BurgerMenu({ anchorOrigin = 'right' }: BurgerProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -41,7 +45,7 @@ export default function BurgerMenu() {
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: 2 }}
+            sx={{ ml: { xs: 0, md: 2 } }}
             aria-controls={open ? 'open-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
@@ -66,36 +70,11 @@ export default function BurgerMenu() {
             sx: slotPaperStyles,
           },
         }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+        transformOrigin={{ horizontal: anchorOrigin, vertical: 'top' }}
+        anchorOrigin={{ horizontal: anchorOrigin, vertical: 'bottom' }}
       >
-        {/* <MenuItem onClick={handleClose}>
-          <Button sx={ctaButton}>Join for free</Button>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <TextField
-            id="search"
-            placeholder='Search...'
-            sx={inputStyles}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              },
-            }}
-            variant="outlined"
-          />
-        </MenuItem>
-        <Divider /> */}
         {links.map((link) => (
           <MenuItem key={`menu-${link.title}`} onClick={handleClose}>
-            {/* <ListItemIcon>
-              <PersonAdd fontSize="small" />
-            </ListItemIcon>
-            Add another account */}
             <Link style={linkStyle} href={link.url}>
               {link.title}
             </Link>
