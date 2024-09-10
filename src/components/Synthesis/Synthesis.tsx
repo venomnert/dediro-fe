@@ -12,7 +12,7 @@ import {
 } from './Synthesis.styles';
 import React, { useState } from 'react';
 import SynthesisList from './SynthesisList';
-import { categories } from './utils';
+import { topics } from './utils';
 
 function Synthesis() {
   const [tabValue, setTabValue] = useState(0);
@@ -47,7 +47,7 @@ function Synthesis() {
             },
           }}
         >
-          {categories.map((c, i) => (
+          {topics.map((c, i) => (
             <Tab
               label={c.title}
               key={c.title}
@@ -55,7 +55,7 @@ function Synthesis() {
             />
           ))}
         </Tabs>
-        <SynthesisList selectedCategory={categories[tabValue]} />
+        <SynthesisList selectedCategory={topics[tabValue]} />
         <Button sx={exploreMoreBtn}>Explore more</Button>
       </Box>
     </Box>

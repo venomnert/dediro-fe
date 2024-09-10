@@ -4,25 +4,29 @@ export interface Synthesis {
   briefDescription: string;
   imageUrl: string;
   updatedAt: string;
-  categories: string[];
+  topics: string[];
   author: {
     name: string;
     profilePicture: string;
   };
 }
 
-export const categories = [
+export const topics = [
   { title: 'Featured Feed', value: 0 },
-  { title: 'Significant', value: 1 },
-  { title: 'Insignificant', value: 2 },
-  { title: 'World', value: 3 },
-  { title: 'Nation', value: 4 },
-  { title: 'Business', value: 5 },
-  { title: 'Technology', value: 6 },
-  { title: 'Science', value: 7 },
-  { title: 'Health', value: 8 },
-  { title: 'Entertainment', value: 9 },
-  { title: 'Sports', value: 10 },
+  { title: 'History', value: 1 },
+  { title: 'Psychology', value: 2 },
+  { title: 'Physics and Space', value: 3 },
+  { title: 'Technology', value: 4 },
+  { title: 'Startups', value: 5 },
+  { title: 'Business', value: 6 },
+  { title: 'Investing and Finance', value: 7 },
+  { title: 'American Politics', value: 8 },
+  { title: 'Geopolitics', value: 9 },
+  { title: 'Wars and Conflicts', value: 10 },
+  { title: 'Philosophy', value: 11 },
+  { title: 'Health', value: 12 },
+  { title: 'Environment', value: 13 },
+  { title: 'Leadership', value: 14 },
 ];
 
 export const synthesisMock: Synthesis[] = [
@@ -35,7 +39,7 @@ export const synthesisMock: Synthesis[] = [
     imageUrl:
       'https://s3-alpha-sig.figma.com/img/3fe1/a96d/8c4ac05213125b3a41fed36b27355e19?Expires=1726444800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=Bg58NbB4kHZQ98qlENeyhophTILU76dOYJILBeYZSq3XgLC3YJCz4ou~UcMEq9ZrYg7VDZM2tWy0C~xnC9fvfQmyblu1IMYp6IHGhmaFFA9tYtg2P~LEPZKfYLM0bqy7YbA6sC~ePkoIYRlow-aMBdiwhPBo~x3mP6y316luHwSyehwECXnInEZi2dpRuxMZw66DdAbI2LWZV7B8f6rviXtWEXCogUKJhHPCrEAyiDBoPIB-Mk7BI6KYl0vI4T4QejL1SsAZUgb6WVyDXkjOh9sjqn9ipcIPFX-Uk265I6aHbtqtqzZyJXCbdZ0BppLgB6M~hANveKISvUx1~lYbEw__',
     updatedAt: '2024-09-07T14:30:00Z',
-    categories: ['science'],
+    topics: ['physics and space', 'environment'],
     author: {
       name: 'John Doe',
       profilePicture:
@@ -51,7 +55,7 @@ export const synthesisMock: Synthesis[] = [
     imageUrl:
       'https://s3-alpha-sig.figma.com/img/d5fa/ecf2/a5e5e5527137c5c1b4a37ffdb03e7fc4?Expires=1726444800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=o8HkjT-pu~NcgfVT0lzwHxiN98mACC0~U1FG4v6kCq2XQuc-IazYdJ4B80jLvxO4GPzImXHmPT7i6HZGnK1QtH7eIB4vkv~8wkjECiBF8NQDYOzNJnHwQxMcAkeiCUSN0h~00c4qBEASrBk3FkDlypt-VVSx7X4lXV3cGfjbPSVKEKuahJHIT1tiePEenc-un3suBHBzAlGq939p4i5dsD99FzhWzXqAyI6aEXn9ixSVwJBPtHHTG3~tme8-A94fRIB-lFoiGZBtCt4Li9RAJOY0bI-svu0XJEDZIYJ-MclCAjyvJY-ijelDpAQZBmRNuemmAPCDf-ndy9A3VVGeDQ__',
     updatedAt: '2024-09-02T14:30:00Z',
-    categories: ['technology', 'world'],
+    topics: ['technology', 'environment'],
     author: {
       name: 'Jane Smith',
       profilePicture:
@@ -67,7 +71,7 @@ export const synthesisMock: Synthesis[] = [
     imageUrl:
       'https://s3-alpha-sig.figma.com/img/01eb/241e/9ce363a8196ef00b7e2d001ab2a30d0c?Expires=1726444800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=HnFwmrL2moC~~XulTFcwD91OSrmEH9vxIGxNo~p2V9P022xZQcMXahIjpxdPYIWMDR4VruTMkR1liFGa2JmvP8wUEGg1AepiYVdj30WL1eZaLQLYxD74vR6Gm3UfRNqOaddMOAIsbhq91Zedm399FKPUzR0P5QjT4m5-qh~3s3NuBfmxtEwBFUgM6qXM-H51RAj97lqrM42NMCbh1Nmqm-gr5F~0sVD~JPOf0m-UiU-XG0swGnZd-TQe~pv8~DD7vcmylS0hcpG~VIXmMm1OBLOJTY9V4FmNBX39OOXLNT2ZJ5ELWPFQBvO~3vPd9YQ4MsXqpZN6MAuQfuDOudH6kw__',
     updatedAt: '2023-09-07T14:30:00Z',
-    categories: ['entertainment'],
+    topics: ['business'],
     author: {
       name: 'Jane Smith',
       profilePicture:

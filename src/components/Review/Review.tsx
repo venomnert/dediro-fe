@@ -7,7 +7,7 @@ import ReviewCTA from './ReviewCTA';
 
 function Review() {
   return (
-    <Box sx={reviewContainer}>
+    <Box sx={reviewContainer} id='review-section'>
       <Typography sx={titleStyles}>Today&apos;s Dediro Review</Typography>
       <Box sx={cardsContainer}>
         {reviewData.map((review) => (

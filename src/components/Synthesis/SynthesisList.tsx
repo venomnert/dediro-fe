@@ -21,15 +21,16 @@ function SynthesisList({ selectedCategory }: SynthesisListProps) {
       setSynthesisListData(synthesisMock);
     } else {
       const res: Synthesis[] = synthesisMock.filter((s) =>
-        s.categories.includes(selectedCategory.title.toLowerCase())
+        s.topics.includes(selectedCategory.title.toLowerCase())
       );
+      console.log(res, 'infoooo');
       setSynthesisListData(res);
     }
 
     return () => {
       setSynthesisListData([]);
     };
-  }, [selectedCategory]);
+  }, [selectedCategory, synthesisMock]);
   return (
     <Box sx={cardsContainer}>
       {synthesisListData?.map((synthesis) => (

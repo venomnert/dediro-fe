@@ -14,7 +14,7 @@ import {
 
 function StayInformed() {
   return (
-    <Box sx={backgroundOnly}>
+    <Box sx={backgroundOnly} id='stay-informed-section'>
       <Box sx={mainContainer}>
         <Box sx={leftSide}>
           <Typography sx={title}>
@@ -30,7 +30,7 @@ function StayInformed() {
             articles and reports from Dediro.
           </Typography>
           <Box sx={btnContainer}>
-            <TextField sx={inputStyles} placeholder="Email address" />
+            <TextField sx={inputStyles} placeholder="Email address" type='email' />
             <Button sx={ctaButton}>Subscribe</Button>
           </Box>
         </Box>
