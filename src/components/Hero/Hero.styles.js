@@ -11,7 +11,7 @@ export const heroStyle = {
   display: 'flex',
   flexDirection: { xs: 'column', md: 'row' },
   padding: { xs: '30px', md: '80px' },
-  paddingTop: { xs: '137px', md: '137px' },
+  paddingTop: { xs: '160px', md: '170px' },
   paddingBottom: { xs: '20px', md: '40px' },
   boxSizing: 'border-box',
   maxWidth: 'var(--max-width) !important',

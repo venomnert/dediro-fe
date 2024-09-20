@@ -36,12 +36,21 @@ function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
   };
 
   return (
-    <Box sx={mainContainer}>
+    <Box
+      sx={mainContainer}
+      flexDirection={disableSearch ? 'row-reverse' : 'row'}
+    >
       <BurgerMenu anchorOrigin="left" addBlackIcon={disableSearch} />
-      <img src="images/dediro-logo.svg" alt="Dediro" />
-      <IconButton onClick={toggleSearch} sx={iconButton}>
-        <SearchIcon sx={searchIconStyles} />
-      </IconButton>
+      <img
+        style={{ width: '50px', height: '50px' }}
+        src="images/dediro-logo-white.webp"
+        alt="Dediro"
+      />
+      {!disableSearch ? (
+        <IconButton onClick={toggleSearch} sx={iconButton}>
+          <SearchIcon sx={searchIconStyles} />
+        </IconButton>
+      ) : null}
       {searchOpen && (
         <ClickAwayListener onClickAway={handleClickAway}>
           <Slide direction="down" in={searchOpen} mountOnEnter unmountOnExit>

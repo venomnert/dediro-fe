@@ -9,7 +9,6 @@ import {
   headerStyles,
   inputStyles,
   linksContainer,
-  blackLinkStyle,
   linkStyle,
 } from './Header.styles';
 import SearchIcon from '@mui/icons-material/Search';
@@ -33,15 +32,14 @@ function Header({ disableSearch = false }: HeaderProps) {
   return (
     <Box sx={headerStyles}>
       <Box sx={desktopHeaderContainer}>
-        <img src="images/dediro-logo.svg" alt="Dediro" />
+        <img
+          style={{ width: '50px', height: '50px' }}
+          src="images/dediro-logo-white.webp"
+          alt="Dediro"
+        />
         <Box sx={linksContainer}>
           {links.map((link) => (
-            <Link
-              style={disableSearch ? blackLinkStyle : linkStyle}
-              passHref
-              key={link.title}
-              href={link.url}
-            >
+            <Link style={linkStyle} passHref key={link.title} href={link.url}>
               {link.title}
             </Link>
           ))}

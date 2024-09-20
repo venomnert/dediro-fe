@@ -5,7 +5,7 @@ export const linksContainer = {
   height: '100%',
   alignItems: 'center',
   display: { xs: 'none', lg: 'flex' },
-  gap: '64px',
+  gap: { xs: '35px', xl: '64px' },
 };
 
 export const linkStyle = {
@@ -21,6 +21,8 @@ export const blackLinkStyle = {
 export const headerStyles = {
   position: 'fixed',
   width: '100%',
+  backgroundColor: 'black',
+  paddingBottom: '25px',
   zIndex: 3,
 };
 
