@@ -3,33 +3,23 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
 import MenuIcon from '@mui/icons-material/Menu';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
-import SearchIcon from '@mui/icons-material/Search';
 import { links } from '../Header/utils';
-import { Button, InputAdornment, TextField } from '@mui/material';
-import { ctaButton, inputStyles } from '../Header/Header.styles';
-import {
-  containerStyles,
-  linkStyle,
-  menuBtnStyle,
-  slotPaperStyles,
-} from './BurgerMenu.styles';
+import { containerStyles, linkStyle, menuBtnStyle } from './BurgerMenu.styles';
 import Link from 'next/link';
 
 interface BurgerProps {
   anchorOrigin?: number | 'right' | 'center' | 'left';
+  addBlackIcon: boolean;
 }
 
-export default function BurgerMenu({ anchorOrigin = 'right' }: BurgerProps) {
+export default function BurgerMenu({
+  anchorOrigin = 'right',
+  addBlackIcon,
+}: BurgerProps) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -45,7 +35,10 @@ export default function BurgerMenu({ anchorOrigin = 'right' }: BurgerProps) {
           <IconButton
             onClick={handleClick}
             size="small"
-            sx={{ ml: { xs: 0, md: 2 } }}
+            sx={{
+              ml: { xs: 0, md: 2 },
+              backgroundColor: addBlackIcon ? 'black' : 'transparent',
+            }}
             aria-controls={open ? 'open-menu' : undefined}
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
@@ -64,14 +57,7 @@ export default function BurgerMenu({ anchorOrigin = 'right' }: BurgerProps) {
         open={open}
         onClose={handleClose}
         onClick={handleClose}
-        slotProps={{
-          paper: {
-            elevation: 0,
-            sx: slotPaperStyles,
-          },
-        }}
-        transformOrigin={{ horizontal: anchorOrigin, vertical: 'top' }}
-        anchorOrigin={{ horizontal: anchorOrigin, vertical: 'bottom' }}
+        sx={{ marginTop: '15px' }}
       >
         {links.map((link) => (
           <MenuItem key={`menu-${link.title}`} onClick={handleClose}>

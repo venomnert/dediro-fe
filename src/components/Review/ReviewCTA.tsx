@@ -1,11 +1,12 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
-import { ctaCard, ctaButton, ctaTitle, inputStyles } from './ReviewCTA.styles';
+import { Box, Typography } from '@mui/material';
+import { ctaCard, ctaTitle } from './ReviewCTA.styles';
 import React from 'react';
 import './reviewCta.css';
+import CTAForm from '../Common/CTA/CTAForm';
 
 function ReviewCTA() {
   return (
-    <Box sx={ctaCard}>
+    <Box sx={ctaCard} id="subscribe">
       <Typography sx={ctaTitle}>
         Subscribe to Get the
         <br />
@@ -13,8 +14,7 @@ function ReviewCTA() {
         inbox
       </Typography>
       <Box>
-        <TextField sx={inputStyles} placeholder="Email address" />
-        <Button sx={ctaButton}>Sign Up Today</Button>
+        <CTAForm ctaTextValue="Sign Up Today" isGreenButton />
       </Box>
       <img className="ctaImage" src="images/review/circles.svg" alt="circles" />
     </Box>

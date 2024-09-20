@@ -29,6 +29,23 @@ export const topics = [
   { title: 'Leadership', value: 14 },
 ];
 
+export const topicsList = [
+  { title: 'History', value: 1 },
+  { title: 'Psychology', value: 2 },
+  { title: 'Physics and Space', value: 3 },
+  { title: 'Technology', value: 4 },
+  { title: 'Startups', value: 5 },
+  { title: 'Business', value: 6 },
+  { title: 'Investing and Finance', value: 7 },
+  { title: 'American Politics', value: 8 },
+  { title: 'Geopolitics', value: 9 },
+  { title: 'Wars and Conflicts', value: 10 },
+  { title: 'Philosophy', value: 11 },
+  { title: 'Health', value: 12 },
+  { title: 'Environment', value: 13 },
+  { title: 'Leadership', value: 14 },
+];
+
 export const synthesisMock: Synthesis[] = [
   {
     title: 'Groundbreaking Discovery in Quantum Physics',

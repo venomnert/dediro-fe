@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import AnimatedWordList from './AnimatedWords';
@@ -14,12 +16,19 @@ import {
   overlayStyle,
   rightContainer,
 } from './Hero.styles';
+import { useRouter } from 'next/navigation';
 
 const heroText = `Don't let the noise of biased media and social distractions cloud your judgment. 
 We cut through the noise, bringing you expert knowledge that is factual, 
 unbiased, and rooted in reliable perspectives because the world needs more thinkers, not followers.`;
 
 function Hero() {
+  const router = useRouter();
+
+  const handleRedirectToCTA = () => {
+    router.push('/#subscribe');
+  };
+
   return (
     <Box sx={heroBackground}>
       <Box sx={overlayStyle} />
@@ -33,7 +42,9 @@ function Hero() {
             Because Somewhere, Something Incredible is Waiting to be Known.
           </Typography>
           <Typography sx={heroTextStyles}>{heroText}</Typography>
-          <Button sx={ctaButton}>Start Reading the Stories that matter</Button>
+          <Button sx={ctaButton} onClick={handleRedirectToCTA}>
+            Start Reading the Stories that matter
+          </Button>
         </Box>
         <Box sx={rightContainer}>
           <Box sx={imageContainer}>

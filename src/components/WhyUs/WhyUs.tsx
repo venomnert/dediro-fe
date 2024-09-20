@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, Button, Typography } from '@mui/material';
 import {
   backgroundOnly,
@@ -11,8 +13,15 @@ import {
 } from './WhyUs.styles';
 import React from 'react';
 import WhyUsCards from './WhyUsCards';
+import { useRouter } from 'next/navigation';
 
 function WhyUs() {
+  const router = useRouter();
+
+  const handleRedirectToCTA = () => {
+    router.push('/#subscribe');
+  };
+
   return (
     <Box sx={backgroundOnly}>
       <Box sx={mainContainer}>
@@ -23,7 +32,7 @@ function WhyUs() {
             src="images/why-choose-us/left-img-fix.webp"
             alt="girl reading a book"
           />
-          <Button sx={ctaButton}>
+          <Button sx={ctaButton} onClick={handleRedirectToCTA}>
             Get the Stories That Matter in Your Inbox
           </Button>
         </Box>

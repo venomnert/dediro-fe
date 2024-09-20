@@ -11,10 +11,12 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "@customerio/cdp-analytics-node": "^0.2.0",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@mui/icons-material": "^6.0.2",
     "@mui/material": "^6.0.1",
+    "customerio-node": "^4.1.1",
     "eslint-config-airbnb": "^19.0.4",
     "framer-motion": "^11.3.31",
     "moment": "^2.30.1",

@@ -1,8 +1,6 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
   bottomContainer,
-  ctaButton,
-  inputStyles,
   leftSide,
   mainContainer,
   rightSide,
@@ -10,6 +8,7 @@ import {
   titleStyle,
 } from './Discover.styles';
 import React from 'react';
+import CTAForm from '../Common/CTA/CTAForm';
 
 function Discover() {
   return (
@@ -42,9 +41,10 @@ function Discover() {
             <br />
             unbiased, and rooted in reliable perspectives.
           </Typography>
-          <Box>
-            <TextField sx={inputStyles} placeholder="Email address" />
-            <Button sx={ctaButton}>Get our newsletter</Button>
+          <Box sx={{ width: { xs: '100%', md: '70%' } }}>
+            {/* <TextField sx={inputStyles} placeholder="Email address" />
+            <Button sx={ctaButton}>Get our newsletter</Button> */}
+            <CTAForm flexDirection="column" />
           </Box>
         </Box>
         <Box sx={rightSide}>

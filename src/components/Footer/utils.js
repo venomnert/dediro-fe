@@ -1,7 +1,7 @@
 export const footerLinks = [
   { title: 'Privacy Policy', url: '/privacy-policy' },
-  { title: 'Terms of Service', url: 'terms-of-service' },
-  { title: 'Contact Us', url: 'contact' },
+  { title: 'Terms of Service', url: '/terms-of-service' },
+  { title: 'Contact Us', url: '/contact-us' },
 ];
 
 export const socialLinks = [

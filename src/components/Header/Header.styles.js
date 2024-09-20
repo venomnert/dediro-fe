@@ -13,6 +13,11 @@ export const linkStyle = {
   textDecoration: 'none',
 };
 
+export const blackLinkStyle = {
+  color: 'var(--black) !important',
+  textDecoration: 'none',
+};
+
 export const headerStyles = {
   position: 'fixed',
   width: '100%',

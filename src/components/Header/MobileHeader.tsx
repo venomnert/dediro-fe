@@ -18,7 +18,11 @@ import {
   inputStyles,
 } from './MobileHeader.styles';
 
-function MobileHeader() {
+interface MobileHeaderProps {
+  disableSearch?: boolean;
+}
+
+function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
   const [searchOpen, setSearchOpen] = useState(false);
 
   const toggleSearch = () => {
@@ -33,7 +37,7 @@ function MobileHeader() {
 
   return (
     <Box sx={mainContainer}>
-      <BurgerMenu anchorOrigin="left" />
+      <BurgerMenu anchorOrigin="left" addBlackIcon={disableSearch} />
       <img src="images/dediro-logo.svg" alt="Dediro" />
       <IconButton onClick={toggleSearch} sx={iconButton}>
         <SearchIcon sx={searchIconStyles} />
@@ -43,7 +47,7 @@ function MobileHeader() {
           <Slide direction="down" in={searchOpen} mountOnEnter unmountOnExit>
             <Box sx={inputContainer}>
               <InputBase placeholder="Search..." sx={inputStyles} />
-              <IconButton onClick={toggleSearch} color="inherit">
+              <IconButton onClick={toggleSearch} color={'inherit'}>
                 <CloseIcon />
               </IconButton>
             </Box>

@@ -1,16 +1,15 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import {
   backgroundOnly,
   btnContainer,
-  ctaButton,
-  inputStyles,
   leftSide,
   mainContainer,
   rightSide,
   text,
   title,
 } from './StayInformed.styles';
+import CTAForm from '../Common/CTA/CTAForm';
 
 function StayInformed() {
   return (
@@ -30,12 +29,7 @@ function StayInformed() {
             articles and reports from Dediro.
           </Typography>
           <Box sx={btnContainer}>
-            <TextField
-              sx={inputStyles}
-              placeholder="Email address"
-              type="email"
-            />
-            <Button sx={ctaButton}>Subscribe</Button>
+            <CTAForm flexDirection="column" />
           </Box>
         </Box>
         <Box sx={rightSide}>

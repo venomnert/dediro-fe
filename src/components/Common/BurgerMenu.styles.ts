@@ -38,6 +38,7 @@ export const linkStyle: CSSProperties = {
   textTransform: 'none',
   fontWeight: 600,
   fontSize: '15px',
+  width: '100%',
   borderRadius: '50px',
 };
 
