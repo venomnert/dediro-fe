@@ -19,12 +19,14 @@ export async function POST(request: Request): Promise<Response> {
     await request.json();
 
   try {
-    cio.identify(email, {
+    const cioResponse = await cio.identify(email, {
       email,
       first_name: firstName || undefined,
       last_name: lastName || undefined,
       categories: categories || undefined,
     });
+
+    console.log(cioResponse, 'response from CIO');
 
     return new Response(
       JSON.stringify({ message: 'User subscribed or updated successfully!' }),
