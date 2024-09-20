@@ -116,6 +116,13 @@ const CTAForm = ({
     },
   };
 
+  const handleResetAll = () => {
+    setEmail('');
+    setFirstName('');
+    setLastName('');
+    setTopics([]);
+  };
+
   const handleEmailSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage('');
@@ -166,14 +173,17 @@ const CTAForm = ({
         setMessage('User subscribed succesfully!');
         setShowModal(false);
         setShowSnackbar(true);
+        handleResetAll();
       } else {
         setMessage(data.message || 'Failed to update user info.');
         setShowSnackbar(true);
+        handleResetAll();
       }
     } catch (error) {
       console.error('Error:', error);
       setMessage('Error occurred while updating info.');
       setShowSnackbar(true);
+      handleResetAll();
     }
   };
 
@@ -181,16 +191,14 @@ const CTAForm = ({
     setEmail(e.target.value);
   };
 
-  /* const handleCategoriesChange = (e: SelectChangeEvent<string[]>) => {
-    const selectedCategories = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setCategories(selectedCategories);
-  }; */
   const handleTopicsChange = (e: SelectChangeEvent<string[]>) => {
     const value = e.target.value;
     setTopics(typeof value === 'string' ? value.split(',') : value);
+  };
+
+  const handleCloseModal = () => {
+    handleResetAll();
+    setShowModal(false);
   };
 
   return (
@@ -212,7 +220,7 @@ const CTAForm = ({
       </Box>
 
       {/* Modal for additional info */}
-      <Modal open={showModal} onClose={() => setShowModal(false)}>
+      <Modal open={showModal} onClose={handleCloseModal}>
         <Box
           sx={{
             position: 'absolute',

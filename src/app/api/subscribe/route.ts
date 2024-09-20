@@ -1,32 +1,33 @@
-import { TrackClient, RegionUS } from 'customerio-node';
+import { Analytics } from '@customerio/cdp-analytics-node';
 
-const CUSTOMER_API_KEY = process.env.CUSTOMER_API_KEY || '';
-const CUSTOMER_SITE_ID = process.env.CUSTOMER_IO_SITE_ID || '';
+const CUSTOMER_WRITE_KEY = process.env.CUSTOMER_IO_WRITE_KEY || '';
 
-const cio = new TrackClient(CUSTOMER_SITE_ID, CUSTOMER_API_KEY, {
-  region: RegionUS,
+const cio = new Analytics({
+  writeKey: CUSTOMER_WRITE_KEY,
 });
 
-// Define types for request body and Customer.io API response
 interface SubscribeRequest {
   email: string;
   firstName?: string;
   lastName?: string;
-  categories?: string[];
+  topics?: string[];
 }
 export async function POST(request: Request): Promise<Response> {
-  const { email, firstName, lastName, categories }: SubscribeRequest =
+  const { email, firstName, lastName, topics }: SubscribeRequest =
     await request.json();
 
   try {
-    const cioResponse = await cio.identify(email, {
+    const cioRequestBody = {
       email,
       first_name: firstName || undefined,
       last_name: lastName || undefined,
-      categories: categories || undefined,
-    });
+      topics: topics || undefined,
+    };
 
-    console.log(cioResponse, 'response from CIO');
+    cio.identify({
+      userId: email,
+      traits: cioRequestBody,
+    });
 
     return new Response(
       JSON.stringify({ message: 'User subscribed or updated successfully!' }),
