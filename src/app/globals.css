@@ -25,12 +25,15 @@
     0px 39px 11px 0px #00000000;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: 'Montserrat', Monaco, 'Cascadia Mono', 'Segoe UI Mono',
     'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
     'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
-  scroll-behavior: smooth;
 }
 
 .MuiTypography-root {
