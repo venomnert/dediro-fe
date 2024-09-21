@@ -36,8 +36,8 @@ export function useSubscribe(): UseSubscribeReturn {
       };
 
       analytics.identify({
-        userId: uuid,
-        traits: cioRequestBody,
+        ...cioRequestBody,
+        userId: uuid(),
       });
 
       setSuccess('User subscribed or updated successfully!');
