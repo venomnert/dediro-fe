@@ -24,6 +24,7 @@ import {
   SyntheticEvent,
 } from 'react';
 import { topicsList } from '@/components/Synthesis/utils';
+import { useSubscribe } from '@/hooks';
 
 const greenButtonStyles = {
   color: 'var(--black)',
@@ -74,6 +75,7 @@ const CTAForm = ({
   const [topics, setTopics] = useState<string[]>([]);
   const [message, setMessage] = useState<string>('');
   const [showModal, setShowModal] = useState<boolean>(false);
+  const { subscribe, loading, error: cioError, success } = useSubscribe();
 
   const [showSnackbar, setShowSnackbar] = useState(false);
 
@@ -128,24 +130,14 @@ const CTAForm = ({
     setMessage('');
 
     try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
+      const objForEmailRequest = { email };
+      const isSuccessful = await subscribe(objForEmailRequest);
 
-      const data = await res.json();
-
-      if (res.status === 200) {
+      if (isSuccessful) {
         setMessage('Email received! Do you want to provide more info?');
         setShowModal(true); // Open the modal for additional info
-      } else if (res.status === 409) {
+      } else if (cioError) {
         setMessage('This email is already registered.');
-        setShowSnackbar(true);
-      } else {
-        setMessage(data.message || 'Failed to subscribe with email.');
         setShowSnackbar(true);
       }
     } catch (error) {
@@ -159,23 +151,16 @@ const CTAForm = ({
     setMessage('');
 
     try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, firstName, lastName, topics }),
-      });
+      const objForRequest = { email, firstName, lastName, topics };
+      const isSuccessful = await subscribe(objForRequest);
 
-      const data = await res.json();
-
-      if (res.ok) {
+      if (isSuccessful) {
         setMessage('User subscribed succesfully!');
         setShowModal(false);
         setShowSnackbar(true);
         handleResetAll();
       } else {
-        setMessage(data.message || 'Failed to update user info.');
+        setMessage('Failed to update user info.');
         setShowSnackbar(true);
         handleResetAll();
       }
@@ -214,7 +199,12 @@ const CTAForm = ({
           required
           fullWidth={!isGreenButton}
         />
-        <Button type="submit" sx={buttonStyles} fullWidth={!isGreenButton}>
+        <Button
+          type="submit"
+          sx={buttonStyles}
+          fullWidth={!isGreenButton}
+          disabled={loading}
+        >
           {ctaTextValue}
         </Button>
       </Box>
@@ -280,6 +270,7 @@ const CTAForm = ({
             variant="contained"
             color="primary"
             sx={{ ...buttonStyles, marginLeft: '0', width: '100%' }}
+            disabled={loading}
             fullWidth
           >
             Submit Info
