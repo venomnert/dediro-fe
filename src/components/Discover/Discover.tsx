@@ -13,16 +13,6 @@ import CTAForm from '../Common/CTA/CTAForm';
 function Discover() {
   return (
     <Box sx={mainContainer}>
-      <img
-        style={{
-          width: '100%',
-          borderRadius: '100px',
-          marginBottom: '90px',
-        }}
-        loading="lazy"
-        src="images/discover/large-app.webp"
-        alt="app screenshot"
-      />
       <Box sx={bottomContainer}>
         <Box sx={leftSide}>
           <Typography sx={titleStyle}>
