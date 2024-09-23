@@ -16,6 +16,7 @@ export const ctaCard = {
   position: 'relative',
   boxShadow: 'var(--hard-shadow)',
   overflow: 'hidden',
+  scrollMarginTop: '100px',
 };
 
 export const inputStyles = {

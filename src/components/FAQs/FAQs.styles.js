@@ -39,4 +39,5 @@ export const accordionContainer = {
 
 export const backgroundOnly = {
   backgroundColor: 'var(--blue)',
+  scrollMarginTop: '100px',
 };

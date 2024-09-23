@@ -16,7 +16,7 @@ import {
 
 function Testimonials() {
   return (
-    <Box sx={mainContainer}>
+    <Box sx={mainContainer} id="testimonials">
       <Typography sx={titleStyle}>What our clients say</Typography>
       <Typography sx={subtitleStyle}>
         Hear from our satisfied customers about their experience with our

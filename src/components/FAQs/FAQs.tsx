@@ -20,7 +20,7 @@ import {
 
 function FAQs() {
   return (
-    <Box sx={backgroundOnly}>
+    <Box sx={backgroundOnly} id="faqs">
       <Box sx={mainContainer}>
         <Typography sx={sectionTitle}>Frequently Asked Questions</Typography>
         <Box sx={questionsContainer}>

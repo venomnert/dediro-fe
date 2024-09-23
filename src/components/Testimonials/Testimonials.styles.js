@@ -51,6 +51,7 @@ export const mainContainer = {
   alignItems: 'center',
   maxWidth: 'var(--max-width) !important',
   margin: '0 auto',
+  scrollMarginTop: '100px',
 };
 
 export const cardsRendererContainer = {
