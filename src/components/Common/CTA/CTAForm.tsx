@@ -3,14 +3,8 @@
 import {
   Box,
   Button,
-  Checkbox,
-  FormControl,
-  InputLabel,
-  ListItemText,
-  MenuItem,
+  Chip,
   Modal,
-  Select,
-  SelectChangeEvent,
   Snackbar,
   SnackbarCloseReason,
   TextField,
@@ -90,7 +84,6 @@ const CTAForm = ({
     setShowSnackbar(false);
   };
 
-  // set button styles
   const buttonStyles = isGreenButton ? greenButtonStyles : orangeButtonStyles;
 
   const formStyles: CSSProperties = {
@@ -155,7 +148,7 @@ const CTAForm = ({
       const isSuccessful = await subscribe(objForRequest);
 
       if (isSuccessful) {
-        setMessage('User subscribed succesfully!');
+        setMessage('User subscribed successfully!');
         setShowModal(false);
         setShowSnackbar(true);
         handleResetAll();
@@ -176,9 +169,12 @@ const CTAForm = ({
     setEmail(e.target.value);
   };
 
-  const handleTopicsChange = (e: SelectChangeEvent<string[]>) => {
-    const value = e.target.value;
-    setTopics(typeof value === 'string' ? value.split(',') : value);
+  const handleChipToggle = (topic: string) => {
+    setTopics((prevTopics) =>
+      prevTopics.includes(topic)
+        ? prevTopics.filter((t) => t !== topic)
+        : [...prevTopics, topic]
+    );
   };
 
   const handleCloseModal = () => {
@@ -218,14 +214,21 @@ const CTAForm = ({
             left: '50%',
             transform: 'translate(-50%, -50%)',
             width: 400,
+            maxWidth: '100%',
+            maxHeight: '100%',
             bgcolor: 'background.paper',
             boxShadow: 24,
             p: 4,
+            overflow: 'auto',
             borderRadius: '8px',
           }}
         >
-          <Typography variant="h6" component="h2" sx={{ marginBottom: '16px' }}>
-            Complete Your Profile
+          <Typography
+            variant="h6"
+            component="h2"
+            sx={{ marginBottom: '16px', textAlign: 'center' }}
+          >
+            Get all sides of the most important stories in your inbox
           </Typography>
 
           {/* First Name */}
@@ -247,23 +250,24 @@ const CTAForm = ({
           />
 
           {/* Topics */}
-          <FormControl fullWidth sx={{ marginBottom: '16px' }}>
-            <InputLabel id="topics-label">Topics</InputLabel>
-            <Select
-              labelId="topics-label"
-              multiple
-              value={topics}
-              onChange={handleTopicsChange}
-              renderValue={(selected) => (selected as string[]).join(', ')}
-            >
-              {topicsList.map((topic) => (
-                <MenuItem key={topic.title} value={topic.title}>
-                  <Checkbox checked={topics.indexOf(topic.title) > -1} />
-                  <ListItemText primary={topic.title} />
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Box
+            sx={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              gap: 1,
+              marginBottom: '16px',
+            }}
+          >
+            {topicsList.map((topic) => (
+              <Chip
+                key={topic.title}
+                label={topic.title}
+                clickable
+                onClick={() => handleChipToggle(topic.title)}
+                color={topics.includes(topic.title) ? 'primary' : 'default'}
+              />
+            ))}
+          </Box>
 
           <Button
             onClick={handleAdditionalInfoSubmit}
@@ -273,7 +277,7 @@ const CTAForm = ({
             disabled={loading}
             fullWidth
           >
-            Submit Info
+            Subscribe
           </Button>
         </Box>
       </Modal>
