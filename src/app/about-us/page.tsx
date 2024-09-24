@@ -19,7 +19,12 @@ const About = () => {
       <Box sx={{ height: '1px' }} />
       <Container maxWidth="md" sx={{ marginTop: '170px' }}>
         <Box my={5}>
-          <Typography variant="h3" component="h1" mb={P_MARGIN}>
+          <Typography
+            variant="h3"
+            component="h1"
+            mb={P_MARGIN}
+            sx={{ fontSize: { xs: '35px', md: '46px' } }}
+          >
             Revolutionizing Knowledge for the Digital Age
           </Typography>
 
