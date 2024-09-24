@@ -17,20 +17,32 @@ import React from 'react';
 import BurgerMenu from '../Common/BurgerMenu';
 import MobileHeader from './MobileHeader';
 import CTAForm from '../Common/CTA/CTAForm';
+import { useRouter } from 'next/navigation';
 
 interface HeaderProps {
   disableSearch?: boolean;
 }
 
 function Header({ disableSearch = false }: HeaderProps) {
+  const router = useRouter();
+  const handleGoHome = () => {
+    router.push('/');
+  };
+
   return (
     <Box sx={headerStyles}>
       <Box sx={desktopHeaderContainer}>
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
           <img
-            style={{ width: '50px', height: '50px' }}
+            style={{
+              width: '50px',
+              height: '50px',
+              userSelect: 'none',
+              cursor: 'pointer',
+            }}
             src="images/dediro-logo-white.webp"
             alt="Dediro"
+            onClick={handleGoHome}
           />
           <Box sx={linksContainer}>
             {links.map((link) => (

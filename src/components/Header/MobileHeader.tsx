@@ -17,6 +17,7 @@ import {
   searchIconStyles,
   inputStyles,
 } from './MobileHeader.styles';
+import { useRouter } from 'next/navigation';
 
 interface MobileHeaderProps {
   disableSearch?: boolean;
@@ -24,6 +25,12 @@ interface MobileHeaderProps {
 
 function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
   const [searchOpen, setSearchOpen] = useState(false);
+
+  const router = useRouter();
+
+  const handleGoHome = () => {
+    router.push('/');
+  };
 
   const toggleSearch = () => {
     setSearchOpen(!searchOpen);
@@ -42,9 +49,15 @@ function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
     >
       <BurgerMenu anchorOrigin="left" addBlackIcon={disableSearch} />
       <img
-        style={{ width: '50px', height: '50px' }}
+        style={{
+          width: '50px',
+          height: '50px',
+          userSelect: 'none',
+          cursor: 'pointer',
+        }}
         src="images/dediro-logo-white.webp"
         alt="Dediro"
+        onClick={handleGoHome}
       />
       {!disableSearch ? (
         <IconButton onClick={toggleSearch} sx={iconButton}>
