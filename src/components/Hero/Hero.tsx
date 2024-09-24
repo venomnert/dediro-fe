@@ -1,11 +1,10 @@
 'use client';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import AnimatedWordList from './AnimatedWords';
 import {
   contentStyle,
-  ctaButton,
   heroBackground,
   heroStyle,
   heroSubtitle,
@@ -16,19 +15,13 @@ import {
   overlayStyle,
   rightContainer,
 } from './Hero.styles';
-import { useRouter } from 'next/navigation';
+import CTAForm from '../Common/CTA/CTAForm';
 
 const heroText = `Don't let the noise of biased media and social distractions cloud your judgment. 
 We cut through the noise, bringing you expert knowledge that is factual, 
 unbiased, and rooted in reliable perspectives because the world needs more thinkers, not followers.`;
 
 function Hero() {
-  const router = useRouter();
-
-  const handleRedirectToCTA = () => {
-    router.push('/#subscribe');
-  };
-
   return (
     <Box sx={heroBackground}>
       <Box sx={overlayStyle} />
@@ -42,9 +35,18 @@ function Hero() {
             Because Somewhere, Something Incredible is Waiting to be Known.
           </Typography>
           <Typography sx={heroTextStyles}>{heroText}</Typography>
-          <Button sx={ctaButton} onClick={handleRedirectToCTA}>
-            Start Reading the Stories that matter
-          </Button>
+          <Box
+            sx={{
+              maxWidth: '400px',
+              margin: { xs: 'auto', md: '0' },
+              marginBottom: { xs: '30px', md: '0' },
+            }}
+          >
+            <CTAForm
+              ctaTextValue=" Start Reading the Stories that matter"
+              flexDirection="column"
+            />
+          </Box>
         </Box>
         <Box sx={rightContainer}>
           <Box sx={imageContainer}>

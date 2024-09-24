@@ -56,12 +56,16 @@ interface CTAProps {
   ctaTextValue?: string;
   flexDirection?: any;
   isGreenButton?: boolean;
+  buttonCustomStyles?: any;
+  disableEmailInput?: boolean;
 }
 
 const CTAForm = ({
   ctaTextValue = 'Subscribe',
   isGreenButton = false,
+  buttonCustomStyles = {},
   flexDirection = 'row',
+  disableEmailInput = false,
 }: CTAProps) => {
   const [email, setEmail] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
@@ -90,6 +94,7 @@ const CTAForm = ({
     display: 'flex',
     flexDirection: isGreenButton ? { xs: 'column', md: 'row' } : flexDirection,
     alignItems: 'center',
+    height: '100%',
   };
 
   const inputStyles = {
@@ -121,6 +126,11 @@ const CTAForm = ({
   const handleEmailSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setMessage('');
+
+    if (disableEmailInput) {
+      setShowModal(true);
+      return;
+    }
 
     try {
       const objForEmailRequest = { email };
@@ -186,18 +196,20 @@ const CTAForm = ({
     <>
       {/* Email Form */}
       <Box component="form" onSubmit={handleEmailSubmit} sx={formStyles}>
-        <TextField
-          sx={inputStyles}
-          placeholder="Email address"
-          type="email"
-          value={email}
-          onChange={handleEmailChange}
-          required
-          fullWidth={!isGreenButton}
-        />
+        {!disableEmailInput ? (
+          <TextField
+            sx={inputStyles}
+            placeholder="Email address"
+            type="email"
+            value={email}
+            onChange={handleEmailChange}
+            required
+            fullWidth={!isGreenButton}
+          />
+        ) : null}
         <Button
           type="submit"
-          sx={buttonStyles}
+          sx={{ ...buttonStyles, ...buttonCustomStyles }}
           fullWidth={!isGreenButton}
           disabled={loading}
         >
@@ -230,8 +242,18 @@ const CTAForm = ({
           >
             Get all sides of the most important stories in your inbox
           </Typography>
-
-          {/* First Name */}
+          {/* SHOW email input, only enabled in the Join for free cta button */}
+          {disableEmailInput ? (
+            <TextField
+              placeholder="Email address"
+              type="email"
+              value={email}
+              onChange={handleEmailChange}
+              required
+              fullWidth={!isGreenButton}
+              sx={{ marginBottom: '16px' }}
+            />
+          ) : null}
           <TextField
             placeholder="First Name"
             value={firstName}
@@ -239,8 +261,6 @@ const CTAForm = ({
             fullWidth
             sx={{ marginBottom: '16px' }}
           />
-
-          {/* Last Name */}
           <TextField
             placeholder="Last Name"
             value={lastName}
@@ -248,8 +268,6 @@ const CTAForm = ({
             fullWidth
             sx={{ marginBottom: '16px' }}
           />
-
-          {/* Topics */}
           <Box
             sx={{
               display: 'flex',

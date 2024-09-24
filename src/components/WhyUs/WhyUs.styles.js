@@ -34,6 +34,7 @@ export const sectionSubtitle = {
 
 export const leftImgStyle = {
   width: '100%',
+  marginBottom: '20px',
 };
 
 export const ctaButton = {

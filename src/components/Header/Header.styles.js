@@ -67,6 +67,7 @@ export const ctaButton = {
   fontFamily: 'Poppins',
   // padding: '5px 15px',
   display: { xs: 'none', md: 'block' },
+  marginTop: 0,
 };
 
 export const inputStyles = {

@@ -1,9 +1,8 @@
 'use client';
 
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import {
   backgroundOnly,
-  ctaButton,
   leftImgStyle,
   leftSide,
   mainContainer,
@@ -13,15 +12,9 @@ import {
 } from './WhyUs.styles';
 import React from 'react';
 import WhyUsCards from './WhyUsCards';
-import { useRouter } from 'next/navigation';
+import CTAForm from '../Common/CTA/CTAForm';
 
 function WhyUs() {
-  const router = useRouter();
-
-  const handleRedirectToCTA = () => {
-    router.push('/#subscribe');
-  };
-
   return (
     <Box sx={backgroundOnly}>
       <Box sx={mainContainer}>
@@ -32,9 +25,16 @@ function WhyUs() {
             src="images/why-choose-us/left-img-fix.webp"
             alt="girl reading a book"
           />
-          <Button sx={ctaButton} onClick={handleRedirectToCTA}>
-            Get the Stories That Matter in Your Inbox
-          </Button>
+          <Box sx={{ height: 'fit-content' }}>
+            <CTAForm
+              ctaTextValue="Get the Stories That Matter in Your Inbox"
+              flexDirection="column"
+              buttonCustomStyles={{
+                color: 'var(--blue)',
+                backgroundColor: 'var(--white)',
+              }}
+            />
+          </Box>
         </Box>
         <Box sx={rightSide}>
           <Typography sx={sectionTitle}>Why Choose Dediro?</Typography>

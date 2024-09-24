@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, InputAdornment, TextField } from '@mui/material';
+import { Box, InputAdornment, TextField } from '@mui/material';
 import { links } from './utils';
 import {
   ctaButton,
@@ -16,19 +16,13 @@ import Link from 'next/link';
 import React from 'react';
 import BurgerMenu from '../Common/BurgerMenu';
 import MobileHeader from './MobileHeader';
-import { useRouter } from 'next/navigation';
+import CTAForm from '../Common/CTA/CTAForm';
 
 interface HeaderProps {
   disableSearch?: boolean;
 }
 
 function Header({ disableSearch = false }: HeaderProps) {
-  const router = useRouter();
-
-  const handleRedirectToCTA = () => {
-    router.push('/#subscribe');
-  };
-
   return (
     <Box sx={headerStyles}>
       <Box sx={desktopHeaderContainer}>
@@ -61,10 +55,11 @@ function Header({ disableSearch = false }: HeaderProps) {
             variant="outlined"
           />
         ) : null}
-
-        <Button sx={ctaButton} onClick={handleRedirectToCTA}>
-          Join for free
-        </Button>
+        <CTAForm
+          ctaTextValue="Join for free"
+          buttonCustomStyles={ctaButton}
+          disableEmailInput
+        />
         <BurgerMenu addBlackIcon={disableSearch} />
       </Box>
       <Box sx={mobileHeaderContainer}>
