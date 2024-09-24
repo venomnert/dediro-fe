@@ -26,17 +26,19 @@ function Header({ disableSearch = false }: HeaderProps) {
   return (
     <Box sx={headerStyles}>
       <Box sx={desktopHeaderContainer}>
-        <img
-          style={{ width: '50px', height: '50px' }}
-          src="images/dediro-logo-white.webp"
-          alt="Dediro"
-        />
-        <Box sx={linksContainer}>
-          {links.map((link) => (
-            <Link style={linkStyle} passHref key={link.title} href={link.url}>
-              {link.title}
-            </Link>
-          ))}
+        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+          <img
+            style={{ width: '50px', height: '50px' }}
+            src="images/dediro-logo-white.webp"
+            alt="Dediro"
+          />
+          <Box sx={linksContainer}>
+            {links.map((link) => (
+              <Link style={linkStyle} passHref key={link.title} href={link.url}>
+                {link.title}
+              </Link>
+            ))}
+          </Box>
         </Box>
         {!disableSearch ? (
           <TextField

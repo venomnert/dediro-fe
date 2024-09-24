@@ -6,6 +6,7 @@ export const linksContainer = {
   alignItems: 'center',
   display: { xs: 'none', lg: 'flex' },
   gap: { xs: '35px', xl: '64px' },
+  marginLeft: { xs: '35px', xl: '68px' },
 };
 
 export const linkStyle = {
