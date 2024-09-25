@@ -62,7 +62,9 @@ export const ctaButton = {
   zIndex: 2,
 };
 
-export const leftSide = {};
+export const leftSide = {
+  maxWidth: { xs: '100%', md: '50%' },
+};
 
 export const rightSide = {
   marginTop: { xs: '35px', md: 0 },

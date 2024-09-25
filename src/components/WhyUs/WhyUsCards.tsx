@@ -1,5 +1,4 @@
 import React from 'react';
-import { cardsData } from './utils';
 import { Box, Typography } from '@mui/material';
 import {
   cardContainer,
@@ -8,11 +7,16 @@ import {
   cardTitle,
   cardText,
 } from './WhyUsCards.styles';
+import { WhyUsCard } from '@/types';
 
-function WhyUsCards() {
+interface Props {
+  cardsData: WhyUsCard[] | undefined;
+}
+
+function WhyUsCards({ cardsData }: Props) {
   return (
     <Box>
-      {cardsData.map(({ title, iconUrl, text }) => (
+      {cardsData?.map(({ title, iconUrl, text }) => (
         <Box sx={cardContainer} key={title}>
           <Box sx={topContainer}>
             <img style={imgStyle} src={iconUrl} alt={title} loading="lazy" />

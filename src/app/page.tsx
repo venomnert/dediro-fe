@@ -11,7 +11,7 @@ import FAQs from '@/components/FAQs/FAQs';
 import Discover from '@/components/Discover/Discover';
 import WhyUs from '@/components/WhyUs/WhyUs';
 
-export default function Home() {
+export default async function Home() {
   return (
     <Box>
       <Header />

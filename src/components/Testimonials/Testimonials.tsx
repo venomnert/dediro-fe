@@ -1,7 +1,7 @@
+'use client';
 import FormatQuoteRoundedIcon from '@mui/icons-material/FormatQuoteRounded';
 import React from 'react';
 import { Avatar, Box, Typography } from '@mui/material';
-import { cardsData } from './utils';
 import {
   avatarStyles,
   cardsRendererContainer,
@@ -13,17 +13,19 @@ import {
   subtitleStyle,
   titleStyle,
 } from './Testimonials.styles';
+import useContentful from '@/hooks/useContentful';
+import { TestimonialsContent } from '@/types';
 
 function Testimonials() {
+  const { data, loading, error } =
+    useContentful<TestimonialsContent>('testimonials');
+
   return (
     <Box sx={mainContainer} id="testimonials">
-      <Typography sx={titleStyle}>What our clients say</Typography>
-      <Typography sx={subtitleStyle}>
-        Hear from our satisfied customers about their experience with our
-        products and services.
-      </Typography>
+      <Typography sx={titleStyle}>{data?.title}</Typography>
+      <Typography sx={subtitleStyle}>{data?.subtitle}</Typography>
       <Box sx={cardsRendererContainer}>
-        {cardsData.map(({ text, photoUrl, name }) => (
+        {data?.cardsData?.map(({ text, photoUrl, name }) => (
           <Box key={name} sx={cardStyles}>
             <FormatQuoteRoundedIcon sx={quoteStyle} />
             <Typography sx={cardTextStyle}>{text}</Typography>

@@ -3,6 +3,7 @@ export const ctaTitle = {
   color: 'var(--white)',
   fontSize: '32px',
   width: 'fit-content',
+  maxWidth: { lg: '50%' },
   marginBottom: '35px',
   textAlign: { xs: 'center', md: 'initial' },
 };

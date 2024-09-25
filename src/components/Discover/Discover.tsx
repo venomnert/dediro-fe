@@ -1,3 +1,4 @@
+'use client';
 import { Box, Typography } from '@mui/material';
 import {
   bottomContainer,
@@ -9,32 +10,20 @@ import {
 } from './Discover.styles';
 import React from 'react';
 import CTAForm from '../Common/CTA/CTAForm';
+import useContentful from '@/hooks/useContentful';
+import { DiscoverContent } from '@/types';
 
 function Discover() {
+  const { data, loading, error } = useContentful<DiscoverContent>('discover');
+  console.log(data, 'c data');
   return (
     <Box sx={mainContainer}>
       <Box sx={bottomContainer}>
         <Box sx={leftSide}>
-          <Typography sx={titleStyle}>
-            Discover the World as It
-            <br />
-            Truly Is, Not as They Want
-            <br />
-            You to See It
-          </Typography>
-          <Typography sx={textStyle}>
-            Dediro is your clarity sorter in a world dominated by
-            <br />
-            misinformation and bias. We cut through the noise,
-            <br />
-            bringing you expert knowledge that is factual,
-            <br />
-            unbiased, and rooted in reliable perspectives.
-          </Typography>
+          <Typography sx={titleStyle}>{data?.title}</Typography>
+          <Typography sx={textStyle}>{data?.text}</Typography>
           <Box sx={{ width: { xs: '100%', md: '70%' } }}>
-            {/* <TextField sx={inputStyles} placeholder="Email address" />
-            <Button sx={ctaButton}>Get our newsletter</Button> */}
-            <CTAForm flexDirection="column" />
+            <CTAForm flexDirection="column" ctaTextValue={data?.ctaText} />
           </Box>
         </Box>
         <Box sx={rightSide}>

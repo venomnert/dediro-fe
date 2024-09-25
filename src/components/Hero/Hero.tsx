@@ -1,5 +1,4 @@
 'use client';
-
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import AnimatedWordList from './AnimatedWords';
@@ -16,12 +15,11 @@ import {
   rightContainer,
 } from './Hero.styles';
 import CTAForm from '../Common/CTA/CTAForm';
-
-const heroText = `Don't let the noise of biased media and social distractions cloud your judgment. 
-We cut through the noise, bringing you expert knowledge that is factual, 
-unbiased, and rooted in reliable perspectives because the world needs more thinkers, not followers.`;
+import { HeroContent } from '@/types';
+import useContentful from '@/hooks/useContentful';
 
 function Hero() {
+  const { data, loading, error } = useContentful<HeroContent>('heroText');
   return (
     <Box sx={heroBackground}>
       <Box sx={overlayStyle} />
@@ -32,9 +30,9 @@ function Hero() {
           </Typography>
           <AnimatedWordList />
           <Typography variant="h2" sx={heroSubtitle}>
-            Because Somewhere, Something Incredible is Waiting to be Known.
+            {data?.title}
           </Typography>
-          <Typography sx={heroTextStyles}>{heroText}</Typography>
+          <Typography sx={heroTextStyles}>{data?.subtitle}</Typography>
           <Box
             sx={{
               maxWidth: '400px',
@@ -42,10 +40,7 @@ function Hero() {
               marginBottom: { xs: '30px', md: '0' },
             }}
           >
-            <CTAForm
-              ctaTextValue=" Start Reading the Stories that matter"
-              flexDirection="column"
-            />
+            <CTAForm ctaTextValue={data?.heroCTA} flexDirection="column" />
           </Box>
         </Box>
         <Box sx={rightContainer}>

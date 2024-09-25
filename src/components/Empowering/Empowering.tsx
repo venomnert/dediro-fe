@@ -1,5 +1,5 @@
+'use client';
 import { Box, Typography } from '@mui/material';
-import { cardsData } from './utils';
 import {
   cardsContainer,
   empoweringCard,
@@ -10,19 +10,19 @@ import {
   titleStyle,
 } from './Empowering.styles';
 import React from 'react';
+import useContentful from '@/hooks/useContentful';
+import { EmpoweringContent } from '@/types';
 
 function Empowering() {
+  const { data, loading, error } =
+    useContentful<EmpoweringContent>('empowerSection');
+
   return (
     <Box sx={mainContainer}>
-      <Typography sx={sectionTitle}>How Dediro Empowers You</Typography>
-      <Typography sx={sectionSubtitle}>
-        We go beyond the headlines to provide you with in-depth, accurate
-        information. Here’s how we ensure you
-        <br />
-        get the facts
-      </Typography>
+      <Typography sx={sectionTitle}>{data?.sectionTitle}</Typography>
+      <Typography sx={sectionSubtitle}>{data?.sectionSubtitle}</Typography>
       <Box sx={cardsContainer}>
-        {cardsData.map(({ title, text, imageUrl }) => (
+        {data?.cardsData?.map(({ title, text, imageUrl }) => (
           <Box key={title} sx={empoweringCard}>
             <Typography sx={titleStyle}>{title}</Typography>
             <Typography sx={textStyle}>{text}</Typography>
