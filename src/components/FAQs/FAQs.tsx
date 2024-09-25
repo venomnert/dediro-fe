@@ -19,9 +19,13 @@ import {
 } from './FAQs.styles';
 import { FAQsContent } from '@/types';
 import useContentful from '@/hooks/useContentful';
+import { useSearchParams } from 'next/navigation';
 
 function FAQs() {
-  const { data } = useContentful<FAQsContent>('faQs');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<FAQsContent>('faQs', isPreview);
 
   return (
     <Box sx={backgroundOnly} id="faqs">

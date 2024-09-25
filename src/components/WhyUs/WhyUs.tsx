@@ -14,9 +14,13 @@ import WhyUsCards from './WhyUsCards';
 import CTAForm from '../Common/CTA/CTAForm';
 import useContentful from '@/hooks/useContentful';
 import { WhyUsContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function WhyUs() {
-  const { data } = useContentful<WhyUsContent>('whyUs');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<WhyUsContent>('whyUs', isPreview);
 
   return (
     <Box sx={backgroundOnly}>

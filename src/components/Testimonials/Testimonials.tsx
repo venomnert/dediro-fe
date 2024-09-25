@@ -15,9 +15,16 @@ import {
 } from './Testimonials.styles';
 import useContentful from '@/hooks/useContentful';
 import { TestimonialsContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function Testimonials() {
-  const { data } = useContentful<TestimonialsContent>('testimonials');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<TestimonialsContent>(
+    'testimonials',
+    isPreview
+  );
 
   return (
     <Box sx={mainContainer} id="testimonials">

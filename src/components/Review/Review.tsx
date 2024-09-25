@@ -6,11 +6,14 @@ import ReviewCard from './ReviewCard';
 import ReviewCTA from './ReviewCTA';
 import useContentful from '@/hooks/useContentful';
 import { ReviewContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function Review() {
-  const { data } = useContentful<ReviewContent>('reviewSection');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
 
-  console.log(data, 'revierData');
+  const { data } = useContentful<ReviewContent>('reviewSection', isPreview);
+
   return (
     <Box sx={reviewContainer} id="review-section">
       <Typography sx={titleStyles}>Today&apos;s Dediro Review</Typography>

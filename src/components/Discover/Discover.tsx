@@ -12,10 +12,14 @@ import React from 'react';
 import CTAForm from '../Common/CTA/CTAForm';
 import useContentful from '@/hooks/useContentful';
 import { DiscoverContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function Discover() {
-  const { data } = useContentful<DiscoverContent>('discover');
-  console.log(data, 'c data');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<DiscoverContent>('discover', isPreview);
+
   return (
     <Box sx={mainContainer}>
       <Box sx={bottomContainer}>

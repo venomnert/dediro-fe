@@ -13,9 +13,16 @@ import {
 import CTAForm from '../Common/CTA/CTAForm';
 import useContentful from '@/hooks/useContentful';
 import { StayInformedContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function StayInformed() {
-  const { data } = useContentful<StayInformedContent>('stayInformedSection');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<StayInformedContent>(
+    'stayInformedSection',
+    isPreview
+  );
 
   return (
     <Box sx={backgroundOnly} id="stay-informed-section">

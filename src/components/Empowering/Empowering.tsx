@@ -12,9 +12,16 @@ import {
 import React from 'react';
 import useContentful from '@/hooks/useContentful';
 import { EmpoweringContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function Empowering() {
-  const { data } = useContentful<EmpoweringContent>('empowerSection');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<EmpoweringContent>(
+    'empowerSection',
+    isPreview
+  );
 
   return (
     <Box sx={mainContainer}>

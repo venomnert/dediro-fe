@@ -17,9 +17,13 @@ import {
 import CTAForm from '../Common/CTA/CTAForm';
 import { HeroContent } from '@/types';
 import useContentful from '@/hooks/useContentful';
+import { useSearchParams } from 'next/navigation';
 
 function Hero() {
-  const { data } = useContentful<HeroContent>('heroText');
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<HeroContent>('heroText', isPreview);
   return (
     <Box sx={heroBackground}>
       <Box sx={overlayStyle} />
