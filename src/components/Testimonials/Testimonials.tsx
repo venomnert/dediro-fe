@@ -17,8 +17,7 @@ import useContentful from '@/hooks/useContentful';
 import { TestimonialsContent } from '@/types';
 
 function Testimonials() {
-  const { data, loading, error } =
-    useContentful<TestimonialsContent>('testimonials');
+  const { data } = useContentful<TestimonialsContent>('testimonials');
 
   return (
     <Box sx={mainContainer} id="testimonials">

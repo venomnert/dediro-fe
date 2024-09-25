@@ -14,7 +14,7 @@ import useContentful from '@/hooks/useContentful';
 import { DiscoverContent } from '@/types';
 
 function Discover() {
-  const { data, loading, error } = useContentful<DiscoverContent>('discover');
+  const { data } = useContentful<DiscoverContent>('discover');
   console.log(data, 'c data');
   return (
     <Box sx={mainContainer}>

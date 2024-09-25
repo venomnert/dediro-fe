@@ -14,8 +14,7 @@ import useContentful from '@/hooks/useContentful';
 import { EmpoweringContent } from '@/types';
 
 function Empowering() {
-  const { data, loading, error } =
-    useContentful<EmpoweringContent>('empowerSection');
+  const { data } = useContentful<EmpoweringContent>('empowerSection');
 
   return (
     <Box sx={mainContainer}>

@@ -15,9 +15,7 @@ import useContentful from '@/hooks/useContentful';
 import { StayInformedContent } from '@/types';
 
 function StayInformed() {
-  const { data, loading, error } = useContentful<StayInformedContent>(
-    'stayInformedSection'
-  );
+  const { data } = useContentful<StayInformedContent>('stayInformedSection');
 
   return (
     <Box sx={backgroundOnly} id="stay-informed-section">

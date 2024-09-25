@@ -21,7 +21,7 @@ import { FAQsContent } from '@/types';
 import useContentful from '@/hooks/useContentful';
 
 function FAQs() {
-  const { data, loading, error } = useContentful<FAQsContent>('faQs');
+  const { data } = useContentful<FAQsContent>('faQs');
 
   return (
     <Box sx={backgroundOnly} id="faqs">

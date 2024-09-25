@@ -31,6 +31,7 @@ const useContentful = <T>(contentTypeId: string) => {
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contentTypeId]);
 
   return { data, loading, error };

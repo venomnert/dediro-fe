@@ -19,7 +19,7 @@ import { HeroContent } from '@/types';
 import useContentful from '@/hooks/useContentful';
 
 function Hero() {
-  const { data, loading, error } = useContentful<HeroContent>('heroText');
+  const { data } = useContentful<HeroContent>('heroText');
   return (
     <Box sx={heroBackground}>
       <Box sx={overlayStyle} />

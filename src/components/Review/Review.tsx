@@ -8,8 +8,7 @@ import useContentful from '@/hooks/useContentful';
 import { ReviewContent } from '@/types';
 
 function Review() {
-  const { data, loading, error } =
-    useContentful<ReviewContent>('reviewSection');
+  const { data } = useContentful<ReviewContent>('reviewSection');
 
   console.log(data, 'revierData');
   return (

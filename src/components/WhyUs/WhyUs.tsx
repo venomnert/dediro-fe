@@ -16,7 +16,7 @@ import useContentful from '@/hooks/useContentful';
 import { WhyUsContent } from '@/types';
 
 function WhyUs() {
-  const { data, loading, error } = useContentful<WhyUsContent>('whyUs');
+  const { data } = useContentful<WhyUsContent>('whyUs');
 
   return (
     <Box sx={backgroundOnly}>
