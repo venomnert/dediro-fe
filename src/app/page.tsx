@@ -1,3 +1,4 @@
+'use client';
 import { Box } from '@mui/material';
 import Hero from '@/components/Hero/Hero';
 import Header from '@/components/Header/Header';
@@ -10,20 +11,23 @@ import Testimonials from '@/components/Testimonials/Testimonials';
 import FAQs from '@/components/FAQs/FAQs';
 import Discover from '@/components/Discover/Discover';
 import WhyUs from '@/components/WhyUs/WhyUs';
+import { Suspense } from 'react';
 
-export default async function Home() {
+export default function Home() {
   return (
     <Box>
       <Header />
       <Hero />
-      <Review />
-      <Synthesis />
-      <Empowering />
-      <StayInformed />
-      <WhyUs />
-      <Testimonials />
-      <FAQs />
-      <Discover />
+      <Suspense fallback={<></>}>
+        <Review />
+        <Synthesis />
+        <Empowering />
+        <StayInformed />
+        <WhyUs />
+        <Testimonials />
+        <FAQs />
+        <Discover />
+      </Suspense>
       <Footer />
     </Box>
   );
