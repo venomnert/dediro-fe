@@ -73,7 +73,7 @@ const CTAForm = ({
   const [topics, setTopics] = useState<string[]>([]);
   const [message, setMessage] = useState<string>('');
   const [showModal, setShowModal] = useState<boolean>(false);
-  const { subscribe, loading, error: cioError, success } = useSubscribe();
+  const { subscribe, loading, error: cioError } = useSubscribe();
 
   const [showSnackbar, setShowSnackbar] = useState(false);
 

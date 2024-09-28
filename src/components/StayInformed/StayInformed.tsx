@@ -1,3 +1,4 @@
+'use client';
 import { Box, Typography } from '@mui/material';
 import React from 'react';
 import {
@@ -10,26 +11,27 @@ import {
   title,
 } from './StayInformed.styles';
 import CTAForm from '../Common/CTA/CTAForm';
+import useContentful from '@/hooks/useContentful';
+import { StayInformedContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function StayInformed() {
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<StayInformedContent>(
+    'stayInformedSection',
+    isPreview
+  );
+
   return (
     <Box sx={backgroundOnly} id="stay-informed-section">
       <Box sx={mainContainer}>
         <Box sx={leftSide}>
-          <Typography sx={title}>
-            Stay Informed with the
-            <br />
-            Latest Insights
-          </Typography>
-          <Typography sx={text}>
-            We continuously update our content to reflect new
-            <br />
-            findings and perspectives. Keep up with the latest
-            <br />
-            articles and reports from Dediro.
-          </Typography>
+          <Typography sx={title}>{data?.title}</Typography>
+          <Typography sx={text}>{data?.text}</Typography>
           <Box sx={btnContainer}>
-            <CTAForm flexDirection="column" />
+            <CTAForm flexDirection="column" ctaTextValue={data?.ctaText} />
           </Box>
         </Box>
         <Box sx={rightSide}>

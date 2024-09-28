@@ -1,3 +1,4 @@
+'use client';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React from 'react';
 import {
@@ -7,7 +8,6 @@ import {
   Box,
   Typography,
 } from '@mui/material';
-import { questionsList } from './utils';
 import {
   accordionContainer,
   backgroundOnly,
@@ -17,14 +17,22 @@ import {
   responseStyle,
   sectionTitle,
 } from './FAQs.styles';
+import { FAQsContent } from '@/types';
+import useContentful from '@/hooks/useContentful';
+import { useSearchParams } from 'next/navigation';
 
 function FAQs() {
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<FAQsContent>('faQs', isPreview);
+
   return (
     <Box sx={backgroundOnly} id="faqs">
       <Box sx={mainContainer}>
-        <Typography sx={sectionTitle}>Frequently Asked Questions</Typography>
+        <Typography sx={sectionTitle}>{data?.title}</Typography>
         <Box sx={questionsContainer}>
-          {questionsList.map(({ question, response }) => (
+          {data?.questionsList?.map(({ question, response }) => (
             <Accordion key={question} sx={accordionContainer}>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}

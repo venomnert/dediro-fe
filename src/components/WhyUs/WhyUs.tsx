@@ -1,5 +1,4 @@
 'use client';
-
 import { Box, Typography } from '@mui/material';
 import {
   backgroundOnly,
@@ -13,8 +12,16 @@ import {
 import React from 'react';
 import WhyUsCards from './WhyUsCards';
 import CTAForm from '../Common/CTA/CTAForm';
+import useContentful from '@/hooks/useContentful';
+import { WhyUsContent } from '@/types';
+import { useSearchParams } from 'next/navigation';
 
 function WhyUs() {
+  const searchParams = useSearchParams();
+  const isPreview = searchParams.get('isPreview') ? true : false;
+
+  const { data } = useContentful<WhyUsContent>('whyUs', isPreview);
+
   return (
     <Box sx={backgroundOnly}>
       <Box sx={mainContainer}>
@@ -27,7 +34,7 @@ function WhyUs() {
           />
           <Box sx={{ height: 'fit-content' }}>
             <CTAForm
-              ctaTextValue="Get the Stories That Matter in Your Inbox"
+              ctaTextValue={data?.ctaText}
               flexDirection="column"
               buttonCustomStyles={{
                 color: 'var(--blue)',
@@ -37,15 +44,9 @@ function WhyUs() {
           </Box>
         </Box>
         <Box sx={rightSide}>
-          <Typography sx={sectionTitle}>Why Choose Dediro?</Typography>
-          <Typography sx={sectionSubtitle}>
-            In a world where information is often
-            <br />
-            manipulated to serve those in power,
-            <br />
-            Dediro stands apart.
-          </Typography>
-          <WhyUsCards />
+          <Typography sx={sectionTitle}>{data?.title}</Typography>
+          <Typography sx={sectionSubtitle}>{data?.subtitle}</Typography>
+          <WhyUsCards cardsData={data?.cardsData} />
         </Box>
       </Box>
     </Box>
