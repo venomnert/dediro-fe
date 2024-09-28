@@ -1,8 +1,5 @@
 import { useState } from 'react';
 
-const apiKey = process.env.NEXT_PUBLIC_CUSTOMER_IO_JS_API_KEY || '';
-const siteId = process.env.NEXT_PUBLIC_CUSTOMER_IO_SITE_ID || '';
-
 interface SubscribeRequest {
   email: string;
   firstName?: string;
@@ -23,9 +20,6 @@ export function useSubscribe(): UseSubscribeReturn {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  const cioTrackBaseUrl = 'https://track.customer.io/api/v1/customers';
-  const credentials = btoa(`${siteId}:${apiKey}`);
-
   const subscribe = async (data: SubscribeRequest) => {
     setLoading(true);
     setError(null);
@@ -39,25 +33,18 @@ export function useSubscribe(): UseSubscribeReturn {
       return false;
     }
 
-    const cioRequestBody = {
-      email,
-      first_name: firstName || undefined,
-      last_name: lastName || undefined,
-      topics: topics || undefined,
-    };
-
     try {
-      const response = await fetch(`${cioTrackBaseUrl}/${email}`, {
+      const response = await fetch('/api/subscribe', {
         method: 'PUT',
         headers: {
-          Authorization: `Basic ${credentials}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(cioRequestBody),
+        body: JSON.stringify({ email, firstName, lastName, topics }),
       });
 
       if (response.ok) {
-        setSuccess('User subscribed or updated successfully!');
+        const successData = await response.json();
+        setSuccess(successData.message);
         return true;
       } else {
         const errorData = await response.json();
