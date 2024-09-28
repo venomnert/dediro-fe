@@ -1,6 +1,7 @@
-import { analytics } from '@/components/Common/Analytics';
 import { useState } from 'react';
-import { v4 as uuid } from 'uuid';
+
+const apiKey = process.env.NEXT_PUBLIC_CUSTOMER_IO_JS_API_KEY || '';
+const siteId = process.env.NEXT_PUBLIC_CUSTOMER_IO_SITE_ID || '';
 
 interface SubscribeRequest {
   email: string;
@@ -22,29 +23,51 @@ export function useSubscribe(): UseSubscribeReturn {
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
+  const cioTrackBaseUrl = 'https://track.customer.io/api/v1/customers';
+  const credentials = btoa(`${siteId}:${apiKey}`);
+
   const subscribe = async (data: SubscribeRequest) => {
     setLoading(true);
     setError(null);
     setSuccess(null);
 
-    try {
-      const cioRequestBody = {
-        email: data.email,
-        first_name: data.firstName || undefined,
-        last_name: data.lastName || undefined,
-        topics: data.topics || undefined,
-      };
+    const { email, firstName, lastName, topics } = data;
 
-      analytics.identify({
-        ...cioRequestBody,
-        userId: uuid(),
+    if (!email) {
+      setError('Email is required');
+      setLoading(false);
+      return false;
+    }
+
+    const cioRequestBody = {
+      email,
+      first_name: firstName || undefined,
+      last_name: lastName || undefined,
+      topics: topics || undefined,
+    };
+
+    try {
+      const response = await fetch(`${cioTrackBaseUrl}/${email}`, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Basic ${credentials}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cioRequestBody),
       });
 
-      setSuccess('User subscribed or updated successfully!');
-      return true;
+      if (response.ok) {
+        setSuccess('User subscribed or updated successfully!');
+        return true;
+      } else {
+        const errorData = await response.json();
+        setError(`Error: ${errorData.message || 'Failed to subscribe user'}`);
+        return false;
+      }
     } catch (error) {
-      console.error('Error with Customer.io:', error);
-      setError('Error subscribing user');
+      setError(
+        `Error: ${error instanceof Error ? error.message : 'Unknown error'}`
+      );
       return false;
     } finally {
       setLoading(false);

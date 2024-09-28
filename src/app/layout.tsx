@@ -3,7 +3,6 @@ import React from 'react';
 import Head from 'next/head';
 import './globals.css';
 import { Montserrat, Poppins } from 'next/font/google';
-import Analytics from '@/components/Common/Analytics';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 const poppins = Poppins({
@@ -32,7 +31,6 @@ export default function RootLayout({
           as="image"
         />
       </Head>
-      <Analytics />
       <body className={`${montserrat.className} ${poppins.className}`}>
         {children}
       </body>
