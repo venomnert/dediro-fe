@@ -1,5 +1,6 @@
 'use client';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Markdown from 'react-markdown';
 import React from 'react';
 import {
   Accordion,
@@ -42,7 +43,9 @@ function FAQs() {
               >
                 {question}
               </AccordionSummary>
-              <AccordionDetails sx={responseStyle}>{response}</AccordionDetails>
+              <AccordionDetails sx={responseStyle}>
+                <Markdown>{response}</Markdown>
+              </AccordionDetails>
             </Accordion>
           ))}
         </Box>
