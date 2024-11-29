@@ -1,6 +1,6 @@
 import Footer from '@/components/Footer/Footer';
 import SynthesisHeader from '@/components/Header/SynthesisHeader';
-import RelatedContent from '@/components/RelatedContent';
+import WeeklyUpdates from '@/components/WeeklyUpdates';
 import SynthesisExpertsHighlights from '@/components/SynthesisExpertsHighlights';
 import SynthesisFilters from '@/components/SynthesisFilters';
 import SynthesisMainContent from '@/components/SynthesisMainContent';
@@ -15,7 +15,7 @@ export default function Synthesis() {
         <SynthesisFilters />
         <SynthesisMainContent />
         <SynthesisExpertsHighlights />
-        <RelatedContent />
+        <WeeklyUpdates />
       </Container>
       <Footer />
     </>

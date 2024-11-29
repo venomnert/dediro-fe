@@ -3,25 +3,25 @@ import React from 'react';
 
 import {
   container,
-  relatedContentH3,
+  weeklyContentH3,
   cardsContainer,
-} from './RelatedContent.styles';
-import RelatedContentCard from './RelatedContentCard';
+} from './WeeklyUpdates.styles';
+import WeeklyUpdatesCard from './WeeklyUpdatesCard';
 
-const RELATED_CONTENT_DATA = [
+const WEEKLY_UPDATES_DATA = [
   {
     articleTitle: 'Latest Artificial Intelligence News',
-    image: 'images/synthesis-page/related-content.png',
+    image: 'images/synthesis-page/weekly-updates.png',
     link: 'https://en.wikipedia.org/wiki/Artificial_intelligence',
   },
   {
     articleTitle: 'Latest Artificial Intelligence News',
-    image: 'images/synthesis-page/related-content.png',
+    image: 'images/synthesis-page/weekly-updates.png',
     link: 'https://en.wikipedia.org/wiki/Artificial_intelligence',
   },
   {
     articleTitle: 'Latest Artificial Intelligence News',
-    image: 'images/synthesis-page/related-content.png',
+    image: 'images/synthesis-page/weekly-updates.png',
     link: 'https://en.wikipedia.org/wiki/Artificial_intelligence',
   },
   {
@@ -31,17 +31,17 @@ const RELATED_CONTENT_DATA = [
   },
 ];
 
-function RelatedContent() {
+function WeeklyUpdates() {
   return (
     <Box sx={container}>
-      <Typography variant="h3" sx={relatedContentH3}>
-        Related Content
+      <Typography variant="h3" sx={weeklyContentH3}>
+        Weekly Updates
       </Typography>
 
       <Box sx={cardsContainer}>
-        {RELATED_CONTENT_DATA?.map(({ articleTitle, image, link }, index) => {
+        {WEEKLY_UPDATES_DATA?.map(({ articleTitle, image, link }, index) => {
           return (
-            <RelatedContentCard
+            <WeeklyUpdatesCard
               key={index}
               articleTitle={articleTitle}
               image={image}
@@ -54,4 +54,4 @@ function RelatedContent() {
   );
 }
 
-export default RelatedContent;
+export default WeeklyUpdates;

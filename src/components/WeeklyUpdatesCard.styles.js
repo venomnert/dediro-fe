@@ -16,3 +16,6 @@ export const title = {
   fontWeight: '700',
   color: '#FFFFFFFF',
 };
+export const linkStyles = {
+  textDecoration: 'none',
+};

@@ -2,7 +2,7 @@ export const container = {
   width: '75%',
 };
 
-export const relatedContentH3 = {
+export const weeklyContentH3 = {
   fontSize: '26px',
   fontWeight: '700',
   margin: '20px 0',

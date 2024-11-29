@@ -1,21 +1,21 @@
 import { Box, Link, Typography } from '@mui/material';
 import React from 'react';
 
-import { container, title } from './RelatedContentCard.styles';
+import { container, title, linkStyles } from './WeeklyUpdatesCard.styles';
 
-interface RelatedContentCardProps {
+interface WeeklyUpdatesCardProps {
   articleTitle: string;
   image: string;
   link: string;
 }
 
-function RelatedContentCard({
+function WeeklyUpdatesCard({
   articleTitle,
   image,
   link,
-}: RelatedContentCardProps) {
+}: WeeklyUpdatesCardProps) {
   return (
-    <Link href={link} target="_blank" sx={{ textDecoration: 'none' }}>
+    <Link href={link} target="_blank" sx={linkStyles}>
       <Box
         sx={{
           ...container,
@@ -28,4 +28,4 @@ function RelatedContentCard({
   );
 }
 
-export default RelatedContentCard;
+export default WeeklyUpdatesCard;
