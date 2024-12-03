@@ -6,6 +6,7 @@ import SynthesisFilters from '@/components/SynthesisFilters';
 import SynthesisMainContent from '@/components/SynthesisMainContent';
 import { Container } from '@mui/material';
 import React from 'react';
+import RelatedContent from '@/components/RelatedContent';
 
 export default function Synthesis() {
   return (
@@ -16,6 +17,7 @@ export default function Synthesis() {
         <SynthesisMainContent />
         <SynthesisExpertsHighlights />
         <WeeklyUpdates />
+        <RelatedContent />
       </Container>
       <Footer />
     </>
