@@ -14,6 +14,8 @@ export default function Synthesis() {
   return (
     <>
       <SynthesisHeader />
+      <SynthesisFilters />
+
       <Container
         component="main"
         sx={{
@@ -22,7 +24,6 @@ export default function Synthesis() {
           gap: '40px',
         }}
       >
-        <SynthesisFilters />
         <SynthesisMainContent />
         <ExpertsHighlights />
         <ThemesSection />

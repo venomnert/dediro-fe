@@ -1,10 +1,11 @@
 export const container = {
   display: 'flex',
-  justifyContent: 'space-around',
-  flexWrap: { xs: 'no-wrap', md: 'wrap' },
-  gap: { xs: '15px', md: '0' },
+  justifyContent: 'space-evenly',
+  flexWrap: { xs: 'nowrap', md: 'wrap' },
+  gap: { xs: '15px', md: 'auto' },
   overflow: 'auto',
-  margin: '15px 0px',
+  margin: '15px 0px 15px 0px',
+  padding: '0 15px',
 };
 
 export const btnStyles = {
@@ -19,5 +20,6 @@ export const btnStylesMobile = {
   borderRadius: '24px',
   backgroundColor: '#343967',
   textTransform: 'capitalize',
-  minWidth: '130px',
+  padding: '10px 20px',
+  minWidth: { xs: '150px', md: 'auto' },
 };

@@ -53,17 +53,10 @@ function SynthesisFilters() {
           variant={active === name ? 'contained' : 'text'}
           onClick={() => setActive(name)}
           startIcon={window.innerWidth < 900 ? null : icon}
-          sx={
-            window.innerWidth < 900
-              ? {
-                  ...btnStylesMobile,
-                  ...(active === name && { color: '#55D6BE' }),
-                }
-              : {
-                  ...btnStyles,
-                  ...(active === name && { backgroundColor: '#55D6BE' }),
-                }
-          }
+          sx={{
+            ...btnStylesMobile,
+            ...(active === name && { color: '#55D6BE' }),
+          }}
         >
           {label}
         </Button>
