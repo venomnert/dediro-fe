@@ -38,14 +38,12 @@ function SynthesisMainContent() {
               Article
             </Typography>
           </Box>
+
           <Box sx={textIcon}>
             <CalendarMonthRoundedIcon />
             <Typography>April 15, 2023</Typography>
           </Box>
-          <Box sx={textIcon}>
-            <AccessTimeRoundedIcon />
-            <Typography>minute read</Typography>
-          </Box>
+
           <IconButton sx={infoButton}>
             <InfoOutlinedIcon sx={infoIcon} />
           </IconButton>
