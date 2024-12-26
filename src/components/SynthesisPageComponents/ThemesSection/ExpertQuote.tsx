@@ -4,7 +4,7 @@ import React from 'react';
 import {
   container,
   quoteText,
-  imageContainer,
+  ExpertInfoContainer,
   img,
   quoteExpertInfo,
 } from './ExpertQuote.styles';
@@ -22,7 +22,7 @@ function ExpertQuote({ name, image, profession, text }: ExpertQuoteProps) {
       <Typography component="span" sx={quoteText}>
         {text}
       </Typography>
-      <Box sx={imageContainer}>
+      <Box sx={ExpertInfoContainer}>
         <img
           src={`images/synthesis-page/experts/${image}`}
           alt="expert"

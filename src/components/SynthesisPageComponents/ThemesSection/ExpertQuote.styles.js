@@ -2,7 +2,9 @@ export const container = {
   backgroundColor: '#8D99AD',
   borderLeft: '5px #343967 solid',
   display: 'flex',
-  alignItems: 'center',
+  flexDirection: { xs: 'column', sm: 'row' },
+  alignItems: { xs: 'start', sm: 'center' },
+  justifyContent: 'start',
   padding: '15px',
   width: 'fit-content',
   gap: '20px',
@@ -12,17 +14,16 @@ export const quoteText = {
   fontWeight: 400,
   fontStyle: 'italic',
 };
-export const imageContainer = {
-  display: { xs: 'none', md: 'flex' },
+export const ExpertInfoContainer = {
+  display: 'flex',
   gap: '10px',
   minWidth: '160px',
-  justifyContent: 'center',
 };
 
 export const img = { width: '41px', height: '41px', borderRadius: '100%' };
 
 export const quoteExpertInfo = {
-  display: { xs: 'none', md: 'flex' },
+  display: 'flex',
   justifyContent: 'center',
   flexDirection: 'column',
 };

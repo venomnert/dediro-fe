@@ -52,7 +52,7 @@ function ThemesSection() {
       />
       <Box
         sx={{
-          display: { xs: 'none', md: 'flex' },
+          display: 'flex',
           flexDirection: 'column',
           gap: '15px',
         }}
