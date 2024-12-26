@@ -2,26 +2,29 @@ export const container = {
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  gap: '30px',
-  width: '75%',
+  gap: { xs: '10px', md: '30px' },
+  width: { xs: '100%', sm: '100%', md: '75%' },
 };
 
 export const expertsH2 = {
   fontWeight: '700',
-  fontSize: '36px',
+  fontSize: { xs: '24px', md: '36px' },
   textAlign: 'center',
 };
 
 export const expertsParagraph = {
   textAlign: 'center',
-  margin: '15px 0',
+  fontSize: { xs: '12px', sm: '1rem' },
+  margin: { xs: '5px 0', md: '15px 0' },
 };
 
 export const cardsContainer = {
   display: 'flex',
-  flexWrap: 'wrap',
-  gap: '20px',
+  flexWrap: { xs: 'no-wrap', md: 'wrap' },
+  gap: '15px',
+  overflow: { xs: 'scroll', md: 'auto' },
   maxWidth: '850px',
+  minWidth: '269px',
   width: '100%',
   justifyContent: 'center',
 };
@@ -33,4 +36,5 @@ export const viewMoreButton = {
   textTransform: 'capitalize',
   fontWeight: '600',
   width: '230px',
+  display: { xs: 'none', md: 'block' },
 };

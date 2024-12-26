@@ -1,22 +1,33 @@
 import Footer from '@/components/Footer/Footer';
 import SynthesisHeader from '@/components/Header/SynthesisHeader';
-import WeeklyUpdates from '@/components/WeeklyUpdates';
-import SynthesisExpertsHighlights from '@/components/SynthesisExpertsHighlights';
-import SynthesisFilters from '@/components/SynthesisFilters';
-import SynthesisMainContent from '@/components/SynthesisMainContent';
+import WeeklyUpdates from '@/components/SynthesisPageComponents/WeeklyUpdates/WeeklyUpdates';
+import ExpertsHighlights from '@/components/SynthesisPageComponents/ExpertsHighlights/ExpertsHighlights';
+import SynthesisFilters from '@/components/SynthesisPageComponents/SynthesisFilters/SynthesisFilters';
+import SynthesisMainContent from '@/components/SynthesisPageComponents/SynthesisMainContent/SynthesisMainContent';
 import { Container } from '@mui/material';
 import React from 'react';
-import RelatedContent from '@/components/RelatedContent';
+import RelatedContent from '@/components/SynthesisPageComponents/RelatedContent/RelatedContent';
+import ThemesSection from '@/components/SynthesisPageComponents/ThemesSection/ThemesSection';
+import SubscribeToNewsletter from '@/components/SynthesisPageComponents/SubscribeToNewsletter/SubscribeToNewsletter';
 
 export default function Synthesis() {
   return (
     <>
       <SynthesisHeader />
-      <Container component="main">
+      <Container
+        component="main"
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '40px',
+        }}
+      >
         <SynthesisFilters />
         <SynthesisMainContent />
-        <SynthesisExpertsHighlights />
+        <ExpertsHighlights />
+        <ThemesSection />
         <WeeklyUpdates />
+        <SubscribeToNewsletter />
         <RelatedContent />
       </Container>
       <Footer />

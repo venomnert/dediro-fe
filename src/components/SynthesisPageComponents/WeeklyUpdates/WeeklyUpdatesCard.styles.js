@@ -1,6 +1,7 @@
 export const container = {
-  width: '400px',
-  height: '300px',
+  maxWidth: '400px',
+  minWidth: '130px',
+  minHeight: { xs: '120px', md: '300px' },
   borderRadius: '20px',
   backgroundColor: 'grey',
   backgroundRepeat: 'no-repeat',
@@ -18,4 +19,6 @@ export const title = {
 };
 export const linkStyles = {
   textDecoration: 'none',
+  padding: 0,
+  width: 'fit-content',
 };

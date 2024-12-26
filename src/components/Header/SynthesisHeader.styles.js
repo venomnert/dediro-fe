@@ -6,15 +6,15 @@ export const container = {
   borderBottom: '1px solid #000000',
   minHeight: '100px',
 };
-export const logo = { maxWidth: '300px', width: '100%' };
+export const logo = { maxWidth: '63px', width: '100%', color: 'blue' };
 
 export const buttonsContainer = {
   display: 'flex',
   flexDirection: 'row',
   maxWidth: '300px',
   alignItems: 'center',
-  justifyContent: 'space-around',
-  width: '100%',
+  justifyContent: { xs: 'right', ml: 'right', lg: 'space-between' },
+  width: { xs: 'fit-content', ml: 'fit-content', lg: '100%' },
 };
 
 export const iconButton = {
@@ -31,6 +31,7 @@ export const iconButton = {
 };
 
 export const button = {
+  display: { xs: 'none', ml: 'none', lg: 'block' },
   fontSize: '20px',
   width: '155px',
   height: '50px',

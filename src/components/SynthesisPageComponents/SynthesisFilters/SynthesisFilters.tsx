@@ -15,7 +15,11 @@ import FastfoodOutlinedIcon from '@mui/icons-material/FastfoodOutlined';
 import CheckroomOutlinedIcon from '@mui/icons-material/CheckroomOutlined';
 
 import { useState } from 'react';
-import { container, btnStyles } from './SynthesisFilters.styles';
+import {
+  container,
+  btnStyles,
+  btnStylesMobile,
+} from './SynthesisFilters.styles';
 
 function SynthesisFilters() {
   let [active, setActive] = useState('for-you');
@@ -48,11 +52,18 @@ function SynthesisFilters() {
           key={index}
           variant={active === name ? 'contained' : 'text'}
           onClick={() => setActive(name)}
-          startIcon={icon}
-          sx={{
-            ...btnStyles,
-            ...(active === name && { backgroundColor: '#55D6BE' }),
-          }}
+          startIcon={window.innerWidth < 900 ? null : icon}
+          sx={
+            window.innerWidth < 900
+              ? {
+                  ...btnStylesMobile,
+                  ...(active === name && { color: '#55D6BE' }),
+                }
+              : {
+                  ...btnStyles,
+                  ...(active === name && { backgroundColor: '#55D6BE' }),
+                }
+          }
         >
           {label}
         </Button>

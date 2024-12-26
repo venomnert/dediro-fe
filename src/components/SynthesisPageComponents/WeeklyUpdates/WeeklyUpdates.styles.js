@@ -1,9 +1,9 @@
 export const container = {
-  width: '75%',
+  width: { xs: '100%', md: '75%' },
 };
 
 export const weeklyContentH3 = {
-  fontSize: '26px',
+  fontSize: { xs: '24px', md: '26px' },
   fontWeight: '700',
   margin: '20px 0',
 };

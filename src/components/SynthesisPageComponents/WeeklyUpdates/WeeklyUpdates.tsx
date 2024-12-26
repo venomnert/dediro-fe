@@ -1,11 +1,7 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Grid2, Typography } from '@mui/material';
 import React from 'react';
 
-import {
-  container,
-  weeklyContentH3,
-  cardsContainer,
-} from './WeeklyUpdates.styles';
+import { container, weeklyContentH3 } from './WeeklyUpdates.styles';
 import WeeklyUpdatesCard from './WeeklyUpdatesCard';
 
 const WEEKLY_UPDATES_DATA = [
@@ -38,18 +34,19 @@ function WeeklyUpdates() {
         Weekly Updates
       </Typography>
 
-      <Box sx={cardsContainer}>
+      <Grid2 container spacing={2}>
         {WEEKLY_UPDATES_DATA?.map(({ articleTitle, image, link }, index) => {
           return (
-            <WeeklyUpdatesCard
-              key={index}
-              articleTitle={articleTitle}
-              image={image}
-              link={link}
-            />
+            <Grid2 key={index} size={6}>
+              <WeeklyUpdatesCard
+                articleTitle={articleTitle}
+                image={image}
+                link={link}
+              />
+            </Grid2>
           );
         })}
-      </Box>
+      </Grid2>
     </Box>
   );
 }

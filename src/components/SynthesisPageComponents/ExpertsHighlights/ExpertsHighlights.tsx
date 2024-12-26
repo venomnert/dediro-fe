@@ -8,7 +8,7 @@ import {
   expertsParagraph,
   cardsContainer,
   viewMoreButton,
-} from './SynthesisExpertsHighlights.styles';
+} from './ExpertsHighlights.styles';
 
 const EXPERTS_DATA = [
   {
@@ -55,7 +55,7 @@ const EXPERTS_DATA = [
   },
 ];
 
-function SynthesisExpertsHighlights() {
+function ExpertsHighlights() {
   return (
     <Box sx={container}>
       <Box>
@@ -87,4 +87,4 @@ function SynthesisExpertsHighlights() {
   );
 }
 
-export default SynthesisExpertsHighlights;
+export default ExpertsHighlights;

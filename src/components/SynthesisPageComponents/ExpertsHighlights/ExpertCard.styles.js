@@ -1,10 +1,8 @@
 export const container = {
-  display: 'flex',
-  justifyContent: 'space-between',
   alignItems: 'center',
   position: 'relative',
-  maxWidth: '269px',
-  width: '100%',
+  minWidth: '260px',
+  width: '270px',
   maxHeight: '100%',
   height: '119px',
   backgroundColor: '#343967',

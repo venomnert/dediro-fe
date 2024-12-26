@@ -6,17 +6,19 @@ export const container = {
 
 export const mainTitle = {
   fontWeight: 700,
-  fontSize: '68px',
+  fontSize: { xs: '36px', sm: '52px', md: '68px' },
 };
 
 export const imageStyle = {
-  maxHeight: '500px',
+  maxHeight: { sm: '200px', md: '505px' },
   width: '100%',
   borderRadius: '20px',
+  objectFit: 'cover',
 };
 
 export const articleInfo = {
   display: 'flex',
+  flexWrap: 'wrap',
   gap: '30px',
   marginBottom: '15px',
 };
@@ -30,8 +32,8 @@ export const infoButton = {
   backgroundColor: '#343967',
   color: 'white',
   borderRadius: '100%',
-  height: '50px',
-  width: '50px',
+  height: { sm: 'auto', md: '50px' },
+  width: { sm: 'auto', md: '50px' },
   ':hover': {
     background: '#343967',
     filter: 'brightness(130%)',
@@ -39,10 +41,19 @@ export const infoButton = {
   },
   padding: 0,
 };
-export const infoIcon = { color: 'white', height: '30px', width: '30px' };
 
 export const textTitle = { fontWeight: 700, fontSize: '20px' };
 
-export const textIcon = { display: 'flex', gap: '10px', alignItems: 'center' };
+export const textIcon = {
+  display: 'flex',
+  gap: '10px',
+  alignItems: 'center',
+};
 
-export const synthesisSummary = { width: '75%', textAlign: 'justify' };
+export const infoIcon = { color: 'white', height: '30px', width: '30px' };
+
+export const synthesisSummary = {
+  width: { sm: '100%', md: '75%' },
+  textAlign: 'justify',
+  fontSize: '20px',
+};
