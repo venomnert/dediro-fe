@@ -21,8 +21,8 @@ import { topicsList } from '@/components/Synthesis/utils';
 import { useSubscribe } from '@/hooks';
 
 const greenButtonStyles = {
-  color: 'var(--black)',
-  backgroundColor: 'var(--green)',
+  color: 'var(--white)',
+  backgroundColor: '#343967',
   textTransform: 'none',
   fontFamily: 'Poppins',
   fontSize: '18px',
@@ -58,6 +58,7 @@ interface CTAProps {
   isGreenButton?: boolean;
   buttonCustomStyles?: any;
   disableEmailInput?: boolean;
+  disableModal?: boolean;
 }
 
 const CTAForm = ({
@@ -66,6 +67,7 @@ const CTAForm = ({
   buttonCustomStyles = {},
   flexDirection = 'row',
   disableEmailInput = false,
+  disableModal = false,
 }: CTAProps) => {
   const [email, setEmail] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
