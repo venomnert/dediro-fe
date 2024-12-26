@@ -1,17 +1,9 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import ExpertQuote from './ExpertQuote';
 
-import {
-  btn,
-  btnText,
-  container,
-  h3,
-  h4,
-  image,
-  imageContainer,
-  themeText,
-} from './ThemesSection.styles';
+import { container, h3, h4, themeText } from './ThemesSection.styles';
+import SourcesModal from './SourcesModal/SourcesModal';
 
 const THEME_SECTION_DATA = {
   themeTitle: 'Positive Relationships',
@@ -72,26 +64,7 @@ function ThemesSection() {
         />
       </Box>
 
-      <Button variant="contained" sx={btn}>
-        <Box sx={imageContainer}>
-          <img
-            src={`images/synthesis-page/experts/bill-gates.png`}
-            alt="expert"
-            style={{ ...image, position: 'absolute', left: 0 }}
-          />
-          <img
-            src={`images/synthesis-page/experts/bill-gates.png`}
-            alt="expert"
-            style={{ ...image, position: 'absolute', left: 12.5 }}
-          />
-          <img
-            src={`images/synthesis-page/experts/bill-gates.png`}
-            alt="expert"
-            style={{ ...image, position: 'absolute', left: 25 }}
-          />
-        </Box>
-        <Typography sx={btnText}>3 sources</Typography>
-      </Button>
+      <SourcesModal />
     </Box>
   );
 }
