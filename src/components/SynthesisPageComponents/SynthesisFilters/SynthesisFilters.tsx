@@ -1,7 +1,7 @@
 'use client';
 
-import { Box, Button } from '@mui/material';
-import React from 'react';
+import React, { useState, useCallback } from 'react';
+import { Box, Button, useMediaQuery } from '@mui/material';
 
 import WidgetsRoundedIcon from '@mui/icons-material/WidgetsRounded';
 import StarBorderRoundedIcon from '@mui/icons-material/StarBorderRounded';
@@ -14,48 +14,48 @@ import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import FastfoodOutlinedIcon from '@mui/icons-material/FastfoodOutlined';
 import CheckroomOutlinedIcon from '@mui/icons-material/CheckroomOutlined';
 
-import { useState } from 'react';
-import {
-  container,
-  btnStyles,
-  btnStylesMobile,
-} from './SynthesisFilters.styles';
+import { container, btnStylesMobile } from './SynthesisFilters.styles';
+
+const buttonData = [
+  { name: 'for-you', label: 'For you', icon: <WidgetsRoundedIcon /> },
+  { name: 'top', label: 'Top', icon: <StarBorderRoundedIcon /> },
+  {
+    name: 'tech-science',
+    label: 'Tech & Science',
+    icon: <MemoryRoundedIcon />,
+  },
+  { name: 'finance', label: 'Finance', icon: <PaidOutlinedIcon /> },
+  {
+    name: 'arts-culture',
+    label: 'Arts & Culture',
+    icon: <ColorLensOutlinedIcon />,
+  },
+  { name: 'sports', label: 'Sports', icon: <SportsSoccerOutlinedIcon /> },
+  { name: 'health', label: 'Health', icon: <FavoriteBorderOutlinedIcon /> },
+  { name: 'education', label: 'Education', icon: <SchoolOutlinedIcon /> },
+  { name: 'food', label: 'Food', icon: <FastfoodOutlinedIcon /> },
+  { name: 'fashion', label: 'Fashion', icon: <CheckroomOutlinedIcon /> },
+];
 
 function SynthesisFilters() {
-  let [active, setActive] = useState('for-you');
+  const [activeFilter, setActiveFilter] = useState('for-you');
+  const isMobile = useMediaQuery('(max-width: 900px)');
 
-  const buttonData = [
-    { name: 'for-you', label: 'For you', icon: <WidgetsRoundedIcon /> },
-    { name: 'top', label: 'Top', icon: <StarBorderRoundedIcon /> },
-    {
-      name: 'tech-science',
-      label: 'Tech & Science',
-      icon: <MemoryRoundedIcon />,
-    },
-    { name: 'finance', label: 'Finance', icon: <PaidOutlinedIcon /> },
-    {
-      name: 'arts-culture',
-      label: 'Arts & Culture',
-      icon: <ColorLensOutlinedIcon />,
-    },
-    { name: 'sports', label: 'Sports', icon: <SportsSoccerOutlinedIcon /> },
-    { name: 'health', label: 'Health', icon: <FavoriteBorderOutlinedIcon /> },
-    { name: 'education', label: 'Education', icon: <SchoolOutlinedIcon /> },
-    { name: 'food', label: 'Food', icon: <FastfoodOutlinedIcon /> },
-    { name: 'fashion', label: 'Fashion', icon: <CheckroomOutlinedIcon /> },
-  ];
+  const handleButtonClick = useCallback((name: string) => {
+    setActiveFilter(name);
+  }, []);
 
   return (
     <Box sx={container}>
-      {buttonData.map(({ name, label, icon }, index) => (
+      {buttonData.map(({ name, label, icon }) => (
         <Button
-          key={index}
-          variant={active === name ? 'contained' : 'text'}
-          onClick={() => setActive(name)}
-          startIcon={window.innerWidth < 900 ? null : icon}
+          key={name}
+          variant={activeFilter === name ? 'contained' : 'text'}
+          onClick={() => handleButtonClick(name)}
+          startIcon={!isMobile ? icon : null}
           sx={{
             ...btnStylesMobile,
-            ...(active === name && { color: '#55D6BE' }),
+            ...(activeFilter === name && { color: '#55D6BE' }),
           }}
         >
           {label}
