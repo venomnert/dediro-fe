@@ -52,7 +52,7 @@ const DATA_EXPERT_CARD = [
       },
     ],
   },
-  {
+  /*  {
     id: 4,
     name: 'John Doe',
     profession: 'Couples Therapists',
@@ -66,7 +66,7 @@ const DATA_EXPERT_CARD = [
           'This video highlights the importance of nurturing positive relationships and social support for overall well-being, explaining how these connections contribute to emotional support, resilience, enhanced well-being, and shared experiences of joy.',
       },
     ],
-  },
+  }, */
 ];
 
 function SourcesModal() {
@@ -97,26 +97,37 @@ function SourcesModal() {
         <Typography sx={btnText}>3 sources</Typography>
       </Button>
 
-      <Modal open={open} onClose={handleClose}>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        sx={{
+          backdropFilter: 'blur(1px)',
+          backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        }}
+      >
         <Box
           sx={{
             backgroundColor: '#D9D9D9',
-            width: 'fit-content',
-            height: '100%',
-            overflow: 'scroll',
-            padding: '20px',
+            width: '90vw', // Ocupa el 90% del ancho de la pantalla
+            maxWidth: { xs: '700px', md: '1000px' }, // Máximo ancho para pantallas grandes
+            height: 'auto', // Ajusta la altura automáticamente según el contenido
+            maxHeight: '90vh', // Previene que se salga de la pantalla
+            overflowY: 'auto', // Agrega scroll vertical si el contenido es demasiado alto
             position: 'absolute',
             top: '50%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
+            borderRadius: '10px', // Opcional: bordes redondeados para estética
+            padding: '20px', // Espaciado interno
           }}
         >
           <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
-              gap: '5px',
-              margin: '0 0 20px 0',
+              gap: '10px',
+              borderBottom: '2px solid #8E8E8E',
+              paddingBottom: '15px',
             }}
           >
             <Typography
@@ -132,73 +143,82 @@ function SourcesModal() {
           <Box
             sx={{
               display: 'flex',
-              gap: '20px',
               flexDirection: 'column',
-              width: 'fit-content',
+              gap: '20px',
+              marginTop: '15px',
             }}
           >
-            {DATA_EXPERT_CARD?.map((expert, index) => {
-              return (
+            {DATA_EXPERT_CARD?.map((expert, index) => (
+              <Box
+                key={expert.id}
+                sx={{
+                  display: 'flex',
+                  flexDirection: { xs: 'column', sm: 'row' }, // Colapsa en pantallas pequeñas
+                  gap: '15px',
+                }}
+              >
                 <Box
-                  key={expert.id}
-                  sx={{ display: 'flex', minWidth: '600px', height: '200' }}
+                  sx={{
+                    flexShrink: 0, // Evita que la imagen se reduzca demasiado
+                    img: {
+                      objectFit: 'cover',
+                      borderRadius: '10px',
+                      width: { xs: '100%', sm: '200px' }, // Responsivo
+                      height: '100%',
+                    },
+                  }}
                 >
                   <img
                     src="images/synthesis-page/modal/source-modal.png"
                     alt="expert"
-                    style={{
-                      objectFit: 'cover',
-                      borderRadius: '20px 0 0 20px',
-                      minWidth: '200px',
-                    }}
                   />
-                  <Box
+                </Box>
+                <Box
+                  sx={{
+                    backgroundColor: '#AAAAAA',
+                    borderRadius: '10px',
+                    padding: '15px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '10px',
+                  }}
+                >
+                  <Typography
+                    variant="h2"
+                    sx={{ fontSize: '24px', fontWeight: '700' }}
+                  >
+                    {expert.name}
+                  </Typography>
+                  <Typography
+                    variant="h4"
+                    sx={{ fontSize: '15px', fontWeight: '600' }}
+                  >
+                    {expert.profession}
+                  </Typography>
+                  <Typography sx={{ fontSize: '15px' }}>
+                    {expert.sources[0].quote}
+                  </Typography>
+                  <Link
+                    href={expert.sources[0].link}
+                    underline="none"
                     sx={{
-                      backgroundColor: '#AAAAAA',
+                      color: '#000000',
                       display: 'flex',
-                      flexDirection: 'column',
-                      gap: '10px',
-                      padding: '15px',
-                      borderRadius: '0 20px 20px 0',
+                      alignItems: 'center',
+                      gap: '5px',
                     }}
                   >
-                    <Typography
-                      variant="h2"
-                      sx={{ fontSize: '24px', fontWeight: '700' }}
-                    >
-                      {expert.name}
+                    <YouTubeIcon />
+                    <Typography sx={{ fontSize: '13px' }}>
+                      {expert.sources[0].sourceName}
                     </Typography>
-                    <Typography
-                      variant="h4"
-                      sx={{ fontSize: '15px', fontWeight: '600' }}
-                    >
-                      {expert.profession}
-                    </Typography>
-                    <Typography sx={{ fontSize: '15px' }}>
-                      {expert.sources[0].quote}
-                    </Typography>
-                    <Link
-                      href={expert.sources[0].link}
-                      underline="none"
-                      sx={{
-                        color: '#000000',
-                        alignItems: 'center',
-                        display: 'flex',
-                        gap: '5px',
-                      }}
-                    >
-                      <YouTubeIcon />
-                      <Typography sx={{ fontSize: '13px' }}>
-                        {expert.sources[0].sourceName}
-                      </Typography>
-                    </Link>
-                    <Typography sx={{ fontSize: '12px', textAlign: 'justify' }}>
-                      {expert.sources[0].sourceDescription}
-                    </Typography>
-                  </Box>
+                  </Link>
+                  <Typography sx={{ fontSize: '12px', textAlign: 'justify' }}>
+                    {expert.sources[0].sourceDescription}
+                  </Typography>
                 </Box>
-              );
-            })}
+              </Box>
+            ))}
           </Box>
         </Box>
       </Modal>
