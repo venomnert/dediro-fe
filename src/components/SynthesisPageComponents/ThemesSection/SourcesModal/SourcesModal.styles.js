@@ -31,7 +31,7 @@ export const modalContainer = {
   backgroundColor: 'rgba(255, 255, 255, 0.5)',
 };
 export const modalSubContainer = {
-  backgroundColor: '#D9D9D9',
+  backgroundColor: '#ffffff',
   width: '90vw',
   maxWidth: { xs: '700px', md: '1000px' },
   height: 'auto',
@@ -48,6 +48,7 @@ export const infoContainer = {
   display: 'flex',
   width: 'auto',
   borderBottom: '2px solid #8E8E8E',
+  backgroundColor: '#343967',
   padding: '20px',
   justifyContent: 'space-between',
   paddingBottom: '15px',
@@ -58,7 +59,11 @@ export const infoSubContainer = {
   gap: '10px',
 };
 
-export const titleStyles = { fontSize: '28px', fontWeight: '600' };
+export const titleStyles = {
+  fontSize: '28px',
+  fontWeight: '600',
+  color: '#ffffff',
+};
 
 export const cardContainer = {
   display: 'flex',
