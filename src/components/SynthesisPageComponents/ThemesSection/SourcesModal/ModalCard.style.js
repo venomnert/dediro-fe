@@ -14,7 +14,7 @@ export const image = {
 };
 
 export const informationContainer = {
-  backgroundColor: '#AAAAAA',
+  backgroundColor: '#8d99ad85',
   borderRadius: { xs: '10px', md: '0px 10px 10px 0' },
   padding: '15px',
   display: 'flex',
@@ -22,8 +22,14 @@ export const informationContainer = {
   gap: '10px',
 };
 
-export const expertName = { fontSize: '24px', fontWeight: '700' };
-export const expertProfession = { fontSize: '15px', fontWeight: '600' };
+export const expertName = {
+  fontSize: '24px',
+  fontWeight: '600',
+};
+export const expertProfession = {
+  fontSize: '15px',
+  fontWeight: '500',
+};
 export const sourceLink = {
   color: '#000000',
   display: 'flex',
