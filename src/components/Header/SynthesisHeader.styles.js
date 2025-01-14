@@ -3,7 +3,7 @@ export const container = {
   flexDirection: 'row',
   justifyContent: 'space-between',
   padding: '20px',
-  borderBottom: '1px solid #000000',
+  borderBottom: '2px solid #000000',
   minHeight: '100px',
 };
 export const logo = { maxWidth: '63px', width: '100%', color: 'blue' };
