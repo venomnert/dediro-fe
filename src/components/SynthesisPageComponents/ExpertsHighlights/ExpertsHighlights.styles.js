@@ -3,7 +3,7 @@ export const container = {
   flexDirection: 'column',
   alignItems: 'center',
   gap: { xs: '10px', md: '30px' },
-  width: { xs: '100%', sm: '100%', md: '75%' },
+  width: '100%',
 };
 
 export const expertsH2 = {

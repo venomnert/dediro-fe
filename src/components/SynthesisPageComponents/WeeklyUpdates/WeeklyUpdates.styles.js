@@ -1,5 +1,5 @@
 export const container = {
-  width: { xs: '100%', md: '75%' },
+  width: '100%',
 };
 
 export const weeklyContentH3 = {

@@ -31,7 +31,7 @@ export const leftSide = {
 };
 
 export const rightSide = {
-  width: { xs: '100%', md: '75%' },
+  width: '100%',
   marginLeft: { xs: '0px', md: '17px' },
   display: 'flex',
   flexDirection: 'column',

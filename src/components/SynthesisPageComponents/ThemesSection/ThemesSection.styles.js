@@ -1,5 +1,5 @@
 export const container = {
-  width: { xs: '100%', sm: '100%', md: '75%' },
+  width: '100%',
   display: 'flex',
   flexDirection: 'column',
   gap: '15px',
