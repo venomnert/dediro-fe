@@ -1,21 +1,22 @@
 'use client';
 
-import { Box, Button, Link, Modal, Typography } from '@mui/material';
-import { useState } from 'react';
+import { Box, Button, IconButton, Modal, Typography } from '@mui/material';
 import {
   btn,
-  btnText,
   btnImage,
   btnImageContainer,
-  modalContainer,
-  modalSubContainer,
+  btnText,
+  cardContainer,
   infoContainer,
   infoSubContainer,
+  modalContainer,
+  modalSubContainer,
   titleStyles,
-  cardContainer,
 } from './SourcesModal.styles';
+
 import CloseIcon from '@mui/icons-material/Close';
 import ModalCard from './ModalCard';
+import { useState } from 'react';
 
 const DATA_EXPERT_CARD = [
   {
@@ -115,13 +116,17 @@ function SourcesModal() {
               <Typography sx={titleStyles} variant="h3" component="h3">
                 3 Sources
               </Typography>
-              <Typography>Positive Relationships</Typography>
+              <Typography sx={{ color: '#ffffff' }}>
+                Positive Relationships
+              </Typography>
             </Box>
-            <CloseIcon onClick={handleClose} />
+            <IconButton>
+              <CloseIcon onClick={handleClose} sx={{ color: '#ffffff' }} />
+            </IconButton>
           </Box>
 
           <Box sx={cardContainer}>
-            {DATA_EXPERT_CARD?.map((expert, index) => (
+            {DATA_EXPERT_CARD?.map((expert) => (
               <ModalCard
                 key={expert.id}
                 id={expert.id}
