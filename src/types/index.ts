@@ -78,15 +78,24 @@ export interface WhyUsContent {
   cardsData: WhyUsCard[];
 }
 
+interface IQuote {
+  text: string;
+  expertName: string;
+  profession: string;
+  image: string;
+}
+
 export interface IThemeSection {
   content: {
     id: number;
     title: string;
     description: string;
+    quote?: IQuote;
     content: {
       id: number;
       subtitle: string;
       description: string;
+      quote?: IQuote;
     }[];
   }[];
 }
