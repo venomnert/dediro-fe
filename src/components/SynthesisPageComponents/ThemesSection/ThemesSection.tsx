@@ -5,7 +5,6 @@ import ExpertQuote from './ExpertQuote';
 import { IThemeSection } from '@/types';
 import React from 'react';
 import SourcesModal from './SourcesModal/SourcesModal';
-import THEME_SECTION_DATA from '../../../constants/THEME_SECTION_DATA';
 
 function ThemesSection({ content }: IThemeSection) {
   if (content.length) {
@@ -17,12 +16,14 @@ function ThemesSection({ content }: IThemeSection) {
           </Typography>
           <Typography sx={themeText}>{el.description}</Typography>
 
-          <ExpertQuote
-            name={THEME_SECTION_DATA.quote.expertName}
-            image={THEME_SECTION_DATA.quote.image}
-            profession={THEME_SECTION_DATA.quote.profession}
-            text={THEME_SECTION_DATA.quote.text}
-          />
+          {el.quote && (
+            <ExpertQuote
+              name={el.quote.expertName}
+              image={el.quote.image}
+              profession={el.quote.profession}
+              text={el.quote.text}
+            />
+          )}
 
           {el.content.map((element) => {
             return (
@@ -39,12 +40,14 @@ function ThemesSection({ content }: IThemeSection) {
                 </Typography>
                 <Typography sx={themeText}>{element.description}</Typography>
 
-                <ExpertQuote
-                  name={THEME_SECTION_DATA.subTheme.quote.expertName}
-                  image={THEME_SECTION_DATA.subTheme.quote.image}
-                  profession={THEME_SECTION_DATA.subTheme.quote.profession}
-                  text={THEME_SECTION_DATA.subTheme.quote.text}
-                />
+                {element.quote && (
+                  <ExpertQuote
+                    name={element.quote.expertName}
+                    image={element.quote.image}
+                    profession={element.quote.profession}
+                    text={element.quote.text}
+                  />
+                )}
               </Box>
             );
           })}
