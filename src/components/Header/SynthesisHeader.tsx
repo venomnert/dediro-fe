@@ -1,28 +1,33 @@
-import { Box, Button, IconButton } from '@mui/material';
-import TranslateOutlinedIcon from '@mui/icons-material/TranslateOutlined';
-import React from 'react';
+'use client';
 
+import { Box, Button, useMediaQuery } from '@mui/material';
 import {
+  button,
+  buttonsContainer,
   container,
   logo,
-  buttonsContainer,
-  iconButton,
-  button,
 } from './SynthesisHeader.styles';
 
+import Image from 'next/image';
+import React from 'react';
 import SynthesisSearchbar from './SynthesisSearchbar';
 
 function SynthesisHeader() {
+  const isMobile = useMediaQuery('(min-width: 768px)');
+  console.log(isMobile);
   return (
     <Box sx={container}>
-      <img src="images/dediro-logo-blue.png" style={logo} alt="Dediro" />
+      <Image
+        src="images/dediro-logo-blue.png"
+        width={63}
+        height={62}
+        style={logo}
+        alt="Dediro"
+      />
 
       <SynthesisSearchbar />
 
       <Box sx={buttonsContainer}>
-        <IconButton sx={iconButton}>
-          <TranslateOutlinedIcon sx={{ color: 'white' }} />
-        </IconButton>
         <Button variant="contained" sx={button}>
           Try Dediro
         </Button>
