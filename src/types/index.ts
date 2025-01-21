@@ -77,3 +77,16 @@ export interface WhyUsContent {
   ctaText: string;
   cardsData: WhyUsCard[];
 }
+
+export interface IThemeSection {
+  content: {
+    id: number;
+    title: string;
+    description: string;
+    content: {
+      id: number;
+      subtitle: string;
+      description: string;
+    }[];
+  }[];
+}
