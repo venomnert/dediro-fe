@@ -43,12 +43,12 @@ export const infoContainer = {
 export const infoSubContainer = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '10px',
+  gap: '20px',
 };
 
 export const titleStyles = {
-  fontSize: { xs: '24px', md: '48px' },
-  fontWeight: '700',
+  fontSize: { xs: '24px', md: '28px' },
+  fontWeight: '600',
   width: { xs: '90%', md: '100%' },
 };
 
