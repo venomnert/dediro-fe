@@ -20,13 +20,13 @@ export const expertsParagraph = {
 
 export const cardsContainer = {
   display: 'flex',
-  flexWrap: { xs: 'no-wrap', md: 'wrap' },
+  flexWrap: { xs: 'no-wrap', sm: 'wrap' },
   gap: '15px',
-  overflow: { xs: 'scroll', md: 'auto' },
+  overflow: { xs: 'scroll', sm: 'auto' },
   maxWidth: '850px',
   minWidth: '269px',
   width: '100%',
-  justifyContent: 'center',
+  justifyContent: { xs: 'start', sm: 'center' },
 };
 
 export const viewMoreButton = {
