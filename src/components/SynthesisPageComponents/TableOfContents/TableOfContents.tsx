@@ -1,68 +1,44 @@
 import { Box, Typography } from '@mui/material';
+import {
+  container,
+  contentContainer,
+  listContainer,
+  subTitleStyle,
+  tableOfContentsLabel,
+  titleStyle,
+} from './TableOfContents.styles';
 
+import { IThemeSection } from '@/types';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 
-interface ITableOfContents {
-  title: string;
-  description: string;
-  content: { subtitle: string; description: string }[];
-}
-
-export default function TableOfContents({ content }: any) {
+export default function TableOfContents({ content }: IThemeSection) {
   return (
     <List
       disablePadding
-      sx={{
-        display: { xs: 'none', md: 'block' },
-        bgcolor: 'background.paper',
-        maxWidth: '375px',
-        zIndex: 1300,
-        padding: 0,
-        fontFamily: 'var(--font-roboto)',
-      }}
+      sx={container}
       component="nav"
       aria-labelledby="nested-list-subheader"
     >
       <ListSubheader
         component="div"
         id="nested-list-subheader"
-        sx={{
-          fontWeight: '700',
-          fontSize: '25px',
-          color: '#000000',
-          padding: 0,
-        }}
+        sx={listContainer}
       >
         <Typography
           fontFamily="var(--font-roboto) !important"
-          sx={{ padding: '20px 0', fontWeight: '700', fontSize: '25px' }}
+          sx={tableOfContentsLabel}
         >
           Table of contents
         </Typography>
-        {content.map((el: ITableOfContents) => (
-          <Box
-            key={el.title}
-            sx={{
-              borderLeft: '3px solid #343967 ',
-              marginBottom: '20px',
-            }}
-          >
-            <ListItemButton
-              href="#title"
-              sx={{
-                padding: '0px 0px 15px 20px',
-              }}
-            >
+        {content.map((el) => (
+          <Box key={el.id} sx={contentContainer}>
+            <ListItemButton href={`#${el.title}`}>
               <Typography
                 fontFamily="var(--font-roboto) !important"
-                sx={{
-                  fontWeight: '600',
-                  fontSize: '17px',
-                }}
+                sx={titleStyle}
               >
                 {el.title}
               </Typography>
@@ -71,14 +47,8 @@ export default function TableOfContents({ content }: any) {
               {el.content.map((element) => (
                 <ListItemButton
                   key={element.subtitle}
-                  href="#subtitle"
-                  sx={{
-                    padding: 0,
-                    paddingLeft: 2,
-                    marginLeft: 4,
-                    borderLeft: '3px solid #343967 ',
-                    marginBottom: '20px',
-                  }}
+                  href={`#${element.subtitle}`}
+                  sx={subTitleStyle}
                 >
                   <Typography fontFamily="var(--font-roboto) !important">
                     {element.subtitle}
