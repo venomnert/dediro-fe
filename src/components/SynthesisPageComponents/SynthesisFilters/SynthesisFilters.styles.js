@@ -1,6 +1,6 @@
 export const container = {
   display: 'flex',
-  justifyContent: 'space-evenly',
+  justifyContent: { xs: 'start', md: 'center' },
   flexWrap: { xs: 'nowrap', md: 'wrap' },
   gap: { xs: '15px', md: 'auto' },
   overflow: 'auto',
