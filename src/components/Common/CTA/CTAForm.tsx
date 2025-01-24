@@ -11,12 +11,13 @@ import {
   Typography,
 } from '@mui/material';
 import {
-  useState,
+  CSSProperties,
   ChangeEvent,
   FormEvent,
-  CSSProperties,
   SyntheticEvent,
+  useState,
 } from 'react';
+
 import { topicsList } from '@/components/Synthesis/utils';
 import { useSubscribe } from '@/hooks';
 
@@ -58,7 +59,7 @@ interface CTAProps {
   isGreenButton?: boolean;
   buttonCustomStyles?: any;
   disableEmailInput?: boolean;
-  disableModal?: boolean;
+  synthesisSlug?: string;
 }
 
 const CTAForm = ({
@@ -67,7 +68,7 @@ const CTAForm = ({
   buttonCustomStyles = {},
   flexDirection = 'row',
   disableEmailInput = false,
-  disableModal = false,
+  synthesisSlug = '',
 }: CTAProps) => {
   const [email, setEmail] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
@@ -156,7 +157,14 @@ const CTAForm = ({
     setMessage('');
 
     try {
-      const objForRequest = { email, firstName, lastName, topics };
+      const objForRequest = {
+        email,
+        firstName,
+        lastName,
+        topics,
+        synthesisSlug,
+      };
+
       const isSuccessful = await subscribe(objForRequest);
 
       if (isSuccessful) {
