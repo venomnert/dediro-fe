@@ -29,7 +29,7 @@ export default function Synthesis() {
             <ExpertsHighlights />
             <ThemesSection content={SYNTHESIS_DATA.themesSection} />
             <WeeklyUpdates />
-            <SubscribeToNewsletter />
+            <SubscribeToNewsletter synthesisSlug={SYNTHESIS_DATA.slug} />
             <RelatedContent />
           </Box>
           <TableOfContents content={SYNTHESIS_DATA.themesSection} />
