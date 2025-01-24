@@ -1,5 +1,6 @@
 const SYNTHESIS_DATA = {
   title: 'How to live a happier life',
+  slug: 'how-to-live-a-happier-life',
   themesSection: [
     {
       id: 1,
