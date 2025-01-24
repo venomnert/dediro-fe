@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Button, useMediaQuery } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import {
   button,
   buttonsContainer,
@@ -13,8 +13,6 @@ import React from 'react';
 import SynthesisSearchbar from './SynthesisSearchbar';
 
 function SynthesisHeader() {
-  const isMobile = useMediaQuery('(min-width: 768px)');
-  console.log(isMobile);
   return (
     <Box sx={container}>
       <Image
