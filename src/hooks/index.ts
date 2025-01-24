@@ -5,6 +5,7 @@ interface SubscribeRequest {
   firstName?: string;
   lastName?: string;
   topics?: string[];
+  synthesisSlug?: string;
 }
 
 interface UseSubscribeReturn {
@@ -25,7 +26,7 @@ export function useSubscribe(): UseSubscribeReturn {
     setError(null);
     setSuccess(null);
 
-    const { email, firstName, lastName, topics } = data;
+    const { email, firstName, lastName, topics, synthesisSlug } = data;
 
     if (!email) {
       setError('Email is required');
@@ -39,7 +40,13 @@ export function useSubscribe(): UseSubscribeReturn {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, firstName, lastName, topics }),
+        body: JSON.stringify({
+          email,
+          firstName,
+          lastName,
+          topics,
+          synthesisSlug,
+        }),
       });
 
       if (response.ok) {
