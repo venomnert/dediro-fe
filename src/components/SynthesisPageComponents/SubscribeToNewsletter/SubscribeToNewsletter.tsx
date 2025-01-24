@@ -1,14 +1,14 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react';
-import CTAForm from '../../Common/CTA/CTAForm';
-
 import {
   container,
   formContainer,
-  title,
-  imgContainer,
   img,
+  imgContainer,
+  title,
 } from './SubscribeToNewsletter.styles';
+
+import CTAForm from '../../Common/CTA/CTAForm';
+import React from 'react';
 
 const NEWSLETTER_DATA = {
   title: 'Stay Informed about the Latest News on this Topic',
@@ -16,7 +16,11 @@ const NEWSLETTER_DATA = {
   topic: 'Happiness',
 };
 
-function SubscribeToNewsletter() {
+interface ISubscribeToNewsletter {
+  synthesisSlug: string;
+}
+
+function SubscribeToNewsletter({ synthesisSlug }: ISubscribeToNewsletter) {
   return (
     <Box sx={container}>
       <Box sx={formContainer}>
@@ -24,7 +28,7 @@ function SubscribeToNewsletter() {
         <Typography>{NEWSLETTER_DATA.text}</Typography>
 
         <Box>
-          <CTAForm isGreenButton={true} disableModal={true} />
+          <CTAForm isGreenButton={true} synthesisSlug={synthesisSlug} />
         </Box>
       </Box>
       <Box sx={imgContainer}>
