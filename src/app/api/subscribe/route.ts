@@ -1,4 +1,5 @@
 // app/api/subscribe/route.ts
+
 import { NextResponse } from 'next/server';
 
 const apiKey = process.env.NEXT_PUBLIC_CUSTOMER_IO_JS_API_KEY || '';
@@ -7,7 +8,8 @@ const cioTrackBaseUrl = 'https://track.customer.io/api/v1/customers';
 const credentials = Buffer.from(`${siteId}:${apiKey}`).toString('base64');
 
 export async function PUT(request: Request) {
-  const { email, firstName, lastName, topics } = await request.json();
+  const { email, firstName, lastName, topics, synthesisSlug } =
+    await request.json();
 
   if (!email) {
     return NextResponse.json({ message: 'Email is required' }, { status: 400 });
@@ -18,6 +20,7 @@ export async function PUT(request: Request) {
     first_name: firstName || undefined,
     last_name: lastName || undefined,
     topics: topics || undefined,
+    synthesisSlug: synthesisSlug || undefined,
   };
 
   try {
