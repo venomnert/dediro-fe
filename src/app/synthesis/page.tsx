@@ -27,12 +27,12 @@ export default function Synthesis() {
           <Box sx={sectionsContainer}>
             <MainContentInfo />
             <ExpertsHighlights />
-            <ThemesSection content={SYNTHESIS_DATA.themesSection} />
+            <ThemesSection themesSection={SYNTHESIS_DATA.themesSection} />
             <WeeklyUpdates />
             <SubscribeToNewsletter synthesisSlug={SYNTHESIS_DATA.slug} />
             <RelatedContent />
           </Box>
-          <TableOfContents content={SYNTHESIS_DATA.themesSection} />
+          <TableOfContents themesSection={SYNTHESIS_DATA.themesSection} />
         </Box>
       </Container>
       <Footer />
