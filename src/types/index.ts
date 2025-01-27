@@ -86,7 +86,7 @@ interface IQuote {
 }
 
 export interface IThemeSection {
-  content: {
+  themesSection: {
     id: number;
     title: string;
     description: string;
