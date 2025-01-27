@@ -14,7 +14,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 
-export default function TableOfContents({ content }: IThemeSection) {
+export default function TableOfContents({ themesSection }: IThemeSection) {
   return (
     <List
       disablePadding
@@ -33,7 +33,7 @@ export default function TableOfContents({ content }: IThemeSection) {
         >
           Table of contents
         </Typography>
-        {content.map((el) => (
+        {themesSection.map((el) => (
           <Box key={el.id} sx={contentContainer}>
             <ListItemButton href={`#${el.title}`}>
               <Typography
