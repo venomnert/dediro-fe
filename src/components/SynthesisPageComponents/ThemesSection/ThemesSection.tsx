@@ -6,11 +6,11 @@ import { IThemeSection } from '@/types';
 import React from 'react';
 import SourcesModal from './SourcesModal/SourcesModal';
 
-function ThemesSection({ content }: IThemeSection) {
-  if (content.length) {
-    return content.map((el) => {
+function ThemesSection({ themesSection }: IThemeSection) {
+  if (themesSection.length) {
+    return themesSection.map((el) => {
       return (
-        <Box id="title" key={el.id} sx={container}>
+        <Box id={el.id} key={el.id} sx={container}>
           <Typography id={el.title} variant="h3" sx={h3}>
             {el.title}
           </Typography>
