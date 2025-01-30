@@ -10,7 +10,7 @@ function ThemesSection({ themesSection }: IThemeSection) {
   if (themesSection.length) {
     return themesSection.map((el) => {
       return (
-        <Box id={el.id} key={el.id} sx={container}>
+        <Box key={el.id} sx={container}>
           <Typography id={el.title} variant="h3" sx={h3}>
             {el.title}
           </Typography>

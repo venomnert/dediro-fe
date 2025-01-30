@@ -1,7 +1,7 @@
 'use client';
 
 import { Box, Typography } from '@mui/material';
-import { container, imageStyle, mainTitle } from './MainContent.styles';
+import { container, mainTitle } from './MainContent.styles';
 
 import React from 'react';
 
@@ -13,7 +13,7 @@ function MainContent() {
       </Typography>
 
       <img
-        style={imageStyle}
+        style={{ width: '100%', borderRadius: '20px', objectFit: 'cover' }}
         src="images/synthesis-page/main-content.png"
         alt="happy blonde girl"
       />
