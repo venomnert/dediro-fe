@@ -1,25 +1,17 @@
 import { Box, Button, Typography } from '@mui/material';
-import EastRoundedIcon from '@mui/icons-material/EastRounded';
-
-import React from 'react';
-
 import {
+  briefDescriptionStyles,
+  btn,
   container,
   textContainer,
   titleStyles,
-  briefDescriptionStyles,
-  btn,
 } from './RelatedContentCard.styles';
 
-interface RelatedContentCardProps {
-  title: string;
-  briefDescription: string;
-}
+import EastRoundedIcon from '@mui/icons-material/EastRounded';
+import { IRelatedContentCard } from '@/types';
+import React from 'react';
 
-function RelatedContentCard({
-  title,
-  briefDescription,
-}: RelatedContentCardProps) {
+function RelatedContentCard({ title, briefDescription }: IRelatedContentCard) {
   return (
     <Box sx={container}>
       <Box sx={textContainer}>
