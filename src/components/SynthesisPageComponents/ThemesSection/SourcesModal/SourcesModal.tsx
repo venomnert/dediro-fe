@@ -15,98 +15,44 @@ import {
 } from './SourcesModal.styles';
 
 import CloseIcon from '@mui/icons-material/Close';
+import { IExpertsHighlightsArray } from '@/types';
 import ModalCard from './ModalCard';
 import { useState } from 'react';
 
-const DATA_EXPERT_CARD = [
-  {
-    id: 1,
-    name: 'John Doe',
-    profession: 'Couples Therapists',
-    sources: [
-      {
-        quote:
-          '1. Art of Happiness Course: Nurturing Positive Relationships and Social Support',
-        link: 'https://www.youtube.com/',
-        sourceName: 'YouTube',
-        sourceDescription:
-          'This video highlights the importance of nurturing positive relationships and social support for overall well-being, explaining how these connections contribute to emotional support, resilience, enhanced well-being, and shared experiences of joy.',
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: 'John Doe',
-    profession: 'Couples Therapists',
-    sources: [
-      {
-        quote:
-          '1. Art of Happiness Course: Nurturing Positive Relationships and Social Support',
-        link: 'https://www.youtube.com/',
-        sourceName: 'YouTube',
-        sourceDescription:
-          'This video highlights the importance of nurturing positive relationships and social support for overall well-being, explaining how these connections contribute to emotional support, resilience, enhanced well-being, and shared experiences of joy.',
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: 'John Doe',
-    profession: 'Couples Therapists',
-    sources: [
-      {
-        quote:
-          '1. Art of Happiness Course: Nurturing Positive Relationships and Social Support',
-        link: 'https://www.youtube.com/',
-        sourceName: 'YouTube',
-        sourceDescription:
-          'This video highlights the importance of nurturing positive relationships and social support for overall well-being, explaining how these connections contribute to emotional support, resilience, enhanced well-being, and shared experiences of joy.',
-      },
-    ],
-  },
-  {
-    id: 4,
-    name: 'John Doe',
-    profession: 'Couples Therapists',
-    sources: [
-      {
-        quote:
-          '1. Art of Happiness Course: Nurturing Positive Relationships and Social Support',
-        link: 'https://www.youtube.com/',
-        sourceName: 'YouTube',
-        sourceDescription:
-          'This video highlights the importance of nurturing positive relationships and social support for overall well-being, explaining how these connections contribute to emotional support, resilience, enhanced well-being, and shared experiences of joy.',
-      },
-    ],
-  },
-];
-
-function SourcesModal() {
+function SourcesModal({ experts }: IExpertsHighlightsArray) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleStyle = (index: number) => {
+    if (index === 1)
+      return {
+        position: 'absolute',
+        left: 0,
+      };
+    if (index === 2) return { position: 'absolute', left: 12.5 };
+    if (index === 3) return { position: 'absolute', left: 25 };
+  };
 
   return (
     <>
       <Button variant="contained" sx={btn} onClick={() => handleOpen()}>
         <Box sx={btnImageContainer}>
-          <img
-            src={`images/synthesis-page/experts/bill-gates.png`}
-            alt="expert"
-            style={{ ...btnImage, position: 'absolute', left: 0 }}
-          />
-          <img
-            src={`images/synthesis-page/experts/bill-gates.png`}
-            alt="expert"
-            style={{ ...btnImage, position: 'absolute', left: 12.5 }}
-          />
-          <img
-            src={`images/synthesis-page/experts/bill-gates.png`}
-            alt="expert"
-            style={{ ...btnImage, position: 'absolute', left: 25 }}
-          />
+          {experts.slice(0, 4).map((el, index) => {
+            let positionStyles: any = {};
+            positionStyles = handleStyle(index);
+
+            return (
+              <img
+                key={el.id}
+                src={el.image.src}
+                alt={el.image.alt}
+                style={{ ...btnImage, ...positionStyles }}
+              />
+            );
+          })}
         </Box>
-        <Typography sx={btnText}>3 sources</Typography>
+        <Typography sx={btnText}>{experts.length} sources</Typography>
       </Button>
 
       <Modal open={open} onClose={handleClose} sx={modalContainer}>
@@ -114,7 +60,7 @@ function SourcesModal() {
           <Box sx={infoContainer}>
             <Box sx={infoSubContainer}>
               <Typography sx={titleStyles} variant="h3" component="h3">
-                3 Sources
+                {experts.length} Sources
               </Typography>
               <Typography sx={{ color: '#ffffff' }}>
                 Positive Relationships
@@ -126,13 +72,14 @@ function SourcesModal() {
           </Box>
 
           <Box sx={cardContainer}>
-            {DATA_EXPERT_CARD?.map((expert) => (
+            {experts?.map((expert) => (
               <ModalCard
                 key={expert.id}
                 id={expert.id}
                 name={expert.name}
                 profession={expert.profession}
                 sources={expert.sources}
+                image={expert.image}
               />
             ))}
           </Box>
