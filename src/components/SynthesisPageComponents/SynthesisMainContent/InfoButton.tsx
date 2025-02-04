@@ -11,6 +11,9 @@ import {
 } from '@mui/material';
 import React, { useState } from 'react';
 import {
+  accordionTitle,
+  description,
+  iconButton,
   infoButton,
   infoContainer,
   infoIcon,
@@ -51,10 +54,7 @@ function InfoButton() {
                 </Typography>
                 <Typography
                   fontFamily="var(--font-roboto) !important"
-                  sx={{
-                    fontSize: '1rem',
-                    textAlign: 'justify',
-                  }}
+                  sx={description}
                 >
                   {INFO_BUTTON_DATA.description}
                 </Typography>
@@ -66,10 +66,7 @@ function InfoButton() {
                         <Typography
                           fontFamily="var(--font-roboto) !important"
                           component="span"
-                          sx={{
-                            fontSize: { xs: '15px', md: '20px' },
-                            fontWeight: '500',
-                          }}
+                          sx={accordionTitle}
                         >
                           {el.title}
                         </Typography>
@@ -103,22 +100,12 @@ function InfoButton() {
                 </Typography>
                 <Typography
                   fontFamily="var(--font-roboto) !important"
-                  sx={{
-                    fontSize: '1rem',
-                    textAlign: 'justify',
-                  }}
+                  sx={description}
                 >
                   {INFO_BUTTON_DATA.subDescription}
                 </Typography>
               </Box>
-              <IconButton
-                onClick={handleClose}
-                sx={{
-                  position: { xs: 'absolute' },
-                  right: 12,
-                  top: 12,
-                }}
-              >
+              <IconButton onClick={handleClose} sx={iconButton}>
                 <CloseIcon />
               </IconButton>
             </Box>
