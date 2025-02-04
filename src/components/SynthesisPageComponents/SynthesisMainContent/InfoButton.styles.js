@@ -52,9 +52,24 @@ export const titleStyles = {
   width: { xs: '90%', md: '100%' },
 };
 
+export const accordionTitle = {
+  fontSize: { xs: '15px', md: '20px' },
+  fontWeight: '500',
+};
 export const cardContainer = {
   display: 'flex',
   flexDirection: 'column',
   gap: '20px',
   padding: '20px',
+};
+
+export const description = {
+  fontSize: '1rem',
+  textAlign: 'justify',
+};
+
+export const iconButton = {
+  position: { xs: 'absolute' },
+  right: 12,
+  top: 12,
 };
