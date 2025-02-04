@@ -1,22 +1,16 @@
 import { Box, Typography } from '@mui/material';
-import React from 'react';
-
 import {
-  container,
-  quoteText,
   ExpertInfoContainer,
+  container,
   img,
   quoteExpertInfo,
+  quoteText,
 } from './ExpertQuote.styles';
 
-interface ExpertQuoteProps {
-  name: string;
-  image: string;
-  profession: string;
-  text: string;
-}
+import { IExpertQuote } from '@/types';
+import React from 'react';
 
-function ExpertQuote({ name, image, profession, text }: ExpertQuoteProps) {
+function ExpertQuote({ name, image, profession, text }: IExpertQuote) {
   return (
     <Box sx={container}>
       <Typography component="span" sx={quoteText}>
