@@ -8,17 +8,9 @@ import {
 } from './SubscribeToNewsletter.styles';
 
 import CTAForm from '../../Common/CTA/CTAForm';
+import { ISubscribeToNewsletter } from '@/types';
+import NEWSLETTER_DATA from '../../../constants/NEWSLETTER_DATA';
 import React from 'react';
-
-const NEWSLETTER_DATA = {
-  title: 'Stay Informed about the Latest News on this Topic',
-  text: 'We continuously update our content to reflect new findings and perspectives. Keep up with the latest articles and reports from Dediro.',
-  topic: 'Happiness',
-};
-
-interface ISubscribeToNewsletter {
-  synthesisSlug: string;
-}
 
 function SubscribeToNewsletter({ synthesisSlug }: ISubscribeToNewsletter) {
   return (
