@@ -3,7 +3,7 @@ export const container = {
   flexDirection: { xs: 'column', sm: 'row' },
 };
 
-export const image = {
+export const imageStyle = {
   flexShrink: 0,
   img: {
     objectFit: 'cover',
