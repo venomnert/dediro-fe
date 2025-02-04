@@ -86,16 +86,103 @@ interface IQuote {
 }
 
 export interface IThemeSection {
-  themesSection: {
+  themesSection: IThemes[];
+  experts: IExpertsHighlights[];
+}
+export interface IThemes {
+  id: number;
+  title: string;
+  description: string;
+  quote?: IQuote;
+  content: {
     id: number;
-    title: string;
+    subtitle: string;
     description: string;
     quote?: IQuote;
-    content: {
-      id: number;
-      subtitle: string;
-      description: string;
-      quote?: IQuote;
-    }[];
   }[];
+}
+
+export interface IExpertQuote {
+  name: string;
+  image: string;
+  profession: string;
+  text: string;
+}
+
+interface ISources {
+  quote: string;
+  link: string;
+  sourceName: string;
+  sourceDescription: string;
+}
+
+export interface IModalCard {
+  id: number;
+  name: string;
+  profession: string;
+  sources?: ISources[];
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+
+export interface IMainContent {
+  title: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+export interface IMainContentInfo {
+  date: string;
+  summary: string;
+}
+
+export interface ISubscribeToNewsletter {
+  synthesisSlug: string;
+}
+
+export interface IRelatedContentCard {
+  title: string;
+  briefDescription: string;
+}
+
+export interface IExpertCard {
+  name: string;
+  profession: string;
+  image: { src: string; alt: string };
+}
+
+export interface IWeeklyUpdatesCard {
+  articleTitle: string;
+  image: string;
+  link: string;
+}
+
+interface IExpertsHighlights {
+  id: number;
+  name: string;
+  profession: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  sources?: ISources[];
+}
+
+export interface IExpertsHighlightsArray {
+  experts: IExpertsHighlights[];
+}
+
+export interface IThemesArray {
+  themesSection: IThemes[];
+}
+
+interface IRelatedContent {
+  title: string;
+  briefDescription: string;
+}
+export interface IRelatedContentArray {
+  relatedContent: IRelatedContent[];
 }
