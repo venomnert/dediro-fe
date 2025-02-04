@@ -6,7 +6,7 @@ import { IThemeSection } from '@/types';
 import React from 'react';
 import SourcesModal from './SourcesModal/SourcesModal';
 
-function ThemesSection({ themesSection }: IThemeSection) {
+function ThemesSection({ themesSection, experts }: IThemeSection) {
   if (themesSection.length) {
     return themesSection.map((el) => {
       return (
@@ -52,7 +52,7 @@ function ThemesSection({ themesSection }: IThemeSection) {
             );
           })}
 
-          <SourcesModal />
+          <SourcesModal experts={experts} />
         </Box>
       );
     });
