@@ -8,13 +8,13 @@ import {
   titleStyle,
 } from './TableOfContents.styles';
 
-import { IThemeSection } from '@/types';
+import { IThemesArray } from '@/types';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import React from 'react';
 
-export default function TableOfContents({ themesSection }: IThemeSection) {
+export default function TableOfContents({ themesSection }: IThemesArray) {
   return (
     <List
       disablePadding
