@@ -1,19 +1,10 @@
 import { Box, Link, Typography } from '@mui/material';
+import { container, linkStyles, title } from './WeeklyUpdatesCard.styles';
+
+import { IWeeklyUpdatesCard } from '@/types';
 import React from 'react';
 
-import { container, title, linkStyles } from './WeeklyUpdatesCard.styles';
-
-interface WeeklyUpdatesCardProps {
-  articleTitle: string;
-  image: string;
-  link: string;
-}
-
-function WeeklyUpdatesCard({
-  articleTitle,
-  image,
-  link,
-}: WeeklyUpdatesCardProps) {
+function WeeklyUpdatesCard({ articleTitle, image, link }: IWeeklyUpdatesCard) {
   return (
     <Link href={link} target="_blank" sx={linkStyles}>
       <Box
