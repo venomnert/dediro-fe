@@ -9,6 +9,7 @@ export const btnImage = {
   border: '2px solid white',
   width: '18px',
   height: '18px',
+  objectFit: 'cover',
 };
 
 export const btn = {
