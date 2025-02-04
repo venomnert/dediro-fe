@@ -1,30 +1,26 @@
 import { Box, Grid2, IconButton, Typography } from '@mui/material';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import React from 'react';
-
 import {
+  addIcon,
   container,
-  textContainer,
   expertName,
   expertProfession,
-  addIcon,
+  textContainer,
 } from './ExpertCard.styles';
 
-interface ExpertCardProps {
-  name: string;
-  profession: string;
-  image: string;
-}
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import { IExpertCard } from '@/types';
+import Image from 'next/image';
+import React from 'react';
 
-function ExpertCard({ name, profession, image }: ExpertCardProps) {
+function ExpertCard({ name, profession, image }: IExpertCard) {
   return (
     <Grid2 container spacing={2} sx={container}>
       <Grid2 size={4}>
-        <img
-          src={image}
-          alt="white man smiling"
-          width="54px"
-          height="50px"
+        <Image
+          src={image.src}
+          alt={image.alt}
+          width={54}
+          height={50}
           style={{ borderRadius: '100%' }}
         />
       </Grid2>
