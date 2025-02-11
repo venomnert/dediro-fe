@@ -7,7 +7,12 @@ export const container = {
   borderBottom: '2px solid #000000',
   minHeight: '100px',
 };
-export const logo = { maxWidth: '63px', width: '100%', color: 'blue' };
+export const logo = {
+  maxWidth: '63px',
+  width: '100%',
+  color: 'blue',
+  cursor: 'pointer',
+};
 
 export const buttonsContainer = {
   display: 'flex',
