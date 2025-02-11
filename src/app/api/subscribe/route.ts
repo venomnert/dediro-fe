@@ -2,8 +2,8 @@
 
 import { NextResponse } from 'next/server';
 
-const apiKey = process.env.NEXT_PUBLIC_CUSTOMER_IO_JS_API_KEY || '';
-const siteId = process.env.NEXT_PUBLIC_CUSTOMER_IO_SITE_ID || '';
+const apiKey = process.env.CUSTOMER_IO_JS_API_KEY || '';
+const siteId = process.env.CUSTOMER_IO_SITE_ID || '';
 const cioTrackBaseUrl = 'https://track.customer.io/api/v1/customers';
 const credentials = Buffer.from(`${siteId}:${apiKey}`).toString('base64');
 
