@@ -4,7 +4,7 @@ import { container, sectionsContainer, subContainer } from './page.styles';
 import ExpertsHighlights from '@/components/SynthesisPageComponents/ExpertsHighlights/ExpertsHighlights';
 import Footer from '@/components/Footer/Footer';
 import MainContent from '@/components/SynthesisPageComponents/SynthesisMainContent/MainContent';
-import MainContentInfo from '@/components/SynthesisPageComponents/SynthesisMainContent/MainContentInfo/MainContentInfo';
+import MainContentInfo from '@/components/SynthesisPageComponents/SynthesisMainContent/MainContentInfo';
 import React from 'react';
 import RelatedContent from '@/components/SynthesisPageComponents/RelatedContent/RelatedContent';
 import SYNTHESIS_DATA from '../../constants/SYNTHESIS_DATA';
@@ -22,15 +22,24 @@ export default function Synthesis() {
       <SynthesisFilters />
 
       <Container component="main" sx={container}>
-        <MainContent />
+        <MainContent
+          title={SYNTHESIS_DATA.title}
+          image={SYNTHESIS_DATA.image}
+        />
         <Box sx={subContainer}>
           <Box sx={sectionsContainer}>
-            <MainContentInfo />
-            <ExpertsHighlights />
-            <ThemesSection themesSection={SYNTHESIS_DATA.themesSection} />
+            <MainContentInfo
+              date={SYNTHESIS_DATA.date}
+              summary={SYNTHESIS_DATA.summary}
+            />
+            <ExpertsHighlights experts={SYNTHESIS_DATA.experts} />
+            <ThemesSection
+              themesSection={SYNTHESIS_DATA.themesSection}
+              experts={SYNTHESIS_DATA.experts}
+            />
             <WeeklyUpdates />
             <SubscribeToNewsletter synthesisSlug={SYNTHESIS_DATA.slug} />
-            <RelatedContent />
+            <RelatedContent relatedContent={SYNTHESIS_DATA.relatedContent} />
           </Box>
           <TableOfContents themesSection={SYNTHESIS_DATA.themesSection} />
         </Box>
