@@ -16,7 +16,7 @@ export const btnStyles = {
 
 export const btnStylesMobile = {
   fontSize: '14px',
-  color: '#ffffffff',
+  color: '#FFFFFF',
   borderRadius: '24px',
   backgroundColor: '#343967',
   textTransform: 'capitalize',

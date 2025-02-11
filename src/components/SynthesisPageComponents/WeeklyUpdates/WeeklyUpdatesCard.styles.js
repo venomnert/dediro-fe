@@ -15,7 +15,7 @@ export const container = {
 export const title = {
   fontSize: '18px',
   fontWeight: '700',
-  color: '#FFFFFFFF',
+  color: '#FFFFFF',
 };
 export const linkStyles = {
   textDecoration: 'none',
