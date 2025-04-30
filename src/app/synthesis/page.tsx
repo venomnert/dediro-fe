@@ -8,6 +8,7 @@ import MainContentInfo from '@/components/SynthesisPageComponents/SynthesisMainC
 import React from 'react';
 import RelatedContent from '@/components/SynthesisPageComponents/RelatedContent/RelatedContent';
 import SYNTHESIS_DATA from '../../constants/SYNTHESIS_DATA';
+import SYNTHESIS_STRUCTURE from '../../constants/SYNTHESIS_STRUCTURE';
 import SubscribeToNewsletter from '@/components/SynthesisPageComponents/SubscribeToNewsletter/SubscribeToNewsletter';
 import SynthesisFilters from '@/components/SynthesisPageComponents/SynthesisFilters/SynthesisFilters';
 import SynthesisHeader from '@/components/Header/SynthesisHeader';
@@ -23,18 +24,21 @@ export default function Synthesis() {
 
       <Container component="main" sx={container}>
         <MainContent
-          title={SYNTHESIS_DATA.title}
+          title={SYNTHESIS_STRUCTURE.introduction}
           image={SYNTHESIS_DATA.image}
         />
         <Box sx={subContainer}>
           <Box sx={sectionsContainer}>
             <MainContentInfo
               date={SYNTHESIS_DATA.date}
-              summary={SYNTHESIS_DATA.summary}
+              summary={SYNTHESIS_STRUCTURE.conclusion}
             />
             <ExpertsHighlights experts={SYNTHESIS_DATA.experts} />
+            <p>
+              {SYNTHESIS_STRUCTURE.synthesis}
+            </p>
             <ThemesSection
-              themesSection={SYNTHESIS_DATA.themesSection}
+              themesSection={SYNTHESIS_STRUCTURE.synthesis_themes}
               experts={SYNTHESIS_DATA.experts}
             />
             <WeeklyUpdates />

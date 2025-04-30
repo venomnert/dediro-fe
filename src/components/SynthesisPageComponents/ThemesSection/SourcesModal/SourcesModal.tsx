@@ -44,9 +44,9 @@ function SourcesModal({ experts }: IExpertsHighlightsArray) {
 
             return (
               <img
-                key={el.id}
-                src={el.image.src}
-                alt={el.image.alt}
+                key={index}
+                src={el.url}
+                alt={el.url?.alt}
                 style={{ ...btnImage, ...positionStyles }}
               />
             );

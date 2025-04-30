@@ -21,6 +21,7 @@
     "customerio-node": "^4.1.1",
     "eslint-config-airbnb": "^19.0.4",
     "framer-motion": "^11.3.31",
+    "markdown-it": "^14.1.0",
     "moment": "^2.30.1",
     "next": "^14.2.13",
     "react": "^18",
