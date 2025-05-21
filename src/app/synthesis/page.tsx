@@ -25,115 +25,12 @@ import SYNTHESIS_DATA from '../../constants/SYNTHESIS_DATA';
 import SYNTHESIS_STRUCTURE_MINI from '../../constants/SYNTHESIS_STRUCTURE_MINI';
 
 // Styles
-const StyledContainer = styled(Container)(({ theme }) => ({
-  maxWidth: '1440px',
-  padding: theme.spacing(0, 3),
-  [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(0, 6),
-  },
-  [theme.breakpoints.up('lg')]: {
-    padding: theme.spacing(0, 8),
-  },
-}));
-
-const ArticleContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  [theme.breakpoints.up('lg')]: {
-    flexDirection: 'row',
-    gap: theme.spacing(4),
-  },
-}));
-
-const SidebarContainer = styled(Box)(({ theme }) => ({
-  width: '100%',
-  [theme.breakpoints.up('lg')]: {
-    width: '280px',
-    flexShrink: 0,
-    position: 'sticky',
-    top: '100px',
-    maxHeight: 'calc(100vh - 120px)',
-    overflowY: 'auto',
-    '&::-webkit-scrollbar': {
-      width: '4px',
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: theme.palette.grey[400],
-      borderRadius: '4px',
-    },
-  },
-}));
-
-const MainContentContainer = styled(Box)(({ theme }) => ({
-  flexGrow: 1,
-  maxWidth: '100%',
-  [theme.breakpoints.up('lg')]: {
-    maxWidth: '800px',
-  },
-}));
-
-const ArticleHeader = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(4),
-  paddingBottom: theme.spacing(2),
-  borderBottom: `1px solid ${theme.palette.divider}`,
-}));
-
-const PageTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '2.5rem',
-  fontWeight: 400,
-  lineHeight: 1.2,
-  marginBottom: theme.spacing(1.5),
-  color: theme.palette.text.primary,
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '2rem',
-  },
-}));
-
-const RedirectText = styled(Box)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  fontSize: '0.875rem',
-  marginBottom: theme.spacing(1),
-  '& a': {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-}));
-
-const ArticleInfo = styled(Typography)(({ theme }) => ({
-  fontSize: '0.875rem',
-  color: theme.palette.text.secondary,
-  fontStyle: 'italic',
-  marginTop: theme.spacing(2),
-  '& a': {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-}));
-
-const StyledTabs = styled(Tabs)(({ theme }) => ({
-  '& .MuiTabs-indicator': {
-    backgroundColor: theme.palette.primary.main,
-  },
-  '& .MuiTab-root': {
-    textTransform: 'none',
-    minWidth: 'auto',
-    padding: theme.spacing(1, 2),
-    '&.Mui-selected': {
-      color: theme.palette.primary.main,
-    },
-  },
-}));
+import * as styles from './page.styles';
 
 const FloatingActionButton = styled(IconButton)(({ theme }) => ({
   position: 'fixed',
-  bottom: theme.spacing(3),
-  right: theme.spacing(3),
+  bottom: theme.spacing(4),
+  right: theme.spacing(4),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
   '&:hover': {
@@ -174,14 +71,9 @@ export default function Synthesis() {
     setTabValue(newValue);
   };
 
-  // Handle scroll to show/hide back to top button
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -189,10 +81,7 @@ export default function Synthesis() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleShare = async () => {
@@ -207,7 +96,6 @@ export default function Synthesis() {
         console.error('Error sharing:', err);
       }
     } else {
-      // Fallback for browsers that don't support Web Share API
       await navigator.clipboard.writeText(window.location.href);
       alert('Link copied to clipboard!');
     }
@@ -217,82 +105,66 @@ export default function Synthesis() {
     <>
       <SynthesisHeader />
       
-      <StyledContainer component="main" maxWidth={false}>
-        {/* Article header */}
-        <ArticleHeader>
-          <PageTitle variant="h1" tabIndex={0}>
-  {SYNTHESIS_STRUCTURE_MINI.introduction}
-</PageTitle>
-<Typography variant="subtitle1" sx={{ color: 'text.secondary', fontWeight: 400, mb: 1 }}>
-  "Knowledge, synthesized for you."
-</Typography> {/* Tagline for clarity and personality */}
+      <Container maxWidth="xl" sx={styles.container}>
+        <Box sx={styles.articleHeader}>
+          <Typography variant="h1" sx={styles.pageTitle}>
+            {SYNTHESIS_STRUCTURE_MINI.introduction}
+          </Typography>
+          <Typography variant="subtitle1" sx={{ color: 'text.secondary', mb: 2 }}>
+            "Knowledge, synthesized for you."
+          </Typography>
           
-          <RedirectText>
-            <Typography variant="body2" component="div">
+          <Box sx={styles.redirectText}>
+            <Typography variant="body2">
               From Dediro, the free knowledge platform
             </Typography>
-            <Typography variant="body2" component="div" sx={{ mt: 0.5 }}>
+            <Typography variant="body2" sx={{ mt: 0.5 }}>
               (Redirected from{' '}
               <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
                 Previous Synthesis
               </Box>)
             </Typography>
-          </RedirectText>
-          
-          <ArticleInfo variant="body2" component="div">
-            This article is about the synthesis. For other uses, see{' '}
-            <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-              Related Synthesis (disambiguation)
-            </Box>.
-          </ArticleInfo>
-        </ArticleHeader>
+          </Box>
+        </Box>
 
-        {/* Action buttons */}
         <ActionButtons>
-  <Tooltip title="Save this synthesis for later!" arrow>
-    <IconButton aria-label="Save for later" tabIndex={0}>
-      <BookmarkBorderIcon />
-    </IconButton>
-  </Tooltip>
-  <Tooltip title="Share this page" arrow>
-    <IconButton aria-label="Share" onClick={handleShare} tabIndex={0}>
-      <ShareIcon />
-    </IconButton>
-  </Tooltip>
-</ActionButtons>
+          <Tooltip title="Save this synthesis for later" arrow>
+            <IconButton aria-label="Save for later">
+              <BookmarkBorderIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Share this page" arrow>
+            <IconButton aria-label="Share" onClick={handleShare}>
+              <ShareIcon />
+            </IconButton>
+          </Tooltip>
+        </ActionButtons>
 
-        {/* Navigation tabs */}
-        <Paper elevation={0} sx={{ mb: 4, borderBottom: 1, borderColor: 'divider', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(2px)' }}>
-  <StyledTabs
-    value={tabValue}
-    onChange={handleTabChange}
-    aria-label="synthesis navigation tabs"
-    variant="scrollable"
-    scrollButtons="auto"
-    TabIndicatorProps={{ style: { transition: 'all .3s cubic-bezier(.4,2,.6,1)' } }}
-  >
-    <Tab label="Article" aria-label="View article" />
-    <Tab label="Talk" aria-label="View talk" />
-    <Tab label="Read" aria-label="Read mode" />
-    <Tab label="Edit" aria-label="Edit mode" />
-    <Tab label="View history" aria-label="View history" />
-    <Tab label="Tools" aria-label="View tools" />
-  </StyledTabs>
-</Paper>
+        <Paper elevation={0} sx={styles.tabsContainer}>
+          <Tabs
+            value={tabValue}
+            onChange={handleTabChange}
+            aria-label="synthesis navigation tabs"
+            variant="scrollable"
+            scrollButtons="auto"
+          >
+            <Tab label="Article" />
+            <Tab label="Talk" />
+            <Tab label="Read" />
+            <Tab label="Edit" />
+            <Tab label="View history" />
+            <Tab label="Tools" />
+          </Tabs>
+        </Paper>
 
-        <ArticleContainer>
-          {/* Left sidebar with table of contents */}
+        <Box sx={styles.articleContainer}>
           {!isMobile && (
-            <SidebarContainer aria-label="Table of Contents">
-  <Typography variant="h6" sx={{ mb: 2, fontWeight: 700, color: 'primary.main', letterSpacing: 0.5 }}>
-    Contents
-  </Typography>
-  <TableOfContents themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes} />
-</SidebarContainer>
+            <Box sx={styles.sidebarContainer}>
+              <TableOfContents themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes} />
+            </Box>
           )}
 
-          {/* Main content area */}
-          <MainContentContainer ref={mainContentRef}>
+          <Box sx={styles.mainContentContainer} ref={mainContentRef}>
             <MainContent
               title={SYNTHESIS_STRUCTURE_MINI.introduction}
               image={SYNTHESIS_DATA.image}
@@ -305,10 +177,6 @@ export default function Synthesis() {
             
             <ExpertsHighlights experts={SYNTHESIS_DATA.experts} />
             
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, mb: 4 }}>
-              {SYNTHESIS_STRUCTURE_MINI.synthesis}
-            </Typography>
-            
             <ThemesSection
               themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes}
               experts={SYNTHESIS_DATA.experts}
@@ -316,16 +184,15 @@ export default function Synthesis() {
             
             <WeeklyUpdates />
             
-            <Divider sx={{ my: 6, borderColor: 'divider' }} />
+            <Divider sx={{ my: 6 }} />
             
             <SubscribeToNewsletter synthesisSlug={SYNTHESIS_DATA.slug} />
             
             <RelatedContent relatedContent={SYNTHESIS_DATA.relatedContent} />
-          </MainContentContainer>
-        </ArticleContainer>
-      </StyledContainer>
+          </Box>
+        </Box>
+      </Container>
       
-      {/* Back to top button */}
       <FloatingActionButton 
         onClick={scrollToTop}
         className={isScrolled ? 'visible' : ''}
