@@ -3,9 +3,7 @@ import {
   container,
   contentContainer,
   listContainer,
-  subTitleStyle,
   tableOfContentsLabel,
-  titleStyle,
   h2Style,
   h3Style,
 } from './TableOfContents.styles';
@@ -16,24 +14,21 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import React, { useEffect, useState } from 'react';
 
-// Interface for parsed headers
 interface ParsedHeader {
   level: number;
   text: string;
   id: string;
 }
 
-// Function to parse markdown headers from content
 const parseMarkdownHeaders = (content: string): ParsedHeader[] => {
   if (!content) return [];
   
-  // Regular expression to match markdown headers
   const headerRegex = /^(#{1,6})\s+(.+?)\s*$/gm;
   const headers: ParsedHeader[] = [];
   let match;
 
   while ((match = headerRegex.exec(content)) !== null) {
-    const level = match[1].length; // Number of # symbols
+    const level = match[1].length;
     const text = match[2].trim();
     const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
     
@@ -45,9 +40,9 @@ const parseMarkdownHeaders = (content: string): ParsedHeader[] => {
 
 export default function TableOfContents({ themesSection }: IThemesArray) {
   const [parsedHeaders, setParsedHeaders] = useState<{[key: number]: ParsedHeader[]}>({});
+  const [activeSection, setActiveSection] = useState<string>('');
 
   useEffect(() => {
-    // Parse headers from each theme's content
     const allHeaders: {[key: number]: ParsedHeader[]} = {};
     
     themesSection.forEach((theme, index) => {
@@ -58,6 +53,30 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
     
     setParsedHeaders(allHeaders);
   }, [themesSection]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -80% 0px',
+      }
+    );
+
+    // Observe all section headings
+    document.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <List
@@ -78,31 +97,49 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
           Contents
         </Typography>
         
-        {/* Main theme sections */}
         {themesSection.map((theme, themeIndex) => (
           <Box key={themeIndex} sx={contentContainer}>
-            {/* Theme title */}
-            <ListItemButton href={`#section-${themeIndex+1}`}>
+            <ListItemButton 
+              href={`#section-${themeIndex+1}`}
+              selected={activeSection === `section-${themeIndex+1}`}
+              sx={{
+                backgroundColor: activeSection === `section-${themeIndex+1}` ? '#eaecf0' : 'transparent',
+                '&:hover': {
+                  backgroundColor: '#eaecf0',
+                },
+              }}
+            >
               <Typography
                 fontFamily="var(--font-roboto) !important"
-                sx={titleStyle}
+                sx={{
+                  ...h2Style,
+                  color: activeSection === `section-${themeIndex+1}` ? '#000' : '#0645ad',
+                }}
               >
                 {themeIndex+1}. {theme.title || `Theme ${themeIndex+1}`}
               </Typography>
             </ListItemButton>
             
-            {/* Headers from markdown content */}
             {parsedHeaders[themeIndex] && parsedHeaders[themeIndex].length > 0 && (
               <List component="div" disablePadding>
                 {parsedHeaders[themeIndex].map((header, headerIndex) => (
                   <ListItemButton
                     key={headerIndex}
                     href={`#${header.id}`}
-                    sx={header.level === 2 ? h2Style : h3Style}
+                    selected={activeSection === header.id}
+                    sx={{
+                      backgroundColor: activeSection === header.id ? '#eaecf0' : 'transparent',
+                      '&:hover': {
+                        backgroundColor: '#eaecf0',
+                      },
+                    }}
                   >
                     <Typography 
                       fontFamily="var(--font-roboto) !important"
-                      sx={{ fontSize: header.level === 2 ? '14px' : '13px' }}
+                      sx={{
+                        ...h3Style,
+                        color: activeSection === header.id ? '#000' : '#0645ad',
+                      }}
                     >
                       {header.text}
                     </Typography>
