@@ -3,9 +3,7 @@ import {
   container,
   contentContainer,
   listContainer,
-  subTitleStyle,
   tableOfContentsLabel,
-  titleStyle,
   h2Style,
   h3Style,
 } from './TableOfContents.styles';
@@ -16,24 +14,21 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
 import React, { useEffect, useState, useRef } from 'react';
 
-// Interface for parsed headers
 interface ParsedHeader {
   level: number;
   text: string;
   id: string;
 }
 
-// Function to parse markdown headers from content
 const parseMarkdownHeaders = (content: string): ParsedHeader[] => {
   if (!content) return [];
   
-  // Regular expression to match markdown headers
   const headerRegex = /^(#{1,6})\s+(.+?)\s*$/gm;
   const headers: ParsedHeader[] = [];
   let match;
 
   while ((match = headerRegex.exec(content)) !== null) {
-    const level = match[1].length; // Number of # symbols
+    const level = match[1].length;
     const text = match[2].trim();
     const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
     
@@ -60,7 +55,6 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
   };
 
   useEffect(() => {
-    // Parse headers from each theme's content
     const allHeaders: {[key: number]: ParsedHeader[]} = {};
     
     themesSection.forEach((theme, index) => {
@@ -198,7 +192,6 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
           Contents
         </Typography>
         
-        {/* Main theme sections */}
         {themesSection.map((theme, themeIndex) => (
           <Box key={themeIndex} sx={contentContainer}>
             {/* Theme title */}
@@ -224,7 +217,6 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
               </Typography>
             </ListItemButton>
             
-            {/* Headers from markdown content */}
             {parsedHeaders[themeIndex] && parsedHeaders[themeIndex].length > 0 && (
               <List component="div" disablePadding>
                 {parsedHeaders[themeIndex].map((header, headerIndex) => (

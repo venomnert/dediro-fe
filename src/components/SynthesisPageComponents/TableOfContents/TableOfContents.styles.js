@@ -16,6 +16,19 @@ export const listContainer = {
   maxHeight: '600px',
   overflow: 'auto',
   padding: '0',
+  '&::-webkit-scrollbar': {
+    width: '8px',
+  },
+  '&::-webkit-scrollbar-track': {
+    background: '#f1f1f1',
+  },
+  '&::-webkit-scrollbar-thumb': {
+    background: '#888',
+    borderRadius: '4px',
+  },
+  '&::-webkit-scrollbar-thumb:hover': {
+    background: '#555',
+  },
 };
 
 export const tableOfContentsLabel = {
@@ -29,36 +42,14 @@ export const contentContainer = {
   marginBottom: '10px',
 };
 
-export const titleStyle = {
-  fontWeight: '600',
-  fontSize: '15px',
-  padding: '5px 10px',
-  color: '#0645ad',
-};
-
-export const subTitleStyle = {
-  padding: '2px 10px',
-  paddingLeft: 15,
-  fontSize: '14px',
-  marginBottom: '5px',
-};
-
-// Wikipedia-style h2 heading in table of contents
 export const h2Style = {
   padding: '3px 10px 3px 20px',
   fontSize: '14px',
-  color: '#0645ad',
-  '&:hover': {
-    backgroundColor: '#eaecf0',
-  },
+  transition: 'color 0.2s ease',
 };
 
-// Wikipedia-style h3 heading in table of contents
 export const h3Style = {
   padding: '2px 10px 2px 30px',
   fontSize: '13px',
-  color: '#0645ad',
-  '&:hover': {
-    backgroundColor: '#eaecf0',
-  },
+  transition: 'color 0.2s ease',
 };

@@ -168,6 +168,8 @@ const FloatingActionButton = styled(IconButton)(({ theme }) => ({
   position: 'fixed',
   bottom: theme.spacing(4),
   right: theme.spacing(4),
+  bottom: theme.spacing(4),
+  right: theme.spacing(4),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
   padding: theme.spacing(1.5),
@@ -225,14 +227,9 @@ export default function Synthesis() {
     setTabValue(newValue);
   };
 
-  // Handle scroll to show/hide back to top button
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 300) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -240,10 +237,7 @@ export default function Synthesis() {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleShare = async () => {
@@ -258,7 +252,6 @@ export default function Synthesis() {
         console.error('Error sharing:', err);
       }
     } else {
-      // Fallback for browsers that don't support Web Share API
       await navigator.clipboard.writeText(window.location.href);
       alert('Link copied to clipboard!');
     }
@@ -278,11 +271,11 @@ export default function Synthesis() {
   "Knowledge, synthesized for you."
 </Typography> {/* Tagline for clarity and personality */}
           
-          <RedirectText>
-            <Typography variant="body2" component="div">
+          <Box sx={styles.redirectText}>
+            <Typography variant="body2">
               From Dediro, the free knowledge platform
             </Typography>
-            <Typography variant="body2" component="div" sx={{ mt: 0.5 }}>
+            <Typography variant="body2" sx={{ mt: 0.5 }}>
               (Redirected from{' '}
               <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
                 Previous Synthesis
@@ -298,19 +291,18 @@ export default function Synthesis() {
           </ArticleInfo>
         </ArticleHeader>
 
-        {/* Action buttons */}
         <ActionButtons>
-  <Tooltip title="Save this synthesis for later!" arrow>
-    <IconButton aria-label="Save for later" tabIndex={0}>
-      <BookmarkBorderIcon />
-    </IconButton>
-  </Tooltip>
-  <Tooltip title="Share this page" arrow>
-    <IconButton aria-label="Share" onClick={handleShare} tabIndex={0}>
-      <ShareIcon />
-    </IconButton>
-  </Tooltip>
-</ActionButtons>
+          <Tooltip title="Save this synthesis for later" arrow>
+            <IconButton aria-label="Save for later">
+              <BookmarkBorderIcon />
+            </IconButton>
+          </Tooltip>
+          <Tooltip title="Share this page" arrow>
+            <IconButton aria-label="Share" onClick={handleShare}>
+              <ShareIcon />
+            </IconButton>
+          </Tooltip>
+        </ActionButtons>
 
         {/* Navigation tabs */}
         <Paper 
@@ -343,8 +335,7 @@ export default function Synthesis() {
           </StyledTabs>
         </Paper>
 
-        <ArticleContainer>
-          {/* Left sidebar with table of contents */}
+        <Box sx={styles.articleContainer}>
           {!isMobile && (
             <SidebarContainer aria-label="Table of Contents">
               <Typography variant="h6" sx={{ mb: 2, fontWeight: 700, color: 'primary.main', letterSpacing: 0.5 }}>
@@ -365,8 +356,7 @@ export default function Synthesis() {
             </SidebarContainer>
           )}
 
-          {/* Main content area */}
-          <MainContentContainer ref={mainContentRef}>
+          <Box sx={styles.mainContentContainer} ref={mainContentRef}>
             <MainContent
               title={SYNTHESIS_STRUCTURE_MINI.introduction}
               image={SYNTHESIS_DATA.image}
@@ -412,14 +402,14 @@ export default function Synthesis() {
             
             <WeeklyUpdates />
             
-            <Divider sx={{ my: 6, borderColor: 'divider' }} />
+            <Divider sx={{ my: 6 }} />
             
             <SubscribeToNewsletter synthesisSlug={SYNTHESIS_DATA.slug} />
             
             <RelatedContent relatedContent={SYNTHESIS_DATA.relatedContent} />
-          </MainContentContainer>
-        </ArticleContainer>
-      </StyledContainer>
+          </Box>
+        </Box>
+      </Container>
       
       {/* Back to top button */}
       <Tooltip title="Back to top" placement="left" arrow>

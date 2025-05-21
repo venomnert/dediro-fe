@@ -3,7 +3,8 @@ export const container = {
   flexDirection: 'column',
   gap: '20px',
   maxWidth: { xs: '100%', md: '1200px' },
-  padding: { xs: '10px', md: '20px' },
+  margin: '0 auto',
+  padding: { xs: '20px', md: '40px' },
 };
 
 export const subContainer = {
@@ -24,13 +25,16 @@ export const articleHeader = {
   flexDirection: 'column',
   gap: '10px',
   marginBottom: '20px',
+  borderBottom: '1px solid #a2a9b1',
+  paddingBottom: '20px',
 };
 
 export const pageTitle = {
-  fontSize: { xs: '28px', md: '32px' },
+  fontSize: { xs: '32px', md: '48px' },
   fontWeight: 'bold',
   color: '#000',
-  marginBottom: '5px',
+  marginBottom: '10px',
+  fontFamily: 'Linux Libertine, Georgia, Times, serif',
 };
 
 export const redirectText = {
@@ -41,16 +45,20 @@ export const redirectText = {
 
 export const articleInfo = {
   fontSize: '14px',
-  padding: '7px 9px',
+  padding: '10px',
   backgroundColor: '#f8f9fa',
   border: '1px solid #eaecf0',
   borderRadius: '2px',
-  marginBottom: '10px',
+  marginBottom: '20px',
 };
 
 export const tabsContainer = {
   borderBottom: '1px solid #a2a9b1',
   marginBottom: '20px',
+  position: 'sticky',
+  top: 0,
+  backgroundColor: '#fff',
+  zIndex: 100,
   '& .MuiTabs-indicator': {
     backgroundColor: '#343967',
   },
@@ -70,11 +78,11 @@ export const tabsContainer = {
 export const articleContainer = {
   display: 'flex',
   flexDirection: { xs: 'column', md: 'row' },
-  gap: { xs: '20px', md: '30px' },
+  gap: { xs: '20px', md: '40px' },
 };
 
 export const sidebarContainer = {
-  width: { xs: '100%', md: '250px' },
+  width: { xs: '100%', md: '280px' },
   flexShrink: 0,
   border: '1px solid #a2a9b1',
   borderRadius: '2px',
@@ -82,7 +90,9 @@ export const sidebarContainer = {
   backgroundColor: '#f8f9fa',
   alignSelf: 'flex-start',
   position: { md: 'sticky' },
-  top: { md: '20px' },
+  top: { md: '80px' },
+  maxHeight: { md: 'calc(100vh - 100px)' },
+  overflowY: 'auto',
 };
 
 export const mainContentContainer = {
@@ -90,5 +100,5 @@ export const mainContentContainer = {
   display: 'flex',
   flexDirection: 'column',
   gap: '30px',
+  maxWidth: '800px',
 };
-
