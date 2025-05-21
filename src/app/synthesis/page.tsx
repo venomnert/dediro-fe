@@ -27,12 +27,13 @@ import SYNTHESIS_STRUCTURE_MINI from '../../constants/SYNTHESIS_STRUCTURE_MINI';
 // Styles
 const StyledContainer = styled(Container)(({ theme }) => ({
   maxWidth: '1440px',
-  padding: theme.spacing(0, 3),
+  padding: theme.spacing(2, 3),
+  backgroundColor: theme.palette.background.default,
   [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(0, 6),
+    padding: theme.spacing(3, 6),
   },
   [theme.breakpoints.up('lg')]: {
-    padding: theme.spacing(0, 8),
+    padding: theme.spacing(4, 8),
   },
 }));
 
@@ -47,6 +48,11 @@ const ArticleContainer = styled(Box)(({ theme }) => ({
 
 const SidebarContainer = styled(Box)(({ theme }) => ({
   width: '100%',
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(2),
+  marginBottom: theme.spacing(3),
+  boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
   [theme.breakpoints.up('lg')]: {
     width: '280px',
     flexShrink: 0,
@@ -54,6 +60,8 @@ const SidebarContainer = styled(Box)(({ theme }) => ({
     top: '100px',
     maxHeight: 'calc(100vh - 120px)',
     overflowY: 'auto',
+    marginBottom: 0,
+    scrollBehavior: 'smooth',
     '&::-webkit-scrollbar': {
       width: '4px',
     },
@@ -67,6 +75,13 @@ const SidebarContainer = styled(Box)(({ theme }) => ({
 const MainContentContainer = styled(Box)(({ theme }) => ({
   flexGrow: 1,
   maxWidth: '100%',
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(3),
+  boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
+  [theme.breakpoints.down('md')]: {
+    padding: theme.spacing(2),
+  },
   [theme.breakpoints.up('lg')]: {
     maxWidth: '800px',
   },
@@ -79,13 +94,22 @@ const ArticleHeader = styled(Box)(({ theme }) => ({
 }));
 
 const PageTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '2.5rem',
-  fontWeight: 400,
-  lineHeight: 1.2,
-  marginBottom: theme.spacing(1.5),
+  fontSize: '2.75rem',
+  fontWeight: 500,
+  lineHeight: 1.1,
+  marginBottom: theme.spacing(2),
   color: theme.palette.text.primary,
+  position: 'relative',
+  '&::after': {
+    content: '""',
+    display: 'block',
+    width: '60px',
+    height: '4px',
+    backgroundColor: theme.palette.primary.main,
+    marginTop: theme.spacing(1),
+  },
   [theme.breakpoints.down('sm')]: {
-    fontSize: '2rem',
+    fontSize: '2.2rem',
   },
 }));
 
@@ -119,46 +143,73 @@ const ArticleInfo = styled(Typography)(({ theme }) => ({
 const StyledTabs = styled(Tabs)(({ theme }) => ({
   '& .MuiTabs-indicator': {
     backgroundColor: theme.palette.primary.main,
+    height: '3px',
+    borderRadius: '3px 3px 0 0',
   },
   '& .MuiTab-root': {
     textTransform: 'none',
     minWidth: 'auto',
-    padding: theme.spacing(1, 2),
+    padding: theme.spacing(1.5, 2.5),
+    fontSize: '0.95rem',
+    fontWeight: 500,
+    transition: 'all 0.2s ease',
     '&.Mui-selected': {
       color: theme.palette.primary.main,
+      fontWeight: 600,
+    },
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover,
+      color: theme.palette.primary.light,
     },
   },
 }));
 
 const FloatingActionButton = styled(IconButton)(({ theme }) => ({
   position: 'fixed',
-  bottom: theme.spacing(3),
-  right: theme.spacing(3),
+  bottom: theme.spacing(4),
+  right: theme.spacing(4),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
+  padding: theme.spacing(1.5),
   '&:hover': {
     backgroundColor: theme.palette.primary.dark,
+    transform: 'translateY(-4px)',
   },
-  boxShadow: theme.shadows[4],
+  boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
   zIndex: 1000,
   opacity: 0,
   visibility: 'hidden',
-  transition: 'all 0.3s ease',
+  transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
   '&.visible': {
     opacity: 1,
     visibility: 'visible',
+  },
+  '&:focus': {
+    outline: `2px solid ${theme.palette.primary.light}`,
+    outlineOffset: '2px',
   },
 }));
 
 const ActionButtons = styled(Box)(({ theme }) => ({
   display: 'flex',
-  gap: theme.spacing(1),
+  gap: theme.spacing(1.5),
   marginBottom: theme.spacing(3),
+  padding: theme.spacing(1.5),
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: theme.palette.background.paper,
+  boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+  position: 'sticky',
+  top: theme.spacing(2),
+  zIndex: 10,
+  width: 'fit-content',
   '& .MuiIconButton-root': {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
+    backgroundColor: theme.palette.grey[100],
+    transition: 'all 0.2s ease',
     '&:hover': {
       color: theme.palette.primary.main,
-      backgroundColor: 'transparent',
+      backgroundColor: theme.palette.primary.light,
+      transform: 'translateY(-2px)',
     },
   },
 }));
@@ -217,7 +268,7 @@ export default function Synthesis() {
     <>
       <SynthesisHeader />
       
-      <StyledContainer component="main" maxWidth={false}>
+      <StyledContainer maxWidth={false} sx={{ component: 'main' }}>
         {/* Article header */}
         <ArticleHeader>
           <PageTitle variant="h1" tabIndex={0}>
@@ -239,7 +290,7 @@ export default function Synthesis() {
             </Typography>
           </RedirectText>
           
-          <ArticleInfo variant="body2" component="div">
+          <ArticleInfo variant="body2">
             This article is about the synthesis. For other uses, see{' '}
             <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
               Related Synthesis (disambiguation)
@@ -262,33 +313,56 @@ export default function Synthesis() {
 </ActionButtons>
 
         {/* Navigation tabs */}
-        <Paper elevation={0} sx={{ mb: 4, borderBottom: 1, borderColor: 'divider', background: 'rgba(255,255,255,0.95)', backdropFilter: 'blur(2px)' }}>
-  <StyledTabs
-    value={tabValue}
-    onChange={handleTabChange}
-    aria-label="synthesis navigation tabs"
-    variant="scrollable"
-    scrollButtons="auto"
-    TabIndicatorProps={{ style: { transition: 'all .3s cubic-bezier(.4,2,.6,1)' } }}
-  >
-    <Tab label="Article" aria-label="View article" />
-    <Tab label="Talk" aria-label="View talk" />
-    <Tab label="Read" aria-label="Read mode" />
-    <Tab label="Edit" aria-label="Edit mode" />
-    <Tab label="View history" aria-label="View history" />
-    <Tab label="Tools" aria-label="View tools" />
-  </StyledTabs>
-</Paper>
+        <Paper 
+          elevation={1} 
+          sx={{ 
+            mb: 4, 
+            borderRadius: '8px',
+            background: 'rgba(255,255,255,0.98)', 
+            backdropFilter: 'blur(8px)',
+            position: 'sticky',
+            top: 0,
+            zIndex: 100,
+            boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+          }}
+        >
+          <StyledTabs
+            value={tabValue}
+            onChange={handleTabChange}
+            aria-label="synthesis navigation tabs"
+            variant="scrollable"
+            scrollButtons="auto"
+            TabIndicatorProps={{ style: { transition: 'all .3s cubic-bezier(.4,2,.6,1)' } }}
+          >
+            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>📄</Box>} label="Article" aria-label="View article" />
+            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>💬</Box>} label="Talk" aria-label="View talk" />
+            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>📖</Box>} label="Read" aria-label="Read mode" />
+            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>✏️</Box>} label="Edit" aria-label="Edit mode" />
+            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>🕒</Box>} label="History" aria-label="View history" />
+            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>🔧</Box>} label="Tools" aria-label="View tools" />
+          </StyledTabs>
+        </Paper>
 
         <ArticleContainer>
           {/* Left sidebar with table of contents */}
           {!isMobile && (
             <SidebarContainer aria-label="Table of Contents">
-  <Typography variant="h6" sx={{ mb: 2, fontWeight: 700, color: 'primary.main', letterSpacing: 0.5 }}>
-    Contents
-  </Typography>
-  <TableOfContents themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes} />
-</SidebarContainer>
+              <Typography variant="h6" sx={{ mb: 2, fontWeight: 700, color: 'primary.main', letterSpacing: 0.5 }}>
+                Contents
+              </Typography>
+              <TableOfContents 
+                themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map((theme, index) => ({
+                  id: index,
+                  title: `Theme ${index + 1}`,
+                  description: theme.content.substring(0, 100) + '...',
+                  content: [{
+                    id: index,
+                    subtitle: `Subtopic ${index + 1}`,
+                    description: theme.content
+                  }]
+                }))}
+              />
+            </SidebarContainer>
           )}
 
           {/* Main content area */}
@@ -300,17 +374,39 @@ export default function Synthesis() {
             
             <MainContentInfo
               date={SYNTHESIS_DATA.date}
-              summary={SYNTHESIS_STRUCTURE_MINI.conclusion}
+              summary={SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || ''}
             />
             
             <ExpertsHighlights experts={SYNTHESIS_DATA.experts} />
             
-            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, mb: 4 }}>
-              {SYNTHESIS_STRUCTURE_MINI.synthesis}
+            <Typography variant="body1" paragraph sx={{ lineHeight: 1.8, mb: 4, fontSize: '1.05rem', color: 'text.primary', letterSpacing: '0.015em' }}>
+              {SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || ''}
             </Typography>
             
+            {/* Map data to match IThemes interface */}
             <ThemesSection
-              themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes}
+              themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map((theme, index) => ({
+                id: index,
+                title: `Theme ${index + 1}`,
+                description: theme.content.substring(0, 100) + '...',
+                content: [{
+                  id: index,
+                  subtitle: `Subtopic ${index + 1}`,
+                  description: theme.content,
+                  quote: theme.quote ? {
+                    text: theme.quote.text,
+                    expertName: theme.quote.expert_name,
+                    profession: 'Expert',
+                    image: ''
+                  } : undefined
+                }],
+                quote: theme.quote ? {
+                  text: theme.quote.text,
+                  expertName: theme.quote.expert_name,
+                  profession: 'Expert',
+                  image: ''
+                } : undefined
+              }))}
               experts={SYNTHESIS_DATA.experts}
             />
             
@@ -326,13 +422,16 @@ export default function Synthesis() {
       </StyledContainer>
       
       {/* Back to top button */}
-      <FloatingActionButton 
-        onClick={scrollToTop}
-        className={isScrolled ? 'visible' : ''}
-        aria-label="Back to top"
-      >
-        <ArrowUpwardIcon />
-      </FloatingActionButton>
+      <Tooltip title="Back to top" placement="left" arrow>
+        <FloatingActionButton 
+          onClick={scrollToTop}
+          className={isScrolled ? 'visible' : ''}
+          aria-label="Back to top"
+          size="large"
+        >
+          <ArrowUpwardIcon fontSize="medium" />
+        </FloatingActionButton>
+      </Tooltip>
       
       <Footer />
     </>

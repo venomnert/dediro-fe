@@ -14,7 +14,7 @@ import { IThemesArray } from '@/types';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListSubheader from '@mui/material/ListSubheader';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 // Interface for parsed headers
 interface ParsedHeader {
@@ -45,6 +45,9 @@ const parseMarkdownHeaders = (content: string): ParsedHeader[] => {
 
 export default function TableOfContents({ themesSection }: IThemesArray) {
   const [parsedHeaders, setParsedHeaders] = useState<{[key: number]: ParsedHeader[]}>({});
+  const [activeSection, setActiveSection] = useState<string>('');
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const headerRefs = useRef<Map<string, HTMLElement>>(new Map());
 
   useEffect(() => {
     // Parse headers from each theme's content
@@ -58,6 +61,65 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
     
     setParsedHeaders(allHeaders);
   }, [themesSection]);
+  
+  // Set up intersection observer to track which sections are in view
+  useEffect(() => {
+    // Clean up previous observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+    
+    // Get all section elements
+    const sectionElements: HTMLElement[] = [];
+    
+    // Add theme section headers
+    themesSection.forEach((_, index) => {
+      const sectionEl = document.getElementById(`section-${index+1}`);
+      if (sectionEl) {
+        sectionElements.push(sectionEl);
+        headerRefs.current.set(`section-${index+1}`, sectionEl);
+      }
+    });
+    
+    // Add content headers
+    Object.values(parsedHeaders).flat().forEach(header => {
+      const headerEl = document.getElementById(header.id);
+      if (headerEl) {
+        sectionElements.push(headerEl);
+        headerRefs.current.set(header.id, headerEl);
+      }
+    });
+    
+    // Create intersection observer
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        // Find the entries that are currently visible
+        const visibleEntries = entries.filter(entry => entry.isIntersecting);
+        
+        if (visibleEntries.length > 0) {
+          // Use the first visible entry as the active section
+          setActiveSection(visibleEntries[0].target.id);
+        }
+      },
+      {
+        rootMargin: '-80px 0px -80% 0px', // Adjust these values to control when a section is considered active
+        threshold: 0.1
+      }
+    );
+    
+    // Observe all section elements
+    sectionElements.forEach(element => {
+      if (observerRef.current) {
+        observerRef.current.observe(element);
+      }
+    });
+    
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, [themesSection, parsedHeaders]);
 
   return (
     <List
@@ -82,10 +144,22 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
         {themesSection.map((theme, themeIndex) => (
           <Box key={themeIndex} sx={contentContainer}>
             {/* Theme title */}
-            <ListItemButton href={`#section-${themeIndex+1}`}>
+            <ListItemButton 
+              href={`#section-${themeIndex+1}`}
+              sx={{
+                ...titleStyle,
+                backgroundColor: activeSection === `section-${themeIndex+1}` ? 'rgba(25, 118, 210, 0.08)' : 'transparent',
+                borderLeft: activeSection === `section-${themeIndex+1}` ? '3px solid #1976d2' : '3px solid transparent',
+                transition: 'all 0.2s ease-in-out',
+              }}
+            >
               <Typography
                 fontFamily="var(--font-roboto) !important"
-                sx={titleStyle}
+                sx={{
+                  ...titleStyle,
+                  fontWeight: activeSection === `section-${themeIndex+1}` ? 600 : 400,
+                  color: activeSection === `section-${themeIndex+1}` ? 'primary.main' : 'text.primary',
+                }}
               >
                 {themeIndex+1}. {theme.title || `Theme ${themeIndex+1}`}
               </Typography>
@@ -98,11 +172,20 @@ export default function TableOfContents({ themesSection }: IThemesArray) {
                   <ListItemButton
                     key={headerIndex}
                     href={`#${header.id}`}
-                    sx={header.level === 2 ? h2Style : h3Style}
+                    sx={{
+                      ...(header.level === 2 ? h2Style : h3Style),
+                      backgroundColor: activeSection === header.id ? 'rgba(25, 118, 210, 0.08)' : 'transparent',
+                      borderLeft: activeSection === header.id ? '3px solid #1976d2' : '3px solid transparent',
+                      transition: 'all 0.2s ease-in-out',
+                    }}
                   >
                     <Typography 
                       fontFamily="var(--font-roboto) !important"
-                      sx={{ fontSize: header.level === 2 ? '14px' : '13px' }}
+                      sx={{ 
+                        fontSize: header.level === 2 ? '14px' : '13px',
+                        fontWeight: activeSection === header.id ? 600 : 400,
+                        color: activeSection === header.id ? 'primary.main' : 'text.secondary',
+                      }}
                     >
                       {header.text}
                     </Typography>
