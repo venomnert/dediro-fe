@@ -8,6 +8,17 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { IMainContentInfo } from '@/types';
 import InfoButton from './InfoButton';
 import React from 'react';
+import dynamic from 'next/dynamic';
+
+// HTML content renderer component
+const HtmlContent = ({ content }: { content: string }) => {
+  return <div dangerouslySetInnerHTML={{ __html: content }} />;
+};
+
+// Client-side only component to render HTML content
+const ClientOnlyHtml = dynamic(() => Promise.resolve(HtmlContent), {
+  ssr: false,
+});
 
 const Container = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
@@ -118,7 +129,11 @@ function MainContentInfo({ date, summary }: IMainContentInfo) {
       </Stack>
 
       <Summary variant="body1">
-        <div dangerouslySetInnerHTML={{ __html: summary }} />
+        {typeof window === 'undefined' ? (
+          <p>{summary.substring(0, 100)}...</p>
+        ) : (
+          <ClientOnlyHtml content={summary} />
+        )}
       </Summary>
     </Container>
   );

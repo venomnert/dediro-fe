@@ -8,22 +8,15 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import SourcesModal from './SourcesModal/SourcesModal';
 
-// Client-side only component to render HTML content
-const ClientOnlyHtml = ({ content }: { content: string }) => {
-  const [isClient, setIsClient] = useState(false);
-  
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  
-  // During SSR and initial hydration, render a simple text version
-  if (!isClient) {
-    return <div>{content.substring(0, 100)}...</div>;
-  }
-  
-  // After hydration, render the full HTML content
+// HTML content renderer component
+const HtmlContent = ({ content }: { content: string }) => {
   return <div dangerouslySetInnerHTML={{ __html: content }} />;
 };
+
+// Client-side only component to render HTML content
+const ClientOnlyHtml = dynamic(() => Promise.resolve(HtmlContent), {
+  ssr: false,
+});
 
 // Define the citation interface based on what's being used
 interface ICitation {
@@ -70,7 +63,11 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                         {item.subtitle}
                       </Typography>
                       <Typography sx={themeText} component="div">
-                        <ClientOnlyHtml content={item.description} />
+                        {typeof window === 'undefined' ? (
+                          <div>{item.description.substring(0, 100)}...</div>
+                        ) : (
+                          <ClientOnlyHtml content={item.description} />
+                        )}
                       </Typography>
                     </div>
                   ))}
