@@ -2,8 +2,8 @@ const SYNTHESIS_DATA = {
   title: 'How to live a happier life',
   slug: 'how-to-live-a-happier-life',
   image: {
-    src: 'images/synthesis-page/main-content.png',
-    alt: 'happy blonde girl',
+    src: 'images/synthesis-page/article-1.png',
+    alt: 'gaza conflict',
   },
   date: 'April 15, 2023',
   summary:
