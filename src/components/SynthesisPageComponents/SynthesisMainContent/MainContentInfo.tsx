@@ -9,138 +9,118 @@ import { IMainContentInfo } from '@/types';
 import InfoButton from './InfoButton';
 import React from 'react';
 
-// Styled components
-const MetadataContainer = styled(Paper)(({ theme }) => ({
-  padding: theme.spacing(3),
-  marginBottom: theme.spacing(4),
+const Container = styled(Paper)(({ theme }) => ({
+  padding: theme.spacing(4),
+  marginTop: '-48px',
+  marginBottom: theme.spacing(6),
   borderRadius: '16px',
   backgroundColor: theme.palette.background.paper,
-  boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
   position: 'relative',
-  top: '-40px',
-  marginTop: '-20px',
   zIndex: 10,
+  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
   [theme.breakpoints.down('sm')]: {
-    padding: theme.spacing(2),
-    top: '-20px',
-  },
-}));
-
-const MetadataHeader = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: theme.spacing(2),
-  [theme.breakpoints.down('sm')]: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    gap: theme.spacing(1),
+    padding: theme.spacing(3),
+    marginTop: '-24px',
   },
 }));
 
 const AuthorSection = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
-  gap: theme.spacing(1.5),
+  gap: theme.spacing(2),
+  marginBottom: theme.spacing(3),
 }));
 
-const CategorySection = styled(Box)(({ theme }) => ({
+const MetadataSection = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexWrap: 'wrap',
-  gap: theme.spacing(1),
-  marginTop: theme.spacing(2),
-  marginBottom: theme.spacing(2),
+  gap: theme.spacing(3),
+  marginBottom: theme.spacing(3),
+  '& > *': {
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(1),
+    color: theme.palette.text.secondary,
+  },
 }));
 
-const MetadataItem = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  gap: theme.spacing(0.75),
-  color: theme.palette.text.secondary,
-  fontSize: '0.875rem',
-}));
-
-const SummaryText = styled(Typography)(({ theme }) => ({
+const Summary = styled(Typography)(({ theme }) => ({
   fontSize: '1.125rem',
-  lineHeight: 1.7,
+  lineHeight: 1.8,
   color: theme.palette.text.primary,
-  marginTop: theme.spacing(2),
-  fontWeight: 400,
   '&::first-letter': {
-    fontSize: '2.5rem',
-    fontWeight: 500,
+    fontSize: '3.5rem',
     float: 'left',
     lineHeight: 1,
     marginRight: theme.spacing(1),
     color: theme.palette.primary.main,
+    fontFamily: 'Georgia, serif',
+  },
+}));
+
+const StyledChip = styled(Chip)(({ theme }) => ({
+  backgroundColor: theme.palette.background.default,
+  '&:hover': {
+    backgroundColor: theme.palette.action.hover,
   },
 }));
 
 function MainContentInfo({ date, summary }: IMainContentInfo) {
   return (
-    <MetadataContainer elevation={0}>
-      <MetadataHeader>
-        <AuthorSection>
-          <Avatar alt="Author Name" src="/path/to/author-image.jpg" />
-          <Box>
-            <Typography variant="subtitle1" fontWeight={600}>Author Name</Typography>
-            <Typography variant="body2" color="text.secondary">Content Specialist</Typography>
-          </Box>
-        </AuthorSection>
-        
-        <Stack direction="row" spacing={1}>
+    <Container elevation={0}>
+      <AuthorSection>
+        <Avatar 
+          src="/path/to/author-image.jpg" 
+          sx={{ width: 56, height: 56 }}
+        />
+        <Box>
+          <Typography variant="h6" fontWeight={600}>
+            Author Name
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Senior Research Analyst • Content Specialist
+          </Typography>
+        </Box>
+        <Box sx={{ marginLeft: 'auto' }}>
           <InfoButton />
-          <Chip 
-            icon={<BookmarkIcon />} 
-            label="Save" 
-            variant="outlined" 
-            size="small" 
-            clickable 
-          />
-        </Stack>
-      </MetadataHeader>
-      
-      <Divider sx={{ my: 2 }} />
-      
-      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 2 }}>
-        <MetadataItem>
+        </Box>
+      </AuthorSection>
+
+      <MetadataSection>
+        <Box>
           <CalendarMonthRoundedIcon fontSize="small" />
           <Typography variant="body2">{date}</Typography>
-        </MetadataItem>
-        
-        <MetadataItem>
+        </Box>
+        <Box>
           <AccessTimeIcon fontSize="small" />
           <Typography variant="body2">8 min read</Typography>
-        </MetadataItem>
-        
-        <MetadataItem>
+        </Box>
+        <Box>
           <PersonIcon fontSize="small" />
           <Typography variant="body2">1,234 readers</Typography>
-        </MetadataItem>
-      </Stack>
-      
-      <CategorySection>
-        <Chip 
-          icon={<LocalOfferIcon />} 
-          label="Knowledge Synthesis" 
-          size="small" 
-          color="primary" 
+        </Box>
+      </MetadataSection>
+
+      <Stack direction="row" spacing={1} sx={{ mb: 4 }}>
+        <StyledChip 
+          icon={<LocalOfferIcon />}
+          label="Research" 
           variant="outlined"
         />
-        <Chip 
-          label="Research" 
-          size="small" 
-          variant="outlined" 
+        <StyledChip 
+          label="Psychology" 
+          variant="outlined"
         />
-        <Chip 
-          label="Education" 
-          size="small" 
-          variant="outlined" 
+        <StyledChip 
+          label="Well-being" 
+          variant="outlined"
         />
-      </CategorySection>
-      
-      <SummaryText variant="body1">{summary}</SummaryText>
-    </MetadataContainer>
+      </Stack>
+
+      <Summary variant="body1">
+        {summary}
+      </Summary>
+    </Container>
   );
 }
 
