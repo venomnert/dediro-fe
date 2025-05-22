@@ -4,8 +4,26 @@ import MarkdownIt from 'markdown-it';
 
 import ExpertQuote from './ExpertQuote';
 import { IThemeSection } from '@/types';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import dynamic from 'next/dynamic';
 import SourcesModal from './SourcesModal/SourcesModal';
+
+// Client-side only component to render HTML content
+const ClientOnlyHtml = ({ content }: { content: string }) => {
+  const [isClient, setIsClient] = useState(false);
+  
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+  
+  // During SSR and initial hydration, render a simple text version
+  if (!isClient) {
+    return <div>{content.substring(0, 100)}...</div>;
+  }
+  
+  // After hydration, render the full HTML content
+  return <div dangerouslySetInnerHTML={{ __html: content }} />;
+};
 
 // Define the citation interface based on what's being used
 interface ICitation {
@@ -52,7 +70,7 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                         {item.subtitle}
                       </Typography>
                       <Typography sx={themeText} component="div">
-                        <div dangerouslySetInnerHTML={{ __html: ensureHeaderIds(item.description) }} />
+                        <ClientOnlyHtml content={item.description} />
                       </Typography>
                     </div>
                   ))}
