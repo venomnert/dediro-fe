@@ -1,5 +1,5 @@
 import { Box, Typography, List, ListItemButton } from '@mui/material';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import React, { useEffect, useState, useRef } from 'react';
 
 interface ParsedHeader {
