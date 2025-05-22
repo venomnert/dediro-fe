@@ -51,8 +51,8 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                       >
                         {item.subtitle}
                       </Typography>
-                      <Typography sx={themeText}>
-                        {item.description}
+                      <Typography sx={themeText} component="div">
+                        <div dangerouslySetInnerHTML={{ __html: ensureHeaderIds(item.description) }} />
                       </Typography>
                     </div>
                   ))}
