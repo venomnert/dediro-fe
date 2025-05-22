@@ -1,11 +1,10 @@
-'use client';
-
 import { Box, Typography, useMediaQuery, useTheme, Fade, Chip, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { IMainContent } from '@/types';
 import Image from 'next/image';
 import React from 'react';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 
 // Styled components for better organization and reusability
 const HeroContainer = styled(Box)(({ theme }) => ({
@@ -32,13 +31,13 @@ const HeroImageWrapper = styled(Box)(({ theme }) => ({
   },
 }));
 
-const HeroOverlay = styled(Box)(({ theme }) => ({
+const HeroOverlay = styled(Box)(() => ({
   position: 'absolute',
   top: 0,
   left: 0,
   right: 0,
   bottom: 0,
-  background: 'linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.1) 100%)',
+  background: 'linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)',
   zIndex: 1,
 }));
 
@@ -58,7 +57,7 @@ const HeroTitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
   fontWeight: 700,
   fontSize: '3.5rem',
-  lineHeight: 1.1,
+  lineHeight: 1.2,
   marginBottom: theme.spacing(2),
   textShadow: '0 2px 4px rgba(0,0,0,0.3)',
   [theme.breakpoints.down('md')]: {
@@ -99,6 +98,15 @@ const ReadTimeChip = styled(Chip)(({ theme }) => ({
   },
 }));
 
+const TopicChip = styled(Chip)(({ theme }) => ({
+  backgroundColor: 'rgba(255,255,255,0.15)',
+  color: theme.palette.common.white,
+  backdropFilter: 'blur(4px)',
+  '& .MuiChip-icon': {
+    color: theme.palette.common.white,
+  },
+}));
+
 function MainContent({ title, image }: IMainContent) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -122,11 +130,23 @@ function MainContent({ title, image }: IMainContent) {
         </HeroImageWrapper>
         
         <HeroContent>
-          <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-            <CategoryChip label="Synthesis" size="medium" />
+          <Stack direction="row" spacing={1} sx={{ mb: 3 }}>
+            <CategoryChip 
+              icon={<LocalOfferIcon />}
+              label="Synthesis" 
+              size="medium" 
+            />
             <ReadTimeChip 
               icon={<AccessTimeIcon />} 
               label="8 min read" 
+              size="medium" 
+            />
+            <TopicChip 
+              label="Psychology" 
+              size="medium" 
+            />
+            <TopicChip 
+              label="Well-being" 
               size="medium" 
             />
           </Stack>
@@ -136,7 +156,7 @@ function MainContent({ title, image }: IMainContent) {
           </HeroTitle>
           
           <HeroSubtitle variant="subtitle1">
-            "Knowledge, synthesized for you."
+            A comprehensive analysis of the latest research and expert insights on achieving lasting happiness and well-being.
           </HeroSubtitle>
         </HeroContent>
       </HeroContainer>
