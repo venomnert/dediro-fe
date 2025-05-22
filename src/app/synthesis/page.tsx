@@ -23,6 +23,7 @@ import WeeklyUpdates from '@/components/SynthesisPageComponents/WeeklyUpdates/We
 // Data
 import SYNTHESIS_DATA from '../../constants/SYNTHESIS_DATA';
 import SYNTHESIS_STRUCTURE_MINI from '../../constants/SYNTHESIS_STRUCTURE_MINI';
+import * as styles from './page.styles';
 
 // Styles
 const StyledContainer = styled(Container)(({ theme }) => ({
@@ -168,8 +169,6 @@ const FloatingActionButton = styled(IconButton)(({ theme }) => ({
   position: 'fixed',
   bottom: theme.spacing(4),
   right: theme.spacing(4),
-  bottom: theme.spacing(4),
-  right: theme.spacing(4),
   backgroundColor: theme.palette.primary.main,
   color: theme.palette.common.white,
   padding: theme.spacing(1.5),
@@ -261,7 +260,7 @@ export default function Synthesis() {
     <>
       <SynthesisHeader />
       
-      <StyledContainer maxWidth={false} sx={{ component: 'main' }}>
+      <div>
         {/* Article header */}
         <ArticleHeader>
           <PageTitle variant="h1" tabIndex={0}>
@@ -271,7 +270,7 @@ export default function Synthesis() {
   "Knowledge, synthesized for you."
 </Typography> {/* Tagline for clarity and personality */}
           
-          <Box sx={styles.redirectText}>
+          <RedirectText>
             <Typography variant="body2">
               From Dediro, the free knowledge platform
             </Typography>
@@ -409,7 +408,7 @@ export default function Synthesis() {
             <RelatedContent relatedContent={SYNTHESIS_DATA.relatedContent} />
           </Box>
         </Box>
-      </Container>
+      </div>
       
       {/* Back to top button */}
       <Tooltip title="Back to top" placement="left" arrow>

@@ -6,6 +6,7 @@ import {
   tableOfContentsLabel,
   h2Style,
   h3Style,
+  titleStyle,
 } from './TableOfContents.styles';
 
 import { IThemesArray } from '@/types';

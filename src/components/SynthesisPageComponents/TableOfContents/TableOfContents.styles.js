@@ -53,3 +53,10 @@ export const h3Style = {
   fontSize: '13px',
   transition: 'color 0.2s ease',
 };
+
+export const titleStyle = {
+  padding: '5px 10px',
+  fontSize: '15px',
+  fontWeight: 500,
+  transition: 'color 0.2s ease',
+};
