@@ -158,9 +158,9 @@ interface MainContentProps {
     alt: string;
   };
   category?: string;
-  publishDate: string;
-  readingTime: number;
-  author: {
+  publishDate?: string;
+  readingTime?: number;
+  author?: {
     name: string;
     role: string;
     avatar: string;
@@ -169,13 +169,19 @@ interface MainContentProps {
   onBack?: () => void;
 }
 
+const defaultAuthor = {
+  name: 'Anonymous',
+  role: 'Contributor',
+  avatar: '/images/default-avatar.png'
+};
+
 function MainContent({ 
   title, 
   image,
   category = "Featured",
-  publishDate,
-  readingTime,
-  author,
+  publishDate = new Date().toISOString(),
+  readingTime = 5,
+  author = defaultAuthor,
   subtitle,
   onBack
 }: MainContentProps) {
