@@ -40,6 +40,7 @@ interface WeeklyUpdate {
   category: string;
   isNew: boolean;
   readTime: number;
+  url: string;
 }
 
 function WeeklyUpdates() {
@@ -47,11 +48,12 @@ function WeeklyUpdates() {
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const [updates, setUpdates] = useState<WeeklyUpdate[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Simulated API call to fetch updates
     const fetchUpdates = async () => {
       setLoading(true);
+      setError(null);
       try {
         // Replace with actual API call
         const mockUpdates: WeeklyUpdate[] = [
@@ -63,7 +65,8 @@ function WeeklyUpdates() {
             imageUrl: '/images/synthesis-page/weekly-updates.png',
             category: 'Technology',
             isNew: true,
-            readTime: 5
+            readTime: 5,
+            url: '/articles/ai-research'
           },
           {
             id: '2',
@@ -73,7 +76,8 @@ function WeeklyUpdates() {
             imageUrl: '/images/synthesis-page/weekly-updates.png',
             category: 'Environment',
             isNew: true,
-            readTime: 7
+            readTime: 7,
+            url: '/articles/climate-change'
           },
           {
             id: '3',
@@ -83,7 +87,8 @@ function WeeklyUpdates() {
             imageUrl: '/images/synthesis-page/weekly-updates.png',
             category: 'Economics',
             isNew: false,
-            readTime: 6
+            readTime: 6,
+            url: '/articles/economic-policy'
           },
           {
             id: '4',
@@ -93,12 +98,14 @@ function WeeklyUpdates() {
             imageUrl: '/images/synthesis-page/weekly-updates.png',
             category: 'Healthcare',
             isNew: false,
-            readTime: 4
+            readTime: 4,
+            url: '/articles/healthcare'
           }
         ];
         
         setUpdates(mockUpdates);
       } catch (error) {
+        setError('Failed to load updates. Please try again later.');
         console.error('Error fetching updates:', error);
       } finally {
         setLoading(false);
@@ -107,6 +114,15 @@ function WeeklyUpdates() {
 
     fetchUpdates();
   }, []);
+
+  if (error) {
+    return (
+      <UpdatesContainer>
+        <SectionTitle variant="h2">Weekly Updates</SectionTitle>
+        <Typography color="error">{error}</Typography>
+      </UpdatesContainer>
+    );
+  }
 
   return (
     <UpdatesContainer>
@@ -128,6 +144,7 @@ function WeeklyUpdates() {
                 category={update.category}
                 isNew={update.isNew}
                 readTime={update.readTime}
+                url={update.url}
               />
             </Grid2>
           ))}

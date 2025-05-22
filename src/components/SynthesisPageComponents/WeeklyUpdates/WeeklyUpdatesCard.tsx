@@ -1,4 +1,4 @@
-import { Box, Typography, Chip, Card, CardContent, CardMedia, CardActionArea } from '@mui/material';
+import { Box, Typography, Chip, Card, CardContent, CardMedia, CardActionArea, Link } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { format } from 'date-fns';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -8,9 +8,10 @@ const StyledCard = styled(Card)(({ theme }) => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  transition: 'transform 0.2s ease-in-out',
+  transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
   '&:hover': {
     transform: 'translateY(-4px)',
+    boxShadow: theme.shadows[4],
   },
 }));
 
@@ -43,6 +44,11 @@ const UpdateTitle = styled(Typography)(({ theme }) => ({
   WebkitLineClamp: 2,
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
+  color: theme.palette.text.primary,
+  transition: 'color 0.2s ease-in-out',
+  '&:hover': {
+    color: theme.palette.primary.main,
+  },
 }));
 
 const UpdateSummary = styled(Typography)(({ theme }) => ({
@@ -72,6 +78,7 @@ interface WeeklyUpdatesCardProps {
   category: string;
   isNew: boolean;
   readTime: number;
+  url: string;
 }
 
 function WeeklyUpdatesCard({
@@ -82,44 +89,48 @@ function WeeklyUpdatesCard({
   category,
   isNew,
   readTime,
+  url,
 }: WeeklyUpdatesCardProps) {
   return (
-    <StyledCard elevation={2}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="160"
-          image={imageUrl}
-          alt={title}
-        />
-        <CardContent>
-          <CardHeader>
-            <CategoryChip label={category} size="small" />
-            {isNew && <NewBadge label="New" size="small" />}
-          </CardHeader>
-          
-          <UpdateTitle variant="h6">
-            {title}
-          </UpdateTitle>
-          
-          <UpdateSummary>
-            {summary}
-          </UpdateSummary>
-          
-          <MetaInfo>
-            <Typography variant="caption">
-              {format(new Date(date), 'MMM d, yyyy')}
-            </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <AccessTimeIcon sx={{ fontSize: '1rem' }} />
+    <Link href={url} underline="none">
+      <StyledCard elevation={2}>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            height="160"
+            image={imageUrl}
+            alt={title}
+            sx={{ objectFit: 'cover' }}
+          />
+          <CardContent>
+            <CardHeader>
+              <CategoryChip label={category} size="small" />
+              {isNew && <NewBadge label="New" size="small" />}
+            </CardHeader>
+            
+            <UpdateTitle variant="h6">
+              {title}
+            </UpdateTitle>
+            
+            <UpdateSummary>
+              {summary}
+            </UpdateSummary>
+            
+            <MetaInfo>
               <Typography variant="caption">
-                {readTime} min read
+                {format(new Date(date), 'MMM d, yyyy')}
               </Typography>
-            </Box>
-          </MetaInfo>
-        </CardContent>
-      </CardActionArea>
-    </StyledCard>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                <AccessTimeIcon sx={{ fontSize: '1rem' }} />
+                <Typography variant="caption">
+                  {readTime} min read
+                </Typography>
+              </Box>
+            </MetaInfo>
+          </CardContent>
+        </CardActionArea>
+      </StyledCard>
+    </Link>
   );
 }
 
