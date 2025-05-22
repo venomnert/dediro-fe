@@ -8,11 +8,20 @@ const StyledCard = styled(Card)(({ theme }) => ({
   height: '100%',
   display: 'flex',
   flexDirection: 'column',
-  transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
+  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+  position: 'relative',
+  overflow: 'hidden',
   '&:hover': {
     transform: 'translateY(-4px)',
-    boxShadow: theme.shadows[4],
+    boxShadow: theme.shadows[8],
+    '& .MuiCardMedia-root': {
+      transform: 'scale(1.05)',
+    }
   },
+  '&:focus-within': {
+    outline: `2px solid ${theme.palette.primary.main}`,
+    outlineOffset: '2px'
+  }
 }));
 
 const CardHeader = styled(Box)(({ theme }) => ({
@@ -20,6 +29,15 @@ const CardHeader = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
   alignItems: 'center',
   marginBottom: theme.spacing(1),
+  gap: theme.spacing(1)
+}));
+
+const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
+  height: 200,
+  transition: 'transform 0.3s ease-in-out',
+  [theme.breakpoints.down('sm')]: {
+    height: 160
+  }
 }));
 
 const NewBadge = styled(Chip)(({ theme }) => ({
@@ -27,6 +45,7 @@ const NewBadge = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.white,
   fontWeight: 600,
   fontSize: '0.75rem',
+  height: '24px'
 }));
 
 const CategoryChip = styled(Chip)(({ theme }) => ({
@@ -34,6 +53,7 @@ const CategoryChip = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.white,
   fontWeight: 500,
   fontSize: '0.75rem',
+  height: '24px'
 }));
 
 const UpdateTitle = styled(Typography)(({ theme }) => ({
@@ -46,9 +66,11 @@ const UpdateTitle = styled(Typography)(({ theme }) => ({
   overflow: 'hidden',
   color: theme.palette.text.primary,
   transition: 'color 0.2s ease-in-out',
+  lineHeight: 1.4,
+  minHeight: '2.8em',
   '&:hover': {
     color: theme.palette.primary.main,
-  },
+  }
 }));
 
 const UpdateSummary = styled(Typography)(({ theme }) => ({
@@ -59,6 +81,7 @@ const UpdateSummary = styled(Typography)(({ theme }) => ({
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   marginBottom: theme.spacing(2),
+  lineHeight: 1.6
 }));
 
 const MetaInfo = styled(Box)(({ theme }) => ({
@@ -68,6 +91,8 @@ const MetaInfo = styled(Box)(({ theme }) => ({
   marginTop: 'auto',
   color: theme.palette.text.secondary,
   fontSize: '0.75rem',
+  paddingTop: theme.spacing(2),
+  borderTop: `1px solid ${theme.palette.divider}`
 }));
 
 interface WeeklyUpdatesCardProps {
@@ -92,19 +117,24 @@ function WeeklyUpdatesCard({
   url,
 }: WeeklyUpdatesCardProps) {
   return (
-    <Link href={url} underline="none">
+    <Link href={url} underline="none" tabIndex={-1}>
       <StyledCard elevation={2}>
         <CardActionArea>
-          <CardMedia
+          <StyledCardMedia
             component="img"
-            height="160"
             image={imageUrl}
             alt={title}
-            sx={{ objectFit: 'cover' }}
           />
           <CardContent>
             <CardHeader>
-              <CategoryChip label={category} size="small" />
+              <CategoryChip 
+                label={category} 
+                size="small"
+                onClick={(e) => {
+                  e.preventDefault();
+                  // Handle category click
+                }}
+              />
               {isNew && <NewBadge label="New" size="small" />}
             </CardHeader>
             
@@ -117,7 +147,7 @@ function WeeklyUpdatesCard({
             </UpdateSummary>
             
             <MetaInfo>
-              <Typography variant="caption">
+              <Typography variant="caption" sx={{ display: 'flex', alignItems: 'center' }}>
                 {format(new Date(date), 'MMM d, yyyy')}
               </Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>

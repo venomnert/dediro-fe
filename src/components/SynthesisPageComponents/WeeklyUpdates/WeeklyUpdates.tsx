@@ -6,6 +6,16 @@ import WeeklyUpdatesCard from './WeeklyUpdatesCard';
 const UpdatesContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   marginBottom: theme.spacing(6),
+  position: 'relative',
+  '&::before': {
+    content: '""',
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    height: '1px',
+    background: `linear-gradient(to right, ${theme.palette.divider}, transparent)`,
+  }
 }));
 
 const SectionTitle = styled(Typography)(({ theme }) => ({
@@ -13,6 +23,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
   fontWeight: 700,
   marginBottom: theme.spacing(3),
   position: 'relative',
+  paddingTop: theme.spacing(4),
   '&::after': {
     content: '""',
     position: 'absolute',
@@ -21,7 +32,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
     width: '60px',
     height: '3px',
     backgroundColor: theme.palette.primary.main,
-  },
+  }
 }));
 
 const UpdatesGrid = styled(Grid2)(({ theme }) => ({
@@ -29,6 +40,34 @@ const UpdatesGrid = styled(Grid2)(({ theme }) => ({
   gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
   gap: theme.spacing(3),
   marginTop: theme.spacing(4),
+  [theme.breakpoints.down('sm')]: {
+    gridTemplateColumns: '1fr',
+  }
+}));
+
+const LoadingPlaceholder = styled(Box)(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '200px',
+  backgroundColor: theme.palette.background.paper,
+  borderRadius: theme.shape.borderRadius,
+  padding: theme.spacing(2),
+  animation: 'pulse 1.5s ease-in-out infinite',
+  '@keyframes pulse': {
+    '0%': { opacity: 1 },
+    '50%': { opacity: 0.5 },
+    '100%': { opacity: 1 },
+  }
+}));
+
+const ErrorMessage = styled(Typography)(({ theme }) => ({
+  color: theme.palette.error.main,
+  textAlign: 'center',
+  padding: theme.spacing(2),
+  backgroundColor: theme.palette.error.light,
+  borderRadius: theme.shape.borderRadius,
+  marginTop: theme.spacing(2)
 }));
 
 interface WeeklyUpdate {
@@ -103,6 +142,7 @@ function WeeklyUpdates() {
           }
         ];
         
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
         setUpdates(mockUpdates);
       } catch (error) {
         setError('Failed to load updates. Please try again later.');
@@ -115,15 +155,6 @@ function WeeklyUpdates() {
     fetchUpdates();
   }, []);
 
-  if (error) {
-    return (
-      <UpdatesContainer>
-        <SectionTitle variant="h2">Weekly Updates</SectionTitle>
-        <Typography color="error">{error}</Typography>
-      </UpdatesContainer>
-    );
-  }
-
   return (
     <UpdatesContainer>
       <SectionTitle variant="h2">
@@ -131,7 +162,15 @@ function WeeklyUpdates() {
       </SectionTitle>
       
       {loading ? (
-        <Typography>Loading updates...</Typography>
+        <LoadingPlaceholder>
+          <Typography variant="body1" color="textSecondary">
+            Loading weekly updates...
+          </Typography>
+        </LoadingPlaceholder>
+      ) : error ? (
+        <ErrorMessage>
+          {error}
+        </ErrorMessage>
       ) : (
         <UpdatesGrid container>
           {updates.map((update) => (
