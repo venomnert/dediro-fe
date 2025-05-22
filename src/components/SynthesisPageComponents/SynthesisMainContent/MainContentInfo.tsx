@@ -7,18 +7,24 @@ import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import { IMainContentInfo } from '@/types';
 import InfoButton from './InfoButton';
-import React from 'react';
-import dynamic from 'next/dynamic';
+import React, { useState, useEffect } from 'react';
 
-// HTML content renderer component
-const HtmlContent = ({ content }: { content: string }) => {
+// A component that safely renders HTML content
+const SafeHtml = ({ content }: { content: string }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // On the server or during initial hydration, render plain text
+  if (!mounted) {
+    return <span>{content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</span>;
+  }
+
+  // After hydration on the client, render the HTML
   return <div dangerouslySetInnerHTML={{ __html: content }} />;
 };
-
-// Client-side only component to render HTML content
-const ClientOnlyHtml = dynamic(() => Promise.resolve(HtmlContent), {
-  ssr: false,
-});
 
 const Container = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
@@ -128,13 +134,9 @@ function MainContentInfo({ date, summary }: IMainContentInfo) {
         />
       </Stack>
 
-      <Summary variant="body1">
-        {typeof window === 'undefined' ? (
-          <p>{summary.substring(0, 100)}...</p>
-        ) : (
-          <ClientOnlyHtml content={summary} />
-        )}
-      </Summary>
+      <Box sx={{ fontSize: '1.125rem', lineHeight: 1.8 }}>
+        <SafeHtml content={summary} />
+      </Box>
     </Container>
   );
 }

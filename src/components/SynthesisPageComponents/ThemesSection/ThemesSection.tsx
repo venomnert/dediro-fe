@@ -8,13 +8,25 @@ import React, { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 import SourcesModal from './SourcesModal/SourcesModal';
 
-// HTML content renderer component
-const HtmlContent = ({ content }: { content: string }) => {
+// A component that safely renders HTML content
+const SafeHtml = ({ content }: { content: string }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // On the server or during initial hydration, render plain text
+  if (!mounted) {
+    return <span>{content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</span>;
+  }
+
+  // After hydration on the client, render the HTML
   return <div dangerouslySetInnerHTML={{ __html: content }} />;
 };
 
 // Client-side only component to render HTML content
-const ClientOnlyHtml = dynamic(() => Promise.resolve(HtmlContent), {
+const ClientOnlyHtml = dynamic(() => Promise.resolve(SafeHtml), {
   ssr: false,
 });
 
@@ -62,13 +74,9 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                       >
                         {item.subtitle}
                       </Typography>
-                      <Typography sx={themeText} component="div">
-                        {typeof window === 'undefined' ? (
-                          <div>{item.description.substring(0, 100)}...</div>
-                        ) : (
-                          <ClientOnlyHtml content={item.description} />
-                        )}
-                      </Typography>
+                      <Box sx={themeText}>
+                        <SafeHtml content={item.description} />
+                      </Box>
                     </div>
                   ))}
                 </div>
