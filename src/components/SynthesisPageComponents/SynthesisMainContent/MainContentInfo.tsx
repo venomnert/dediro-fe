@@ -118,7 +118,7 @@ function MainContentInfo({ date, summary }: IMainContentInfo) {
       </Stack>
 
       <Summary variant="body1">
-        {summary}
+        <div dangerouslySetInnerHTML={{ __html: summary }} />
       </Summary>
     </Container>
   );

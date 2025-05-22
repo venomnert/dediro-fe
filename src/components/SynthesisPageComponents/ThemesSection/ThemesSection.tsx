@@ -14,26 +14,13 @@ interface ICitation {
 }
 
 function ThemesSection({ themesSection, experts }: IThemeSection) {
-  const md = new MarkdownIt();
-  
-  // Helper function to add IDs to headers in markdown content
-  const addIdsToHeaders = (content: string): string => {
+  // Helper function to ensure HTML content has proper IDs for headers
+  const ensureHeaderIds = (content: string): string => {
     if (!content) return '';
     
-    // Process the content line by line
-    return content.split('\n').map(line => {
-      // Check if the line is a header
-      const headerMatch = line.match(/^(#{1,6})\s+(.+?)\s*$/);
-      if (headerMatch) {
-        const level = headerMatch[1].length; // Number of # symbols
-        const text = headerMatch[2].trim();
-        const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
-        
-        // Replace the header with one that has an ID
-        return `<h${level} id="${id}">${text}</h${level}>`;
-      }
-      return line;
-    }).join('\n');
+    // If the content is already HTML, return it as is
+    // This assumes the HTML content already has proper IDs for headers
+    return content.trim();
   };
   if (themesSection.length) {
     return themesSection.map((el, i) => {
@@ -51,7 +38,7 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
             <Box sx={wikiContent}>
               {typeof el.content === 'string' ? (
                 <div dangerouslySetInnerHTML={{ 
-                  __html: md.render(addIdsToHeaders(el.content)) 
+                  __html: ensureHeaderIds(el.content) 
                 }} />
               ) : (
                 <div>
