@@ -1,6 +1,6 @@
 import { Box, Typography, useMediaQuery, useTheme, Fade, Chip, Stack, Container, Avatar, Button, IconButton, Tooltip } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { format, isValid, parseISO } from 'date-fns';
+import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
@@ -204,18 +204,6 @@ function MainContent({
     setShowShareMenu(!showShareMenu);
   };
 
-  const formatDate = (dateString: string) => {
-    try {
-      const date = parseISO(dateString);
-      if (!isValid(date)) {
-        return 'Date unavailable';
-      }
-      return format(date, 'MMM d, yyyy');
-    } catch (error) {
-      return 'Date unavailable';
-    }
-  };
-
   return (
     <HeroContainer
       ref={ref}
@@ -275,7 +263,7 @@ function MainContent({
           />
           <MetadataChip 
             icon={<CalendarTodayIcon />}
-            label={formatDate(publishDate)} 
+            label={format(new Date(publishDate), 'MMM d, yyyy')} 
           />
           <MetadataChip 
             icon={<LocalOfferIcon />}
