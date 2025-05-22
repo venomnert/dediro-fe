@@ -256,19 +256,24 @@ export default function Synthesis() {
     }
   };
 
+  const defaultAuthor = {
+    name: 'Anonymous',
+    role: 'Contributor',
+    avatar: '/images/default-avatar.png'
+  };
+
   return (
     <>
       <SynthesisHeader />
       
       <div>
-        {/* Article header */}
         <ArticleHeader>
           <PageTitle variant="h1" tabIndex={0}>
-  {SYNTHESIS_STRUCTURE_MINI.introduction}
-</PageTitle>
-<Typography variant="subtitle1" sx={{ color: 'text.secondary', fontWeight: 400, mb: 1 }}>
-  "Knowledge, synthesized for you."
-</Typography> {/* Tagline for clarity and personality */}
+            {SYNTHESIS_STRUCTURE_MINI.introduction}
+          </PageTitle>
+          <Typography variant="subtitle1" sx={{ color: 'text.secondary', fontWeight: 400, mb: 1 }}>
+            "Knowledge, synthesized for you."
+          </Typography>
           
           <RedirectText>
             <Typography variant="body2">
@@ -303,7 +308,6 @@ export default function Synthesis() {
           </Tooltip>
         </ActionButtons>
 
-        {/* Navigation tabs */}
         <Paper 
           elevation={1} 
           sx={{ 
@@ -359,6 +363,9 @@ export default function Synthesis() {
             <MainContent
               title={SYNTHESIS_STRUCTURE_MINI.introduction}
               image={SYNTHESIS_DATA.image}
+              author={defaultAuthor}
+              publishDate={new Date().toISOString()}
+              readingTime={5}
             />
             
             <MainContentInfo
@@ -377,7 +384,6 @@ export default function Synthesis() {
               <div dangerouslySetInnerHTML={{ __html: SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || '' }} />
             </Typography>
             
-            {/* Map data to match IThemes interface */}
             <ThemesSection
               themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map((theme, index) => ({
                 id: index,
@@ -415,7 +421,6 @@ export default function Synthesis() {
         </Box>
       </div>
       
-      {/* Back to top button */}
       <Tooltip title="Back to top" placement="left" arrow>
         <FloatingActionButton 
           onClick={scrollToTop}
