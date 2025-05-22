@@ -11,12 +11,13 @@ import ShareIcon from '@mui/icons-material/Share';
 const HeroContainer = styled(Box)(({ theme }) => ({
   position: 'relative',
   width: '100%',
-  height: '75vh',
+  height: '85vh',
   minHeight: '600px',
+  marginTop: '104px', // Account for fixed header
   backgroundColor: theme.palette.background.paper,
   overflow: 'hidden',
   [theme.breakpoints.down('md')]: {
-    height: '60vh',
+    height: '70vh',
     minHeight: '400px',
   },
 }));
@@ -35,7 +36,7 @@ const Overlay = styled(Box)(() => ({
   left: 0,
   right: 0,
   bottom: 0,
-  background: 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%)',
+  background: 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%)',
   zIndex: 1,
 }));
 
@@ -50,18 +51,6 @@ const ContentContainer = styled(Container)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     padding: theme.spacing(4),
   },
-}));
-
-const TopBar = styled(Box)(({ theme }) => ({
-  position: 'absolute',
-  top: 0,
-  left: 0,
-  right: 0,
-  padding: theme.spacing(2, 0),
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  zIndex: 3,
 }));
 
 const Title = styled(Typography)(({ theme }) => ({
@@ -79,18 +68,6 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }));
 
-const Subtitle = styled(Typography)(({ theme }) => ({
-  color: theme.palette.common.white,
-  fontSize: '1.25rem',
-  fontWeight: 400,
-  marginBottom: theme.spacing(4),
-  maxWidth: '800px',
-  opacity: 0.9,
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '1rem',
-  },
-}));
-
 const StyledChip = styled(Chip)(({ theme }) => ({
   backgroundColor: 'rgba(255,255,255,0.15)',
   backdropFilter: 'blur(8px)',
@@ -100,19 +77,6 @@ const StyledChip = styled(Chip)(({ theme }) => ({
   },
   '& .MuiChip-icon': {
     color: theme.palette.common.white,
-  },
-}));
-
-const ActionButton = styled(Chip)(({ theme }) => ({
-  backgroundColor: 'rgba(255,255,255,0.1)',
-  backdropFilter: 'blur(8px)',
-  color: theme.palette.common.white,
-  border: '1px solid rgba(255,255,255,0.2)',
-  cursor: 'pointer',
-  transition: 'all 0.2s ease',
-  '&:hover': {
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    transform: 'translateY(-2px)',
   },
 }));
 
@@ -140,51 +104,28 @@ function MainContent({ title, image }: IMainContent) {
         </ImageWrapper>
 
         <ContentContainer maxWidth="lg">
-          <TopBar>
-            <Stack direction="row" spacing={1}>
-              <StyledChip 
-                icon={<LocalOfferIcon />}
-                label="Synthesis" 
-                size="medium" 
-              />
-              <StyledChip 
-                icon={<AccessTimeIcon />}
-                label="8 min read" 
-                size="medium" 
-              />
-            </Stack>
-            
-            <Stack direction="row" spacing={2}>
-              <ActionButton
-                icon={<BookmarkBorderIcon />}
-                label={isMobile ? '' : 'Save'}
-                size="medium"
-                variant="outlined"
-              />
-              <ActionButton
-                icon={<ShareIcon />}
-                label={isMobile ? '' : 'Share'}
-                size="medium"
-                variant="outlined"
-              />
-            </Stack>
-          </TopBar>
+          <Stack direction="row" spacing={1} sx={{ mb: 3 }}>
+            <StyledChip label="Psychology" />
+            <StyledChip label="Well-being" />
+            <StyledChip label="Mental Health" />
+          </Stack>
 
-          <Box>
-            <Stack direction="row" spacing={1} sx={{ mb: 3 }}>
-              <StyledChip label="Psychology" />
-              <StyledChip label="Well-being" />
-              <StyledChip label="Mental Health" />
-            </Stack>
+          <Title variant="h1">
+            {title}
+          </Title>
 
-            <Title variant="h1">
-              {title}
-            </Title>
-
-            <Subtitle variant="subtitle1">
-              A comprehensive analysis of the latest research and expert insights on achieving lasting happiness and well-being in today's complex world.
-            </Subtitle>
-          </Box>
+          <Stack direction="row" spacing={2} sx={{ mt: 2 }}>
+            <StyledChip 
+              icon={<AccessTimeIcon />}
+              label="8 min read" 
+              size="medium"
+            />
+            <StyledChip 
+              icon={<LocalOfferIcon />}
+              label="Featured" 
+              size="medium"
+            />
+          </Stack>
         </ContentContainer>
       </HeroContainer>
     </Fade>
