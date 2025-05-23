@@ -4,6 +4,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   position: 'fixed',
