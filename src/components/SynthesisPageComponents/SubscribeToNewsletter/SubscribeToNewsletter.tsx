@@ -2,9 +2,10 @@ import { Box, Typography } from '@mui/material';
 import {
   container,
   formContainer,
-  img,
   imgContainer,
+  img,
   title,
+  description,
 } from './SubscribeToNewsletter.styles';
 
 import CTAForm from '../../Common/CTA/CTAForm';
@@ -16,19 +17,31 @@ function SubscribeToNewsletter({ synthesisSlug }: ISubscribeToNewsletter) {
   return (
     <Box sx={container}>
       <Box sx={formContainer}>
-        <Typography sx={title}>{NEWSLETTER_DATA.title}</Typography>
-        <Typography>{NEWSLETTER_DATA.text}</Typography>
+        <Typography variant="h2" sx={title}>
+          {NEWSLETTER_DATA.title}
+        </Typography>
+        <Typography sx={description}>
+          {NEWSLETTER_DATA.text}
+        </Typography>
 
-        <Box>
-          <CTAForm isGreenButton={true} synthesisSlug={synthesisSlug} />
-        </Box>
+        <CTAForm 
+          isGreenButton={true} 
+          synthesisSlug={synthesisSlug}
+          buttonCustomStyles={{
+            backgroundColor: '#343967',
+            '&:hover': {
+              backgroundColor: '#2a2e52',
+            },
+          }}
+        />
       </Box>
+      
       <Box sx={imgContainer}>
         <img
           style={img}
           src="images/stay-informed/space.webp"
           loading="lazy"
-          alt="space"
+          alt="Stay informed illustration"
         />
       </Box>
     </Box>
