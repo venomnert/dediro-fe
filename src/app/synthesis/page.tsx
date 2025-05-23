@@ -132,49 +132,6 @@ export default function Synthesis() {
       <SynthesisHeader />
       
       <MainContainer>
-        <Box sx={styles.articleHeader}>
-          <Typography variant="h1" sx={styles.pageTitle} tabIndex={0}>
-            {SYNTHESIS_STRUCTURE_MINI.introduction}
-          </Typography>
-          <Typography variant="subtitle1" sx={{ color: 'text.secondary', fontWeight: 400, mb: 1 }}>
-            "Knowledge, synthesized for you."
-          </Typography>
-          
-          <Box sx={styles.redirectText}>
-            <Typography variant="body2">
-              From Dediro, the free knowledge platform
-            </Typography>
-            <Typography variant="body2" sx={{ mt: 0.5 }}>
-              (Redirected from{' '}
-              <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-                Previous Synthesis
-              </Box>)
-            </Typography>
-          </Box>
-          
-          <Box sx={styles.articleInfo}>
-            <Typography variant="body2">
-              This article is about the synthesis. For other uses, see{' '}
-              <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-                Related Synthesis (disambiguation)
-              </Box>.
-            </Typography>
-          </Box>
-        </Box>
-
-        <ActionButtons>
-          <Tooltip title="Save this synthesis for later" arrow>
-            <IconButton aria-label="Save for later">
-              <BookmarkBorderIcon />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Share this page" arrow>
-            <IconButton aria-label="Share" onClick={handleShare}>
-              <ShareIcon />
-            </IconButton>
-          </Tooltip>
-        </ActionButtons>
-
         <Box sx={styles.articleContainer}>
           {!isMobile && (
             <Box sx={styles.sidebarContainer} aria-label="Table of Contents">
