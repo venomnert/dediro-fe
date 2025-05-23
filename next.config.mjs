@@ -30,8 +30,12 @@ const nextConfig = {
       { file: /node_modules\/node-fetch\/lib\/index\.js/ },
     ];
     
-    // Enable module/nomodule pattern
-    config.output.module = true;
+    // We're removing the module/nomodule pattern as it's causing compatibility issues
+    // config.experiments = {
+    //   ...config.experiments,
+    //   outputModule: true
+    // };
+    // config.output.module = true;
     
     return config;
   },
