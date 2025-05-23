@@ -51,6 +51,7 @@ export const articleContainer = {
   margin: '0 auto',
   width: '100%',
   padding: { xs: '0 20px', md: '0' },
+  marginBottom: '60px', // Add spacing before footer
 };
 
 export const sidebarContainer = {
@@ -62,8 +63,8 @@ export const sidebarContainer = {
   backgroundColor: '#f8f9fa',
   alignSelf: 'flex-start',
   position: { md: 'sticky' },
-  top: { md: '80px' },
-  maxHeight: { md: 'calc(100vh - 100px)' },
+  top: { md: '100px' }, // Increase top spacing from header
+  maxHeight: { md: 'calc(100vh - 120px)' }, // Adjust for new spacing
   overflowY: 'auto',
 };
 
@@ -75,4 +76,5 @@ export const mainContentContainer = {
   maxWidth: '800px',
   margin: '0 auto',
   width: '100%',
+  marginTop: '40px', // Add spacing after header
 };
