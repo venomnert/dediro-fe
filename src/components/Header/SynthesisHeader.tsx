@@ -1,10 +1,16 @@
-import { Box, Typography, List, ListItemButton, IconButton, Drawer, useTheme, useMediaQuery, Button } from '@mui/material';
+import { Box, Typography, List, ListItemButton, IconButton, Drawer, useTheme, useMediaQuery, Button, Tooltip } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import React, { useEffect, useState, useRef } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
+import ShareIcon from '@mui/icons-material/Share';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import SynthesisSearchbar from './SynthesisSearchbar';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   position: 'fixed',
