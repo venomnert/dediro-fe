@@ -1,5 +1,3 @@
-'use client';
-
 import { Box, Container, Typography, Tabs, Tab, Divider, Paper, useTheme, useMediaQuery, IconButton, Tooltip } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useState, useRef, useEffect } from 'react';
@@ -88,13 +86,8 @@ const MainContainer = styled(Container)(({ theme }) => ({
 export default function Synthesis() {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
-  const [tabValue, setTabValue] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
   const mainContentRef = useRef<HTMLDivElement>(null);
-
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setTabValue(newValue);
-  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -179,27 +172,6 @@ export default function Synthesis() {
             </IconButton>
           </Tooltip>
         </ActionButtons>
-
-        <Paper 
-          elevation={1} 
-          sx={styles.tabsContainer}
-        >
-          <Tabs
-            value={tabValue}
-            onChange={handleTabChange}
-            aria-label="synthesis navigation tabs"
-            variant="scrollable"
-            scrollButtons="auto"
-            TabIndicatorProps={{ style: { transition: 'all .3s cubic-bezier(.4,2,.6,1)' } }}
-          >
-            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>📄</Box>} label="Article" aria-label="View article" />
-            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>💬</Box>} label="Talk" aria-label="View talk" />
-            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>📖</Box>} label="Read" aria-label="Read mode" />
-            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>✏️</Box>} label="Edit" aria-label="Edit mode" />
-            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>🕒</Box>} label="History" aria-label="View history" />
-            <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>🔧</Box>} label="Tools" aria-label="View tools" />
-          </Tabs>
-        </Paper>
 
         <Box sx={styles.articleContainer}>
           {!isMobile && (

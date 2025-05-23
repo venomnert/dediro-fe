@@ -43,35 +43,6 @@ export const articleInfo = {
   marginBottom: '20px',
 };
 
-export const tabsContainer = {
-  mb: 4,
-  borderRadius: '8px',
-  background: 'rgba(255,255,255,0.98)',
-  backdropFilter: 'blur(8px)',
-  position: 'sticky',
-  top: 0,
-  zIndex: 100,
-  boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
-  maxWidth: '1200px',
-  margin: '0 auto',
-  width: '100%',
-  padding: { xs: '0 20px', md: '0' },
-  '& .MuiTabs-indicator': {
-    backgroundColor: '#343967',
-  },
-  '& .MuiTab-root': {
-    textTransform: 'none',
-    minWidth: 'auto',
-    padding: '8px 16px',
-    fontSize: '14px',
-    color: '#0645ad',
-    '&.Mui-selected': {
-      color: '#343967',
-      fontWeight: 'bold',
-    },
-  },
-};
-
 export const articleContainer = {
   display: 'flex',
   flexDirection: { xs: 'column', md: 'row' },
