@@ -1,6 +1,8 @@
-import { Box, Typography, List, ListItemButton } from '@mui/material';
+import { Box, Typography, List, ListItemButton, IconButton, Drawer, useTheme, useMediaQuery } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import React, { useEffect, useState, useRef } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface ParsedHeader {
   level: number;
@@ -27,6 +29,17 @@ const TOCContainer = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   border: `1px solid ${theme.palette.divider}`,
   padding: theme.spacing(2),
+  [theme.breakpoints.down('md')]: {
+    position: 'fixed',
+    top: 'auto',
+    bottom: theme.spacing(2),
+    right: theme.spacing(2),
+    maxHeight: 'none',
+    padding: 0,
+    border: 'none',
+    borderRadius: '50%',
+    backgroundColor: 'transparent',
+  },
   '&::-webkit-scrollbar': {
     width: '6px',
   },
@@ -72,33 +85,31 @@ const TOCText = styled(Typography, {
   fontWeight: active ? 600 : 400,
 }));
 
-const ReadingProgress = styled(Box)(({ theme }) => ({
-  height: '4px',
-  backgroundColor: theme.palette.grey[200],
-  borderRadius: '2px',
-  marginTop: theme.spacing(1),
-  marginBottom: theme.spacing(2),
-  position: 'relative',
-  '&::after': {
-    content: '""',
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    height: '100%',
-    backgroundColor: theme.palette.primary.main,
-    borderRadius: 'inherit',
-    transition: 'width 0.3s ease',
+const FloatingButton = styled(IconButton)(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main,
+  color: theme.palette.common.white,
+  '&:hover': {
+    backgroundColor: theme.palette.primary.dark,
   },
+  boxShadow: theme.shadows[4],
+}));
+
+const DrawerContent = styled(Box)(({ theme }) => ({
+  width: 280,
+  padding: theme.spacing(2),
+  height: '100%',
+  backgroundColor: theme.palette.background.paper,
 }));
 
 export default function TableOfContents({ themesSection }: TableOfContentsProps) {
   const [activeSection, setActiveSection] = useState<string>('');
-  const [readingProgress, setReadingProgress] = useState(0);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [parsedHeaders, setParsedHeaders] = useState<{[key: number]: ParsedHeader[]}>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
   const tocRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
-  // Parse headers from content
   useEffect(() => {
     const allHeaders: {[key: number]: ParsedHeader[]} = {};
     
@@ -128,19 +139,11 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
     setParsedHeaders(allHeaders);
   }, [themesSection]);
 
-  // Set up intersection observer for sections
   useEffect(() => {
     const callback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
-          
-          // Update reading progress
-          const windowHeight = window.innerHeight;
-          const documentHeight = document.documentElement.scrollHeight;
-          const scrolled = window.scrollY;
-          const progress = (scrolled / (documentHeight - windowHeight)) * 100;
-          setReadingProgress(Math.min(progress, 100));
         }
       });
     };
@@ -150,7 +153,6 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
       threshold: 0.1,
     });
 
-    // Observe all section elements
     const sections = document.querySelectorAll('[id^="section-"]');
     sections.forEach(section => {
       if (observerRef.current) {
@@ -169,24 +171,15 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      if (isMobile) {
+        setDrawerOpen(false);
+      }
     }
   };
 
-  return (
-    <TOCContainer ref={tocRef}>
+  const renderTOCContent = () => (
+    <>
       <TOCTitle>Contents</TOCTitle>
-      <ReadingProgress>
-        <Box
-          sx={{
-            width: `${readingProgress}%`,
-            height: '100%',
-            backgroundColor: 'primary.main',
-            borderRadius: 'inherit',
-            transition: 'width 0.3s ease',
-          }}
-        />
-      </ReadingProgress>
-      
       <List disablePadding>
         {themesSection.map((theme, themeIndex) => (
           <Box key={themeIndex}>
@@ -214,6 +207,42 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
           </Box>
         ))}
       </List>
-    </TOCContainer>
+    </>
+  );
+
+  return (
+    <>
+      {isMobile ? (
+        <>
+          <FloatingButton
+            onClick={() => setDrawerOpen(true)}
+            size="large"
+            aria-label="Open table of contents"
+          >
+            <MenuIcon />
+          </FloatingButton>
+          
+          <Drawer
+            anchor="right"
+            open={drawerOpen}
+            onClose={() => setDrawerOpen(false)}
+          >
+            <DrawerContent>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                <TOCTitle>Contents</TOCTitle>
+                <IconButton onClick={() => setDrawerOpen(false)}>
+                  <CloseIcon />
+                </IconButton>
+              </Box>
+              {renderTOCContent()}
+            </DrawerContent>
+          </Drawer>
+        </>
+      ) : (
+        <TOCContainer ref={tocRef}>
+          {renderTOCContent()}
+        </TOCContainer>
+      )}
+    </>
   );
 }
