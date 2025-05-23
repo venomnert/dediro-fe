@@ -7,18 +7,6 @@ export const container = {
   padding: { xs: '20px', md: '40px' },
 };
 
-export const subContainer = {
-  display: 'flex',
-  gap: '40px',
-};
-
-export const sectionsContainer = {
-  display: 'flex',
-  gap: '100px',
-  flexDirection: 'column',
-  width: { xs: '100%', md: '85%' },
-};
-
 export const articleHeader = {
   display: 'flex',
   flexDirection: 'column',
@@ -56,12 +44,14 @@ export const articleInfo = {
 };
 
 export const tabsContainer = {
-  borderBottom: '1px solid #a2a9b1',
-  marginBottom: '20px',
+  mb: 4,
+  borderRadius: '8px',
+  background: 'rgba(255,255,255,0.98)',
+  backdropFilter: 'blur(8px)',
   position: 'sticky',
   top: 0,
-  backgroundColor: '#fff',
   zIndex: 100,
+  boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
   maxWidth: '1200px',
   margin: '0 auto',
   width: '100%',
