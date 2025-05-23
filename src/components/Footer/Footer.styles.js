@@ -1,18 +1,19 @@
-export const linkStyle = {
-  color: 'var(--white)',
-  textDecoration: 'none',
-  fontWeight: 500,
-  fontSize: '18px',
-};
-
 export const mainContainer = {
   backgroundColor: 'var(--blue)',
-  padding: '25px',
+  padding: '40px 25px', // Increase top/bottom padding
   display: 'flex',
   width: '100%',
   justifyContent: 'center',
   alignItems: 'center',
   flexDirection: 'column',
+  marginTop: '60px', // Add spacing before footer
+};
+
+export const linkStyle = {
+  color: 'var(--white)',
+  textDecoration: 'none',
+  fontWeight: 500,
+  fontSize: '18px',
 };
 
 export const copyrightStyle = {

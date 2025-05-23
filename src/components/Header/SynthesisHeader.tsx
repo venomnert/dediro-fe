@@ -1,13 +1,8 @@
-import { Box, Button, Typography, Link, Container, IconButton, useTheme, useMediaQuery, Fade, Chip, Stack, Avatar, Tooltip } from '@mui/material';
-import { styled } from '@mui/material/styles';
-import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
-import SynthesisSearchbar from './SynthesisSearchbar';
-import { useRouter } from 'next/navigation';
-import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
-import ShareIcon from '@mui/icons-material/Share';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { Box, Typography, List, ListItemButton, IconButton, Drawer, useTheme, useMediaQuery } from '@mui/material';
+import { styled, alpha } from '@mui/material/styles';
+import React, { useEffect, useState, useRef } from 'react';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
   position: 'fixed',
@@ -19,6 +14,7 @@ const HeaderContainer = styled(Box)(({ theme }) => ({
   backdropFilter: 'blur(10px)',
   borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
   transition: 'all 0.3s ease',
+  marginBottom: '40px', // Add spacing after header
 }));
 
 const TopBar = styled(Box)(({ theme }) => ({
@@ -39,7 +35,7 @@ const TopBar = styled(Box)(({ theme }) => ({
   },
 }));
 
-const MainHeader = styled(Container)(({ theme }) => ({
+const MainHeader = styled(Box)(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
