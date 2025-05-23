@@ -25,146 +25,6 @@ import SYNTHESIS_DATA from '../../constants/SYNTHESIS_DATA';
 import SYNTHESIS_STRUCTURE_MINI from '../../constants/SYNTHESIS_STRUCTURE_MINI';
 import * as styles from './page.styles';
 
-// Styles
-const StyledContainer = styled(Container)(({ theme }) => ({
-  maxWidth: '1440px',
-  padding: theme.spacing(2, 3),
-  backgroundColor: theme.palette.background.default,
-  [theme.breakpoints.up('md')]: {
-    padding: theme.spacing(3, 6),
-  },
-  [theme.breakpoints.up('lg')]: {
-    padding: theme.spacing(4, 8),
-  },
-}));
-
-const ArticleContainer = styled(Box)(({ theme }) => ({
-  display: 'flex',
-  flexDirection: 'column',
-  [theme.breakpoints.up('lg')]: {
-    flexDirection: 'row',
-    gap: theme.spacing(4),
-  },
-}));
-
-const SidebarContainer = styled(Box)(({ theme }) => ({
-  width: '100%',
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(2),
-  marginBottom: theme.spacing(3),
-  boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-  [theme.breakpoints.up('lg')]: {
-    width: '280px',
-    flexShrink: 0,
-    position: 'sticky',
-    top: '100px',
-    maxHeight: 'calc(100vh - 120px)',
-    overflowY: 'auto',
-    marginBottom: 0,
-    scrollBehavior: 'smooth',
-    '&::-webkit-scrollbar': {
-      width: '4px',
-    },
-    '&::-webkit-scrollbar-thumb': {
-      backgroundColor: theme.palette.grey[400],
-      borderRadius: '4px',
-    },
-  },
-}));
-
-const MainContentContainer = styled(Box)(({ theme }) => ({
-  flexGrow: 1,
-  maxWidth: '100%',
-  backgroundColor: theme.palette.background.paper,
-  borderRadius: theme.shape.borderRadius,
-  padding: theme.spacing(3),
-  boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
-  [theme.breakpoints.down('md')]: {
-    padding: theme.spacing(2),
-  },
-  [theme.breakpoints.up('lg')]: {
-    maxWidth: '800px',
-  },
-}));
-
-const ArticleHeader = styled(Box)(({ theme }) => ({
-  marginBottom: theme.spacing(4),
-  paddingBottom: theme.spacing(2),
-  borderBottom: `1px solid ${theme.palette.divider}`,
-}));
-
-const PageTitle = styled(Typography)(({ theme }) => ({
-  fontSize: '2.75rem',
-  fontWeight: 500,
-  lineHeight: 1.1,
-  marginBottom: theme.spacing(2),
-  color: theme.palette.text.primary,
-  position: 'relative',
-  '&::after': {
-    content: '""',
-    display: 'block',
-    width: '60px',
-    height: '4px',
-    backgroundColor: theme.palette.primary.main,
-    marginTop: theme.spacing(1),
-  },
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '2.2rem',
-  },
-}));
-
-const RedirectText = styled(Box)(({ theme }) => ({
-  color: theme.palette.text.secondary,
-  fontSize: '0.875rem',
-  marginBottom: theme.spacing(1),
-  '& a': {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-}));
-
-const ArticleInfo = styled(Typography)(({ theme }) => ({
-  fontSize: '0.875rem',
-  color: theme.palette.text.secondary,
-  fontStyle: 'italic',
-  marginTop: theme.spacing(2),
-  '& a': {
-    color: theme.palette.primary.main,
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  },
-}));
-
-const StyledTabs = styled(Tabs)(({ theme }) => ({
-  '& .MuiTabs-indicator': {
-    backgroundColor: theme.palette.primary.main,
-    height: '3px',
-    borderRadius: '3px 3px 0 0',
-  },
-  '& .MuiTab-root': {
-    textTransform: 'none',
-    minWidth: 'auto',
-    padding: theme.spacing(1.5, 2.5),
-    fontSize: '0.95rem',
-    fontWeight: 500,
-    transition: 'all 0.2s ease',
-    '&.Mui-selected': {
-      color: theme.palette.primary.main,
-      fontWeight: 600,
-    },
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover,
-      color: theme.palette.primary.light,
-    },
-  },
-}));
-
 const FloatingActionButton = styled(IconButton)(({ theme }) => ({
   position: 'fixed',
   bottom: theme.spacing(4),
@@ -203,6 +63,7 @@ const ActionButtons = styled(Box)(({ theme }) => ({
   top: theme.spacing(2),
   zIndex: 10,
   width: 'fit-content',
+  margin: '0 auto',
   '& .MuiIconButton-root': {
     color: theme.palette.text.primary,
     backgroundColor: theme.palette.grey[100],
@@ -212,6 +73,15 @@ const ActionButtons = styled(Box)(({ theme }) => ({
       backgroundColor: theme.palette.primary.light,
       transform: 'translateY(-2px)',
     },
+  },
+}));
+
+const MainContainer = styled(Container)(({ theme }) => ({
+  maxWidth: '1200px',
+  margin: '0 auto',
+  padding: theme.spacing(3),
+  [theme.breakpoints.up('md')]: {
+    padding: theme.spacing(4),
   },
 }));
 
@@ -266,16 +136,16 @@ export default function Synthesis() {
     <>
       <SynthesisHeader />
       
-      <div>
-        <ArticleHeader>
-          <PageTitle variant="h1" tabIndex={0}>
+      <MainContainer>
+        <Box sx={styles.articleHeader}>
+          <Typography variant="h1" sx={styles.pageTitle} tabIndex={0}>
             {SYNTHESIS_STRUCTURE_MINI.introduction}
-          </PageTitle>
+          </Typography>
           <Typography variant="subtitle1" sx={{ color: 'text.secondary', fontWeight: 400, mb: 1 }}>
             "Knowledge, synthesized for you."
           </Typography>
           
-          <RedirectText>
+          <Box sx={styles.redirectText}>
             <Typography variant="body2">
               From Dediro, the free knowledge platform
             </Typography>
@@ -285,15 +155,17 @@ export default function Synthesis() {
                 Previous Synthesis
               </Box>)
             </Typography>
-          </RedirectText>
+          </Box>
           
-          <ArticleInfo variant="body2">
-            This article is about the synthesis. For other uses, see{' '}
-            <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
-              Related Synthesis (disambiguation)
-            </Box>.
-          </ArticleInfo>
-        </ArticleHeader>
+          <Box sx={styles.articleInfo}>
+            <Typography variant="body2">
+              This article is about the synthesis. For other uses, see{' '}
+              <Box component="a" href="#" sx={{ color: 'primary.main', textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}>
+                Related Synthesis (disambiguation)
+              </Box>.
+            </Typography>
+          </Box>
+        </Box>
 
         <ActionButtons>
           <Tooltip title="Save this synthesis for later" arrow>
@@ -310,18 +182,9 @@ export default function Synthesis() {
 
         <Paper 
           elevation={1} 
-          sx={{ 
-            mb: 4, 
-            borderRadius: '8px',
-            background: 'rgba(255,255,255,0.98)', 
-            backdropFilter: 'blur(8px)',
-            position: 'sticky',
-            top: 0,
-            zIndex: 100,
-            boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
-          }}
+          sx={styles.tabsContainer}
         >
-          <StyledTabs
+          <Tabs
             value={tabValue}
             onChange={handleTabChange}
             aria-label="synthesis navigation tabs"
@@ -335,12 +198,12 @@ export default function Synthesis() {
             <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>✏️</Box>} label="Edit" aria-label="Edit mode" />
             <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>🕒</Box>} label="History" aria-label="View history" />
             <Tab icon={<Box component="span" sx={{ fontSize: '1.2rem', mr: 1 }}>🔧</Box>} label="Tools" aria-label="View tools" />
-          </StyledTabs>
+          </Tabs>
         </Paper>
 
         <Box sx={styles.articleContainer}>
           {!isMobile && (
-            <SidebarContainer aria-label="Table of Contents">
+            <Box sx={styles.sidebarContainer} aria-label="Table of Contents">
               <Typography variant="h6" sx={{ mb: 2, fontWeight: 700, color: 'primary.main', letterSpacing: 0.5 }}>
                 Contents
               </Typography>
@@ -356,7 +219,7 @@ export default function Synthesis() {
                   }]
                 }))}
               />
-            </SidebarContainer>
+            </Box>
           )}
 
           <Box sx={styles.mainContentContainer} ref={mainContentRef}>
@@ -419,7 +282,7 @@ export default function Synthesis() {
             <RelatedContent relatedContent={SYNTHESIS_DATA.relatedContent} />
           </Box>
         </Box>
-      </div>
+      </MainContainer>
       
       <Tooltip title="Back to top" placement="left" arrow>
         <FloatingActionButton 

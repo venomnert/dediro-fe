@@ -19,7 +19,6 @@ export const sectionsContainer = {
   width: { xs: '100%', md: '85%' },
 };
 
-// Wikipedia-style layout
 export const articleHeader = {
   display: 'flex',
   flexDirection: 'column',
@@ -27,6 +26,10 @@ export const articleHeader = {
   marginBottom: '20px',
   borderBottom: '1px solid #a2a9b1',
   paddingBottom: '20px',
+  maxWidth: '1200px',
+  margin: '0 auto',
+  width: '100%',
+  padding: { xs: '20px', md: '0' },
 };
 
 export const pageTitle = {
@@ -59,6 +62,10 @@ export const tabsContainer = {
   top: 0,
   backgroundColor: '#fff',
   zIndex: 100,
+  maxWidth: '1200px',
+  margin: '0 auto',
+  width: '100%',
+  padding: { xs: '0 20px', md: '0' },
   '& .MuiTabs-indicator': {
     backgroundColor: '#343967',
   },
@@ -79,6 +86,10 @@ export const articleContainer = {
   display: 'flex',
   flexDirection: { xs: 'column', md: 'row' },
   gap: { xs: '20px', md: '40px' },
+  maxWidth: '1200px',
+  margin: '0 auto',
+  width: '100%',
+  padding: { xs: '0 20px', md: '0' },
 };
 
 export const sidebarContainer = {
@@ -101,4 +112,6 @@ export const mainContentContainer = {
   flexDirection: 'column',
   gap: '30px',
   maxWidth: '800px',
+  margin: '0 auto',
+  width: '100%',
 };
