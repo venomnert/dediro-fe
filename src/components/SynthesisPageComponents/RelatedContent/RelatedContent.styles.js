@@ -1,23 +1,32 @@
 export const container = {
   display: 'flex',
   flexDirection: 'column',
-  gap: '10px',
+  gap: '24px',
   width: '100%',
+  marginTop: '48px',
+  padding: '24px',
+  backgroundColor: '#f8f9fa',
+  borderRadius: '12px',
 };
+
 export const cardContainer = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '20px',
-  justifyContent: { xs: 'center', md: 'flex-start' },
-  marginBottom: '30px',
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+  gap: '24px',
+  width: '100%',
 };
 
 export const relatedContentH3 = {
-  fontSize: { xs: '24px', md: '28px' },
+  fontSize: { xs: '28px', md: '32px' },
   fontWeight: '700',
+  color: '#1a1a1a',
+  marginBottom: '8px',
 };
 
 export const moreArticlesSpan = {
-  fontSize: '15px',
-  fontWeight: '700',
+  fontSize: '16px',
+  fontWeight: '600',
+  color: '#666',
+  marginBottom: '24px',
+  display: 'block',
 };

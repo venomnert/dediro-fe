@@ -19,10 +19,14 @@ function RelatedContentCard({ title, briefDescription }: IRelatedContentCard) {
           {title}
         </Typography>
         <Typography sx={briefDescriptionStyles}>{briefDescription}</Typography>
+        <Button 
+          endIcon={<EastRoundedIcon />} 
+          sx={btn}
+          variant="text"
+        >
+          Read more
+        </Button>
       </Box>
-      <Button endIcon={<EastRoundedIcon />} sx={btn}>
-        Read more
-      </Button>
     </Box>
   );
 }

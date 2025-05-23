@@ -13,23 +13,23 @@ import RelatedContentCard from './RelatedContentCard';
 function RelatedContent({ relatedContent }: IRelatedContentArray) {
   return (
     <Box sx={container}>
-      <Typography variant="h3" sx={relatedContentH3}>
-        Related Content
-      </Typography>
-
-      <Typography variant="h4" sx={moreArticlesSpan}>
-        More Articles
-      </Typography>
+      <Box>
+        <Typography variant="h3" sx={relatedContentH3}>
+          Related Content
+        </Typography>
+        <Typography variant="h4" sx={moreArticlesSpan}>
+          More Articles
+        </Typography>
+      </Box>
+      
       <Box sx={cardContainer}>
-        {relatedContent?.map(({ title, briefDescription }, index) => {
-          return (
-            <RelatedContentCard
-              key={index}
-              title={title}
-              briefDescription={briefDescription}
-            />
-          );
-        })}
+        {relatedContent?.map(({ title, briefDescription }, index) => (
+          <RelatedContentCard
+            key={index}
+            title={title}
+            briefDescription={briefDescription}
+          />
+        ))}
       </Box>
     </Box>
   );
