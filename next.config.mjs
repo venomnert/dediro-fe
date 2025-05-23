@@ -2,8 +2,11 @@
 const nextConfig = {
   images: {
     unoptimized: true,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    formats: ['image/webp'],
   },
-  optimizeFonts: false,
+  optimizeFonts: true,
   async headers() {
     return [
       {
@@ -11,22 +14,25 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value:
-              'public, max-age=60, s-maxage=60, stale-while-revalidate=3600',
+            value: 'public, max-age=60, s-maxage=60, stale-while-revalidate=3600',
+          },
+          {
+            key: 'Content-Security-Policy',
+            value: "default-src 'self'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-eval' 'unsafe-inline';",
           },
         ],
       },
     ];
   },
   webpack: (config) => {
-    /* On `node-fetch` v2 the `encoding` package was optionally required.
-    See: https://github.com/node-fetch/node-fetch/issues/412.
-    Since `encoding` is not part of the deps by default, when using with webpack,
-    it will raise a warning message which can be safely ignored. */
     config.ignoreWarnings = [
       { module: /node_modules\/node-fetch\/lib\/index\.js/ },
       { file: /node_modules\/node-fetch\/lib\/index\.js/ },
     ];
+    
+    // Enable module/nomodule pattern
+    config.output.module = true;
+    
     return config;
   },
 };
