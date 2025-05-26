@@ -54,6 +54,8 @@ const ContentContainer = styled(Container)(({ theme }) => ({
   flexDirection: 'column',
   justifyContent: 'flex-end',
   padding: theme.spacing(6),
+  maxWidth: '1024px',
+  margin: '0 auto',
   [theme.breakpoints.down('md')]: {
     padding: theme.spacing(4),
   },
@@ -72,29 +74,26 @@ const CategoryChip = styled(Chip)(({ theme }) => ({
 
 const Title = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
-  fontSize: '3.75rem',
-  fontWeight: 800,
-  lineHeight: 1.1,
+  fontSize: '2.75rem',
+  fontWeight: 700,
+  lineHeight: 1.2,
   marginBottom: theme.spacing(2),
-  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+  fontFamily: 'Linux Libertine, Georgia, Times, serif',
   [theme.breakpoints.down('md')]: {
-    fontSize: '2.75rem',
-  },
-  [theme.breakpoints.down('sm')]: {
-    fontSize: '2.25rem',
+    fontSize: '2rem',
   },
 }));
 
 const Subtitle = styled(Typography)(({ theme }) => ({
   color: theme.palette.common.white,
-  fontSize: '1.25rem',
+  fontSize: '1.125rem',
   fontWeight: 400,
   lineHeight: 1.5,
   marginBottom: theme.spacing(3),
   opacity: 0.9,
   maxWidth: '800px',
   [theme.breakpoints.down('sm')]: {
-    fontSize: '1.125rem',
+    fontSize: '1rem',
   },
 }));
 
@@ -233,7 +232,7 @@ function MainContent({
         </BackButton>
       )}
 
-      <ContentContainer maxWidth="lg">
+      <ContentContainer>
         <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
           <CategoryChip 
             label={category.toUpperCase()} 
