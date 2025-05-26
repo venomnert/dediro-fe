@@ -188,7 +188,7 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
               active={activeSection === `section-${themeIndex + 1}`}
             >
               <TOCText active={activeSection === `section-${themeIndex + 1}`}>
-                {themeIndex + 1}. {theme.title || `Theme ${themeIndex + 1}`}
+                {themeIndex === 0 ? "Theme 1: Consequences of the Israel-Gaza Conflict" : theme.title || `Theme ${themeIndex + 1}`}
               </TOCText>
             </TOCListItem>
 
