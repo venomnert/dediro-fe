@@ -192,18 +192,36 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
               </TOCText>
             </TOCListItem>
 
-            {parsedHeaders[themeIndex]?.map((header, headerIndex) => (
-              <TOCListItem
-                key={`${themeIndex}-${headerIndex}`}
-                depth={header.level - 1}
-                onClick={() => handleClick(header.id)}
-                active={activeSection === header.id}
-              >
-                <TOCText active={activeSection === header.id}>
-                  {header.text}
-                </TOCText>
-              </TOCListItem>
-            ))}
+            {parsedHeaders[themeIndex]?.map((header, headerIndex) => {
+              // Replace generic subtopic names with more descriptive ones for Theme 1
+              let displayText = header.text;
+              if (themeIndex === 0) {
+                switch (headerIndex) {
+                  case 0:
+                    displayText = "Humanitarian Crisis and Civilian Impact";
+                    break;
+                  case 1:
+                    displayText = "Regional Stability and International Response";
+                    break;
+                  case 2:
+                    displayText = "Economic and Infrastructure Damage";
+                    break;
+                }
+              }
+
+              return (
+                <TOCListItem
+                  key={`${themeIndex}-${headerIndex}`}
+                  depth={header.level - 1}
+                  onClick={() => handleClick(header.id)}
+                  active={activeSection === header.id}
+                >
+                  <TOCText active={activeSection === header.id}>
+                    {displayText}
+                  </TOCText>
+                </TOCListItem>
+              );
+            })}
           </Box>
         ))}
       </List>
