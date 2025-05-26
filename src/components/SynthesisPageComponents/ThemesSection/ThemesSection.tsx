@@ -94,15 +94,6 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
               </Box>
             )}
 
-            {el.quote && (
-              <ExpertQuote
-                name={el.quote?.expertName}
-                image={el.quote?.image}
-                profession={el.quote?.profession}
-                text={el.quote?.text}
-              />
-            )}
-
             {/* Citation section like Wikipedia */}
             {/* Using experts array as citations for demonstration */}
             {experts && experts.length > 0 && (
