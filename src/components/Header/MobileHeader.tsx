@@ -16,6 +16,8 @@ import {
   iconButton,
   searchIconStyles,
   inputStyles,
+  logoContainer,
+  logoImage,
 } from './MobileHeader.styles';
 import { useRouter } from 'next/navigation';
 
@@ -25,7 +27,6 @@ interface MobileHeaderProps {
 
 function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
   const [searchOpen, setSearchOpen] = useState(false);
-
   const router = useRouter();
 
   const handleGoHome = () => {
@@ -43,33 +44,35 @@ function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
   };
 
   return (
-    <Box
-      sx={mainContainer}
-      flexDirection={disableSearch ? 'row-reverse' : 'row'}
-    >
-      <BurgerMenu anchorOrigin="left" addBlackIcon={disableSearch} />
-      <img
-        style={{
-          width: '50px',
-          height: '50px',
-          userSelect: 'none',
-          cursor: 'pointer',
-        }}
-        src="images/dediro-logo-white.webp"
-        alt="Dediro"
-        onClick={handleGoHome}
-      />
-      {!disableSearch ? (
-        <IconButton onClick={toggleSearch} sx={iconButton}>
-          <SearchIcon sx={searchIconStyles} />
-        </IconButton>
-      ) : null}
+    <Box sx={mainContainer}>
+      <Box sx={logoContainer}>
+        <img
+          style={logoImage}
+          src="images/dediro-logo-white.webp"
+          alt="Dediro"
+          onClick={handleGoHome}
+        />
+      </Box>
+      
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+        {!disableSearch && (
+          <IconButton onClick={toggleSearch} sx={iconButton}>
+            <SearchIcon sx={searchIconStyles} />
+          </IconButton>
+        )}
+        <BurgerMenu anchorOrigin="right" addBlackIcon={disableSearch} />
+      </Box>
+
       {searchOpen && (
         <ClickAwayListener onClickAway={handleClickAway}>
           <Slide direction="down" in={searchOpen} mountOnEnter unmountOnExit>
             <Box sx={inputContainer}>
-              <InputBase placeholder="Search..." sx={inputStyles} />
-              <IconButton onClick={toggleSearch} color={'inherit'}>
+              <InputBase
+                placeholder="Search..."
+                sx={inputStyles}
+                autoFocus
+              />
+              <IconButton onClick={toggleSearch} size="small">
                 <CloseIcon />
               </IconButton>
             </Box>

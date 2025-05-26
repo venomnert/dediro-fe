@@ -10,6 +10,8 @@ import {
   inputStyles,
   linksContainer,
   linkStyle,
+  logoContainer,
+  logoImage,
 } from './Header.styles';
 import SearchIcon from '@mui/icons-material/Search';
 import Link from 'next/link';
@@ -32,17 +34,11 @@ function Header({ disableSearch = false }: HeaderProps) {
   return (
     <Box sx={headerStyles}>
       <Box sx={desktopHeaderContainer}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={logoContainer} onClick={handleGoHome}>
           <img
-            style={{
-              width: '50px',
-              height: '50px',
-              userSelect: 'none',
-              cursor: 'pointer',
-            }}
+            style={logoImage}
             src="images/dediro-logo-white.webp"
             alt="Dediro"
-            onClick={handleGoHome}
           />
           <Box sx={linksContainer}>
             {links.map((link) => (
@@ -52,23 +48,24 @@ function Header({ disableSearch = false }: HeaderProps) {
             ))}
           </Box>
         </Box>
-        {!disableSearch ? (
+        
+        {!disableSearch && (
           <TextField
             id="search"
             placeholder="Search..."
             sx={inputStyles}
-            slotProps={{
-              input: {
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                ),
-              },
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon />
+                </InputAdornment>
+              ),
             }}
             variant="outlined"
+            size="small"
           />
-        ) : null}
+        )}
+        
         <CTAForm
           ctaTextValue="Join for free"
           buttonCustomStyles={ctaButton}
@@ -76,6 +73,7 @@ function Header({ disableSearch = false }: HeaderProps) {
         />
         <BurgerMenu addBlackIcon={disableSearch} />
       </Box>
+      
       <Box sx={mobileHeaderContainer}>
         <MobileHeader disableSearch={disableSearch} />
       </Box>
