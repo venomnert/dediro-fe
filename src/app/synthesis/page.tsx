@@ -76,8 +76,7 @@ const ActionButtons = styled(Box)(({ theme }) => ({
   },
 }));
 
-const MainContainer = styled(Container)(({ theme }) => ({
-  maxWidth: '1200px',
+const MainContainer = styled(Box)(({ theme }) => ({
   margin: '0 auto',
   padding: theme.spacing(3),
   [theme.breakpoints.up('md')]: {

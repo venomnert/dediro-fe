@@ -47,7 +47,6 @@ export const articleContainer = {
   display: 'flex',
   flexDirection: { xs: 'column', md: 'row' },
   gap: { xs: '20px', md: '40px' },
-  maxWidth: '1200px',
   margin: '0 auto',
   width: '100%',
   padding: { xs: '0 20px', md: '0' },
@@ -73,8 +72,7 @@ export const mainContentContainer = {
   display: 'flex',
   flexDirection: 'column',
   gap: '30px',
-  maxWidth: '800px',
+  maxWidth: { xs: '100%', md: '80%' }, // Full width on mobile, 80% on larger screens
   margin: '0 auto',
   width: '100%',
-  marginTop: '40px', // Add spacing after header
 };

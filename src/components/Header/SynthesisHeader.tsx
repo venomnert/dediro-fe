@@ -13,7 +13,7 @@ import Link from 'next/link';
 import SynthesisSearchbar from './SynthesisSearchbar';
 
 const HeaderContainer = styled(Box)(({ theme }) => ({
-  position: 'fixed',
+  position: 'relative',
   top: 0,
   left: 0,
   right: 0,

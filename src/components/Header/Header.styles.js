@@ -26,11 +26,11 @@ export const blackLinkStyle = {
 };
 
 export const headerStyles = {
-  position: 'fixed',
+  position: 'relative',
   width: '100%',
   backgroundColor: 'rgba(0, 0, 0, 0.95)',
   backdropFilter: 'blur(10px)',
-  zIndex: 1000,
+  zIndex: 100,
   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
 };
 

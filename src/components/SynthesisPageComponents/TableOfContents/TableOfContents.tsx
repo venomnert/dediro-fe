@@ -214,7 +214,6 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
 
   const renderTOCContent = () => (
     <>
-      <TOCTitle>Contents</TOCTitle>
       <List disablePadding>
         {themesSection.map((theme, themeIndex) => (
           <Box key={themeIndex}>

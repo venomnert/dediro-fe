@@ -17,9 +17,8 @@ import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from 're
 const HeroContainer = styled(motion.div)(({ theme }) => ({
   position: 'relative',
   width: '100%',
-  height: '85vh',
+  height: '80vh',
   minHeight: '600px',
-  marginTop: '64px',
   backgroundColor: theme.palette.background.paper,
   overflow: 'hidden',
   [theme.breakpoints.down('md')]: {
