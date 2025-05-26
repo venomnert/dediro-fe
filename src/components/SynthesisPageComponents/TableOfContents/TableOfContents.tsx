@@ -101,6 +101,41 @@ const DrawerContent = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
 
+const themeDescriptions = [
+  {
+    title: "Theme 1: Consequences of the Israel-Gaza Conflict",
+    subtopics: [
+      "Humanitarian Crisis and Civilian Impact",
+      "Regional Stability and International Response",
+      "Economic and Infrastructure Damage"
+    ]
+  },
+  {
+    title: "Theme 2: Global Economic Implications",
+    subtopics: [
+      "Market Volatility and Oil Prices",
+      "Trade Route Disruptions",
+      "International Aid and Support"
+    ]
+  },
+  {
+    title: "Theme 3: Diplomatic Developments",
+    subtopics: [
+      "Peace Negotiation Efforts",
+      "International Mediation",
+      "Regional Alliance Shifts"
+    ]
+  },
+  {
+    title: "Theme 4: Humanitarian Response",
+    subtopics: [
+      "Aid Distribution Challenges",
+      "Medical Emergency Management",
+      "Civilian Evacuation Efforts"
+    ]
+  }
+];
+
 export default function TableOfContents({ themesSection }: TableOfContentsProps) {
   const [activeSection, setActiveSection] = useState<string>('');
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -188,27 +223,13 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
               active={activeSection === `section-${themeIndex + 1}`}
             >
               <TOCText active={activeSection === `section-${themeIndex + 1}`}>
-                {themeIndex === 0 ? "Theme 1: Consequences of the Israel-Gaza Conflict" : theme.title || `Theme ${themeIndex + 1}`}
+                {themeDescriptions[themeIndex]?.title || `Theme ${themeIndex + 1}`}
               </TOCText>
             </TOCListItem>
 
             {parsedHeaders[themeIndex]?.map((header, headerIndex) => {
-              // Replace generic subtopic names with more descriptive ones for Theme 1
-              let displayText = header.text;
-              if (themeIndex === 0) {
-                switch (headerIndex) {
-                  case 0:
-                    displayText = "Humanitarian Crisis and Civilian Impact";
-                    break;
-                  case 1:
-                    displayText = "Regional Stability and International Response";
-                    break;
-                  case 2:
-                    displayText = "Economic and Infrastructure Damage";
-                    break;
-                }
-              }
-
+              const displayText = themeDescriptions[themeIndex]?.subtopics[headerIndex] || header.text;
+              
               return (
                 <TOCListItem
                   key={`${themeIndex}-${headerIndex}`}
