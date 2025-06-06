@@ -331,7 +331,7 @@ function ContinuedReading({ relatedContent }: ContinuedReadingProps) {
                   icon={<ArticleIcon />}
                 />
               )}
-              {item.isNew && <NewBadge label="New" size="small" />}
+              {item.isNew && <NewBadge label="New\" size="small" />}
             </CardHeader>
             
             <ContentTitle variant="h6">
