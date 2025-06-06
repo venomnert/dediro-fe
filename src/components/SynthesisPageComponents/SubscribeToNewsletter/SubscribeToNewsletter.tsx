@@ -6,6 +6,7 @@ import {
   img,
   title,
   description,
+  ctaContainer,
 } from './SubscribeToNewsletter.styles';
 
 import CTAForm from '../../Common/CTA/CTAForm';
@@ -17,31 +18,40 @@ function SubscribeToNewsletter({ synthesisSlug }: ISubscribeToNewsletter) {
   return (
     <Box sx={container}>
       <Box sx={formContainer}>
-        <Typography variant="h2" sx={title}>
+        <Typography variant="h3" sx={title}>
           {NEWSLETTER_DATA.title}
         </Typography>
         <Typography sx={description}>
           {NEWSLETTER_DATA.text}
         </Typography>
 
-        <CTAForm 
-          isGreenButton={true} 
-          synthesisSlug={synthesisSlug}
-          buttonCustomStyles={{
-            backgroundColor: '#343967',
-            '&:hover': {
-              backgroundColor: '#2a2e52',
-            },
-          }}
-        />
+        <Box sx={ctaContainer}>
+          <CTAForm 
+            isGreenButton={true} 
+            synthesisSlug={synthesisSlug}
+            buttonCustomStyles={{
+              backgroundColor: '#0645ad',
+              color: '#ffffff',
+              fontSize: '14px',
+              fontWeight: '500',
+              padding: '8px 16px',
+              borderRadius: '2px',
+              textTransform: 'none',
+              '&:hover': {
+                backgroundColor: '#0b4ba0',
+              },
+            }}
+            ctaTextValue="Subscribe to updates"
+          />
+        </Box>
       </Box>
       
       <Box sx={imgContainer}>
         <img
           style={img}
-          src="images/stay-informed/space.webp"
+          src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg"
           loading="lazy"
-          alt="Stay informed illustration"
+          alt="Stay informed with latest updates"
         />
       </Box>
     </Box>
