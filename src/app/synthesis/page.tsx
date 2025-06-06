@@ -139,12 +139,12 @@ export default function Synthesis() {
               <TableOfContents 
                 themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map((theme, index) => ({
                   id: index,
-                  title: `Theme ${index + 1}`,
-                  description: theme.content.substring(0, 100) + '...',
-                  content: [{
+                  title: theme.title || `Theme ${index + 1}`,
+                  description: typeof theme.content === 'string' ? theme.content.substring(0, 100) + '...' : 'Theme description',
+                  content: Array.isArray(theme.content) ? theme.content : [{
                     id: index,
                     subtitle: `Subtopic ${index + 1}`,
-                    description: theme.content
+                    description: typeof theme.content === 'string' ? theme.content : 'Content description'
                   }]
                 }))}
               />
@@ -179,12 +179,22 @@ export default function Synthesis() {
             <ThemesSection
               themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map((theme, index) => ({
                 id: index,
-                title: `Theme ${index + 1}`,
-                description: theme.content.substring(0, 100) + '...',
-                content: [{
+                title: theme.title || `Theme ${index + 1}`,
+                description: typeof theme.content === 'string' ? theme.content.substring(0, 100) + '...' : 'Theme description',
+                content: Array.isArray(theme.content) ? theme.content.map((item, itemIndex) => ({
+                  id: itemIndex,
+                  subtitle: item.subtitle || `Subtopic ${itemIndex + 1}`,
+                  description: item.description || item.content || 'Content description',
+                  quote: item.quote ? {
+                    text: item.quote.text,
+                    expertName: item.quote.expert_name,
+                    profession: 'Expert',
+                    image: ''
+                  } : undefined
+                })) : [{
                   id: index,
                   subtitle: `Subtopic ${index + 1}`,
-                  description: theme.content,
+                  description: typeof theme.content === 'string' ? theme.content : 'Content description',
                   quote: theme.quote ? {
                     text: theme.quote.text,
                     expertName: theme.quote.expert_name,
