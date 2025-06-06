@@ -13,12 +13,11 @@ import ExpertsHighlights from '@/components/SynthesisPageComponents/ExpertsHighl
 import Footer from '@/components/Footer/Footer';
 import MainContent from '@/components/SynthesisPageComponents/SynthesisMainContent/MainContent';
 import MainContentInfo from '@/components/SynthesisPageComponents/SynthesisMainContent/MainContentInfo';
-import RelatedContent from '@/components/SynthesisPageComponents/RelatedContent/RelatedContent';
 import SubscribeToNewsletter from '@/components/SynthesisPageComponents/SubscribeToNewsletter/SubscribeToNewsletter';
 import SynthesisHeader from '@/components/Header/SynthesisHeader';
 import TableOfContents from '@/components/SynthesisPageComponents/TableOfContents/TableOfContents';
 import ThemesSection from '@/components/SynthesisPageComponents/ThemesSection/ThemesSection';
-import WeeklyUpdates from '@/components/SynthesisPageComponents/WeeklyUpdates/WeeklyUpdates';
+import ContinuedReading from '@/components/SynthesisPageComponents/ContinuedReading/ContinuedReading';
 
 // Data
 import SYNTHESIS_DATA from '../../constants/SYNTHESIS_DATA';
@@ -203,13 +202,11 @@ export default function Synthesis() {
               experts={SYNTHESIS_DATA.experts}
             />
             
-            <WeeklyUpdates />
-            
             <Divider sx={{ my: 6 }} />
             
             <SubscribeToNewsletter synthesisSlug={SYNTHESIS_DATA.slug} />
             
-            <RelatedContent relatedContent={SYNTHESIS_DATA.relatedContent} />
+            <ContinuedReading relatedContent={SYNTHESIS_DATA.relatedContent} />
           </Box>
         </Box>
       </MainContainer>
