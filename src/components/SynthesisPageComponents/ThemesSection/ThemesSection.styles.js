@@ -37,7 +37,7 @@ export const wikiContent = {
     fontSize: '15px',
     lineHeight: 1.6,
     marginBottom: '16px',
-    fontFamily: 'sans-serif',
+    fontFamily: 'Montserrat, sans-serif',
     color: '#202122',
   },
   '& a': {

@@ -64,7 +64,7 @@ export const sidebarContainer = {
   position: { md: 'sticky' },
   top: { md: '100px' }, // Increase top spacing from header
   maxHeight: { md: 'calc(100vh - 120px)' }, // Adjust for new spacing
-  overflowY: 'auto',
+  overflowY: 'hidden',
 };
 
 export const mainContentContainer = {

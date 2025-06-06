@@ -73,6 +73,10 @@ body {
   line-height: 1.2;
 }
 
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* Interactive Elements */
 button, 
 a, 
