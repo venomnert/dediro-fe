@@ -21,13 +21,11 @@ function SubscribeToNewsletter({ synthesisSlug }: ISubscribeToNewsletter) {
         <Typography variant="h3" sx={title}>
           {NEWSLETTER_DATA.title}
         </Typography>
-        <Typography sx={description}>
-          {NEWSLETTER_DATA.text}
-        </Typography>
+        <Typography sx={description}>{NEWSLETTER_DATA.text}</Typography>
 
         <Box sx={ctaContainer}>
-          <CTAForm 
-            isGreenButton={true} 
+          <CTAForm
+            isGreenButton={true}
             synthesisSlug={synthesisSlug}
             buttonCustomStyles={{
               backgroundColor: '#0645ad',
@@ -45,10 +43,11 @@ function SubscribeToNewsletter({ synthesisSlug }: ISubscribeToNewsletter) {
           />
         </Box>
       </Box>
-      
+
       <Box sx={imgContainer}>
-        <img
-          style={img}
+        <Box
+          component="img"
+          sx={img}
           src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg"
           loading="lazy"
           alt="Stay informed with latest updates"

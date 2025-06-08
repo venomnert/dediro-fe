@@ -37,7 +37,7 @@ export const description = {
   fontFamily: 'Montserrat, sans-serif',
 };
 
-export const imgContainer = { 
+export const imgContainer = {
   display: { xs: 'none', md: 'flex' },
   alignItems: 'center',
   justifyContent: 'center',
@@ -45,7 +45,7 @@ export const imgContainer = {
   maxWidth: '200px',
 };
 
-export const img = { 
+export const img = {
   width: '100%',
   maxWidth: '180px',
   height: 'auto',

@@ -1,6 +1,18 @@
 'use client';
 
-import { Box, Container, Typography, Tabs, Tab, Divider, Paper, useTheme, useMediaQuery, IconButton, Tooltip } from '@mui/material';
+import {
+  Box,
+  Container,
+  Typography,
+  Tabs,
+  Tab,
+  Divider,
+  Paper,
+  useTheme,
+  useMediaQuery,
+  IconButton,
+  Tooltip,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
@@ -122,31 +134,62 @@ export default function Synthesis() {
   const defaultAuthor = {
     name: 'Anonymous',
     role: 'Contributor',
-    avatar: '/images/default-avatar.png'
+    avatar: '/images/default-avatar.png',
   };
 
   return (
     <>
       <SynthesisHeader />
-      
+
       <MainContainer>
         <Box sx={styles.articleContainer}>
           {!isMobile && (
             <Box sx={styles.sidebarContainer} aria-label="Table of Contents">
-              <Typography variant="h6" sx={{ mb: 2, fontWeight: 700, color: 'primary.main', letterSpacing: 0.5 }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  mb: 2,
+                  fontWeight: 700,
+                  color: 'primary.main',
+                  letterSpacing: 0.5,
+                }}
+              >
                 Contents
               </Typography>
-              <TableOfContents 
-                themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map((theme, index) => ({
-                  id: index,
-                  title: theme.title || `Theme ${index + 1}`,
-                  description: typeof theme.content === 'string' ? theme.content.substring(0, 100) + '...' : 'Theme description',
-                  content: Array.isArray(theme.content) ? theme.content : [{
-                    id: index,
-                    subtitle: `Subtopic ${index + 1}`,
-                    description: typeof theme.content === 'string' ? theme.content : 'Content description'
-                  }]
-                }))}
+              <TableOfContents
+                themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map(
+                  (theme, index) => {
+                    // Extract title from content if it's a string and contains an h2 tag
+                    let extractedTitle = `Theme ${index + 1}`;
+                    if (typeof theme.content === 'string') {
+                      const h2Match = theme.content.match(/<h2>(.*?)<\/h2>/i);
+                      if (h2Match && h2Match[1]) {
+                        extractedTitle = h2Match[1].trim();
+                      }
+                    }
+
+                    return {
+                      id: index,
+                      title: extractedTitle,
+                      description:
+                        typeof theme.content === 'string'
+                          ? theme.content.substring(0, 100) + '...'
+                          : 'Theme description',
+                      content: Array.isArray(theme.content)
+                        ? theme.content
+                        : [
+                            {
+                              id: index,
+                              subtitle: `Subtopic ${index + 1}`,
+                              description:
+                                typeof theme.content === 'string'
+                                  ? theme.content
+                                  : 'Content description',
+                            },
+                          ],
+                    };
+                  }
+                )}
               />
             </Box>
           )}
@@ -159,70 +202,116 @@ export default function Synthesis() {
               publishDate={new Date().toISOString()}
               readingTime={5}
             />
-            
+
             <MainContentInfo
               date={SYNTHESIS_DATA.date}
-              summary={SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || ''}
+              summary={
+                SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || ''
+              }
             />
-            
-            <ExpertsHighlights experts={SYNTHESIS_DATA.experts} />
-            
-            <Typography 
-              variant="body1" 
-              paragraph 
-              sx={{ lineHeight: 1.8, mb: 4, fontSize: '1.05rem', color: 'text.primary', letterSpacing: '0.015em' }}
+
+            <ExpertsHighlights />
+
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{
+                lineHeight: 1.8,
+                mb: 4,
+                fontSize: '1.05rem',
+                color: 'text.primary',
+                letterSpacing: '0.015em',
+              }}
               component="div"
             >
-              <div dangerouslySetInnerHTML={{ __html: SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || '' }} />
+              <div
+                dangerouslySetInnerHTML={{
+                  __html:
+                    SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || '',
+                }}
+              />
             </Typography>
-            
+
             <ThemesSection
-              themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map((theme, index) => ({
-                id: index,
-                title: theme.title || `Theme ${index + 1}`,
-                description: typeof theme.content === 'string' ? theme.content.substring(0, 100) + '...' : 'Theme description',
-                content: Array.isArray(theme.content) ? theme.content.map((item, itemIndex) => ({
-                  id: itemIndex,
-                  subtitle: item.subtitle || `Subtopic ${itemIndex + 1}`,
-                  description: item.description || item.content || 'Content description',
-                  quote: item.quote ? {
-                    text: item.quote.text,
-                    expertName: item.quote.expert_name,
-                    profession: 'Expert',
-                    image: ''
-                  } : undefined
-                })) : [{
-                  id: index,
-                  subtitle: `Subtopic ${index + 1}`,
-                  description: typeof theme.content === 'string' ? theme.content : 'Content description',
-                  quote: theme.quote ? {
-                    text: theme.quote.text,
-                    expertName: theme.quote.expert_name,
-                    profession: 'Expert',
-                    image: ''
-                  } : undefined
-                }],
-                quote: theme.quote ? {
-                  text: theme.quote.text,
-                  expertName: theme.quote.expert_name,
-                  profession: 'Expert',
-                  image: ''
-                } : undefined
-              }))}
+              themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map(
+                (theme, index) => {
+                  // Extract title from content if it's a string and contains an h2 tag
+                  let extractedTitle = `Theme ${index + 1}`;
+                  if (typeof theme.content === 'string') {
+                    const h2Match = theme.content.match(/<h2>(.*?)<\/h2>/i);
+                    if (h2Match && h2Match[1]) {
+                      extractedTitle = h2Match[1].trim();
+                    }
+                  }
+
+                  return {
+                    id: index,
+                    title: extractedTitle,
+                    description:
+                      typeof theme.content === 'string'
+                        ? theme.content.substring(0, 100) + '...'
+                        : 'Theme description',
+                    content: Array.isArray(theme.content)
+                      ? theme.content.map((item, itemIndex) => ({
+                          id: itemIndex,
+                          subtitle:
+                            item.subtitle || `Subtopic ${itemIndex + 1}`,
+                          description:
+                            item.description ||
+                            item.content ||
+                            'Content description',
+                          quote: item.quote
+                            ? {
+                                text: item.quote.text,
+                                expertName: item.quote.expert_name,
+                                profession: 'Expert',
+                                image: '',
+                              }
+                            : undefined,
+                        }))
+                      : [
+                          {
+                            id: index,
+                            subtitle: `Subtopic ${index + 1}`,
+                            description:
+                              typeof theme.content === 'string'
+                                ? theme.content
+                                : 'Content description',
+                            quote: theme.quote
+                              ? {
+                                  text: theme.quote.text,
+                                  expertName: theme.quote.expert_name,
+                                  profession: 'Expert',
+                                  image: '',
+                                }
+                              : undefined,
+                          },
+                        ],
+                    quote: theme.quote
+                      ? {
+                          text: theme.quote.text,
+                          expertName: theme.quote.expert_name,
+                          profession: 'Expert',
+                          image: '',
+                        }
+                      : undefined,
+                  };
+                }
+              )}
               experts={SYNTHESIS_DATA.experts}
             />
-            
+
             <Divider sx={{ my: 6 }} />
-            
+
             <SubscribeToNewsletter synthesisSlug={SYNTHESIS_DATA.slug} />
-            
+
             <ContinuedReading relatedContent={SYNTHESIS_DATA.relatedContent} />
           </Box>
         </Box>
       </MainContainer>
-      
+
       <Tooltip title="Back to top" placement="left" arrow>
-        <FloatingActionButton 
+        <FloatingActionButton
           onClick={scrollToTop}
           className={isScrolled ? 'visible' : ''}
           aria-label="Back to top"
@@ -231,7 +320,7 @@ export default function Synthesis() {
           <ArrowUpwardIcon fontSize="medium" />
         </FloatingActionButton>
       </Tooltip>
-      
+
       <Footer />
     </>
   );

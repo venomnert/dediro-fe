@@ -94,20 +94,20 @@ export const citationLink = {
   },
 };
 
-export const h3 = { 
-  fontSize: { xs: '20px', md: '22px' }, 
+export const h3 = {
+  fontSize: { xs: '20px', md: '22px' },
   fontWeight: 600,
   lineHeight: 1.4,
 };
 
-export const themeText = { 
-  textAlign: 'justify', 
+export const themeText = {
+  textAlign: 'justify',
   fontSize: '16px',
   lineHeight: 1.6,
 };
 
-export const h4 = { 
-  fontSize: '18px', 
+export const h4 = {
+  fontSize: '18px',
   fontWeight: 600,
   marginTop: '16px',
   marginBottom: '8px',

@@ -1,4 +1,15 @@
-import { Box, Typography, Grid, Chip, Card, CardContent, CardMedia, CardActionArea, Link, Divider } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Grid,
+  Chip,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+  Link,
+  Divider,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { format } from 'date-fns';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -19,7 +30,7 @@ const SectionContainer = styled(Box)(({ theme }) => ({
     right: 0,
     height: '1px',
     background: `linear-gradient(to right, ${theme.palette.divider}, transparent)`,
-  }
+  },
 }));
 
 const SectionTitle = styled(Typography)(({ theme }) => ({
@@ -38,7 +49,7 @@ const SectionTitle = styled(Typography)(({ theme }) => ({
     width: '60px',
     height: '2px',
     backgroundColor: theme.palette.primary.main,
-  }
+  },
 }));
 
 const SectionDescription = styled(Typography)(({ theme }) => ({
@@ -56,7 +67,7 @@ const ContentGrid = styled(Grid)(({ theme }) => ({
   marginTop: theme.spacing(2),
   [theme.breakpoints.down('sm')]: {
     gridTemplateColumns: '1fr',
-  }
+  },
 }));
 
 const StyledCard = styled(Card)(({ theme }) => ({
@@ -73,20 +84,20 @@ const StyledCard = styled(Card)(({ theme }) => ({
     boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
     '& .MuiCardMedia-root': {
       transform: 'scale(1.02)',
-    }
+    },
   },
   '&:focus-within': {
     outline: `2px solid ${theme.palette.primary.main}`,
-    outlineOffset: '2px'
-  }
+    outlineOffset: '2px',
+  },
 }));
 
 const StyledCardMedia = styled(CardMedia)(({ theme }) => ({
   height: 160,
   transition: 'transform 0.3s ease-in-out',
   [theme.breakpoints.down('sm')]: {
-    height: 140
-  }
+    height: 140,
+  },
 }));
 
 const CardHeader = styled(Box)(({ theme }) => ({
@@ -94,13 +105,13 @@ const CardHeader = styled(Box)(({ theme }) => ({
   justifyContent: 'space-between',
   alignItems: 'flex-start',
   marginBottom: theme.spacing(1),
-  gap: theme.spacing(1)
+  gap: theme.spacing(1),
 }));
 
 const ContentTypeChip = styled(Chip)(({ theme }) => ({
   fontWeight: 500,
   fontSize: '0.75rem',
-  height: '24px'
+  height: '24px',
 }));
 
 const UpdateChip = styled(ContentTypeChip)(({ theme }) => ({
@@ -108,7 +119,7 @@ const UpdateChip = styled(ContentTypeChip)(({ theme }) => ({
   color: '#1565c0',
   '& .MuiChip-icon': {
     color: '#1565c0',
-  }
+  },
 }));
 
 const ArticleChip = styled(ContentTypeChip)(({ theme }) => ({
@@ -116,7 +127,7 @@ const ArticleChip = styled(ContentTypeChip)(({ theme }) => ({
   color: '#7b1fa2',
   '& .MuiChip-icon': {
     color: '#7b1fa2',
-  }
+  },
 }));
 
 const NewBadge = styled(Chip)(({ theme }) => ({
@@ -124,7 +135,7 @@ const NewBadge = styled(Chip)(({ theme }) => ({
   color: theme.palette.common.white,
   fontWeight: 600,
   fontSize: '0.7rem',
-  height: '20px'
+  height: '20px',
 }));
 
 const ContentTitle = styled(Typography)(({ theme }) => ({
@@ -141,7 +152,7 @@ const ContentTitle = styled(Typography)(({ theme }) => ({
   minHeight: '2.8em',
   '&:hover': {
     color: theme.palette.primary.main,
-  }
+  },
 }));
 
 const ContentSummary = styled(Typography)(({ theme }) => ({
@@ -152,7 +163,7 @@ const ContentSummary = styled(Typography)(({ theme }) => ({
   WebkitBoxOrient: 'vertical',
   overflow: 'hidden',
   marginBottom: theme.spacing(2),
-  lineHeight: 1.6
+  lineHeight: 1.6,
 }));
 
 const MetaInfo = styled(Box)(({ theme }) => ({
@@ -163,14 +174,14 @@ const MetaInfo = styled(Box)(({ theme }) => ({
   color: theme.palette.text.secondary,
   fontSize: '0.75rem',
   paddingTop: theme.spacing(2),
-  borderTop: `1px solid ${theme.palette.divider}`
+  borderTop: `1px solid ${theme.palette.divider}`,
 }));
 
 const SubsectionDivider = styled(Divider)(({ theme }) => ({
   margin: theme.spacing(4, 0, 3, 0),
   '&::before, &::after': {
     borderColor: '#c8ccd1',
-  }
+  },
 }));
 
 const SubsectionTitle = styled(Typography)(({ theme }) => ({
@@ -213,86 +224,99 @@ function ContinuedReading({ relatedContent }: ContinuedReadingProps) {
           {
             id: '1',
             title: 'Latest Developments in AI Research',
-            summary: 'New breakthroughs in machine learning algorithms show promising results in natural language processing and decision-making capabilities.',
+            summary:
+              'New breakthroughs in machine learning algorithms show promising results in natural language processing and decision-making capabilities.',
             date: new Date().toISOString(),
-            imageUrl: 'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg',
+            imageUrl:
+              'https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg',
             category: 'Technology',
             isNew: true,
             readTime: 5,
             url: '/articles/ai-research',
-            type: 'update'
+            type: 'update',
           },
           {
             id: '2',
             title: 'Climate Change Impact Analysis',
-            summary: 'Recent studies reveal accelerated effects of global warming on polar ice caps and ocean currents.',
+            summary:
+              'Recent studies reveal accelerated effects of global warming on polar ice caps and ocean currents.',
             date: new Date(Date.now() - 86400000).toISOString(),
-            imageUrl: 'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg',
+            imageUrl:
+              'https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg',
             category: 'Environment',
             isNew: true,
             readTime: 7,
             url: '/articles/climate-change',
-            type: 'update'
-          }
+            type: 'update',
+          },
         ];
 
         const mockRelatedArticles: ContentItem[] = [
           {
             id: '3',
             title: 'Understanding Happiness Through Psychology',
-            summary: 'A comprehensive look at psychological research on happiness, well-being, and life satisfaction across different cultures.',
+            summary:
+              'A comprehensive look at psychological research on happiness, well-being, and life satisfaction across different cultures.',
             date: new Date(Date.now() - 172800000).toISOString(),
-            imageUrl: 'https://images.pexels.com/photos/1557238/pexels-photo-1557238.jpeg',
+            imageUrl:
+              'https://images.pexels.com/photos/1557238/pexels-photo-1557238.jpeg',
             category: 'Psychology',
             isNew: false,
             readTime: 8,
             url: '/articles/psychology-happiness',
-            type: 'article'
+            type: 'article',
           },
           {
             id: '4',
             title: 'The Science of Positive Relationships',
-            summary: 'How social connections impact our mental health and overall life satisfaction according to recent research.',
+            summary:
+              'How social connections impact our mental health and overall life satisfaction according to recent research.',
             date: new Date(Date.now() - 259200000).toISOString(),
-            imageUrl: 'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg',
+            imageUrl:
+              'https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg',
             category: 'Psychology',
             isNew: false,
             readTime: 6,
             url: '/articles/positive-relationships',
-            type: 'article'
+            type: 'article',
           },
           {
             id: '5',
             title: 'Physical Health and Mental Well-being',
-            summary: 'Exploring the connection between exercise, nutrition, sleep, and psychological health.',
+            summary:
+              'Exploring the connection between exercise, nutrition, sleep, and psychological health.',
             date: new Date(Date.now() - 345600000).toISOString(),
-            imageUrl: 'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg',
+            imageUrl:
+              'https://images.pexels.com/photos/1552242/pexels-photo-1552242.jpeg',
             category: 'Health',
             isNew: false,
             readTime: 9,
             url: '/articles/physical-mental-health',
-            type: 'article'
-          }
+            type: 'article',
+          },
         ];
 
         // Add related content from props if available
         if (relatedContent) {
-          const additionalArticles: ContentItem[] = relatedContent.map((item, index) => ({
-            id: `related-${index}`,
-            title: item.title,
-            summary: item.briefDescription,
-            date: new Date(Date.now() - (index + 6) * 86400000).toISOString(),
-            imageUrl: 'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg',
-            category: 'Research',
-            isNew: false,
-            readTime: 5,
-            url: `/articles/related-${index}`,
-            type: 'article'
-          }));
+          const additionalArticles: ContentItem[] = relatedContent.map(
+            (item, index) => ({
+              id: `related-${index}`,
+              title: item.title,
+              summary: item.briefDescription,
+              date: new Date(Date.now() - (index + 6) * 86400000).toISOString(),
+              imageUrl:
+                'https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg',
+              category: 'Research',
+              isNew: false,
+              readTime: 5,
+              url: `/articles/related-${index}`,
+              type: 'article',
+            })
+          );
           mockRelatedArticles.push(...additionalArticles);
         }
 
-        await new Promise(resolve => setTimeout(resolve, 800));
+        await new Promise((resolve) => setTimeout(resolve, 800));
         setContent([...mockUpdates, ...mockRelatedArticles]);
       } catch (error) {
         console.error('Error fetching content:', error);
@@ -304,44 +328,32 @@ function ContinuedReading({ relatedContent }: ContinuedReadingProps) {
     fetchContent();
   }, [relatedContent]);
 
-  const updates = content.filter(item => item.type === 'update');
-  const articles = content.filter(item => item.type === 'article');
+  const updates = content.filter((item) => item.type === 'update');
+  const articles = content.filter((item) => item.type === 'article');
 
   const renderContentCard = (item: ContentItem) => (
     <Link href={item.url} underline="none" tabIndex={-1} key={item.id}>
       <StyledCard elevation={0}>
         <CardActionArea>
-          <StyledCardMedia
-            component="img"
-            image={item.imageUrl}
-            alt={item.title}
-          />
+          <StyledCardMedia image={item.imageUrl} title={item.title} />
           <CardContent>
             <CardHeader>
               {item.type === 'update' ? (
-                <UpdateChip 
-                  label="Update" 
-                  size="small"
-                  icon={<UpdateIcon />}
-                />
+                <UpdateChip label="Update" size="small" icon={<UpdateIcon />} />
               ) : (
-                <ArticleChip 
-                  label="Article" 
+                <ArticleChip
+                  label="Article"
                   size="small"
                   icon={<ArticleIcon />}
                 />
               )}
               {item.isNew && <NewBadge label="New\" size="small" />}
             </CardHeader>
-            
-            <ContentTitle variant="h6">
-              {item.title}
-            </ContentTitle>
-            
-            <ContentSummary>
-              {item.summary}
-            </ContentSummary>
-            
+
+            <ContentTitle variant="h6">{item.title}</ContentTitle>
+
+            <ContentSummary>{item.summary}</ContentSummary>
+
             <MetaInfo>
               <Typography variant="caption">
                 {format(new Date(item.date), 'MMM d, yyyy')}
@@ -372,26 +384,26 @@ function ContinuedReading({ relatedContent }: ContinuedReadingProps) {
     <SectionContainer>
       <SectionTitle>Continued Reading</SectionTitle>
       <SectionDescription>
-        Stay current with the latest developments and explore related topics to deepen your understanding.
+        Stay current with the latest developments and explore related topics to
+        deepen your understanding.
       </SectionDescription>
 
       {/* Latest Updates Subsection */}
       {updates.length > 0 && (
         <Box>
-          <SubsectionTitle variant="h3">
-            Latest Updates
-          </SubsectionTitle>
-          <Typography variant="body2" sx={{ 
-            color: '#54595d', 
-            mb: 2, 
-            fontSize: '14px',
-            fontFamily: 'Montserrat, sans-serif'
-          }}>
+          <SubsectionTitle variant="h3">Latest Updates</SubsectionTitle>
+          <Typography
+            variant="body2"
+            sx={{
+              color: '#54595d',
+              mb: 2,
+              fontSize: '14px',
+              fontFamily: 'Montserrat, sans-serif',
+            }}
+          >
             Recent developments and new insights on this topic
           </Typography>
-          <ContentGrid container>
-            {updates.map(renderContentCard)}
-          </ContentGrid>
+          <ContentGrid container>{updates.map(renderContentCard)}</ContentGrid>
         </Box>
       )}
 
@@ -399,21 +411,20 @@ function ContinuedReading({ relatedContent }: ContinuedReadingProps) {
       {articles.length > 0 && (
         <Box>
           <SubsectionDivider>
-            <SubsectionTitle variant="h3">
-              Related Articles
-            </SubsectionTitle>
+            <SubsectionTitle variant="h3">Related Articles</SubsectionTitle>
           </SubsectionDivider>
-          <Typography variant="body2" sx={{ 
-            color: '#54595d', 
-            mb: 2, 
-            fontSize: '14px',
-            fontFamily: 'Montserrat, sans-serif'
-          }}>
+          <Typography
+            variant="body2"
+            sx={{
+              color: '#54595d',
+              mb: 2,
+              fontSize: '14px',
+              fontFamily: 'Montserrat, sans-serif',
+            }}
+          >
             Explore related topics and complementary perspectives
           </Typography>
-          <ContentGrid container>
-            {articles.map(renderContentCard)}
-          </ContentGrid>
+          <ContentGrid container>{articles.map(renderContentCard)}</ContentGrid>
         </Box>
       )}
     </SectionContainer>

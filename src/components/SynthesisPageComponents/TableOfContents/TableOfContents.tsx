@@ -1,4 +1,13 @@
-import { Box, Typography, List, ListItemButton, IconButton, Drawer, useTheme, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Typography,
+  List,
+  ListItemButton,
+  IconButton,
+  Drawer,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import React, { useEffect, useState, useRef } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -13,10 +22,12 @@ interface ParsedHeader {
 interface TableOfContentsProps {
   themesSection: {
     title: string;
-    content: string | {
-      subtitle: string;
-      description: string;
-    }[];
+    content:
+      | string
+      | {
+          subtitle: string;
+          description: string;
+        }[];
   }[];
 }
 
@@ -65,17 +76,21 @@ const TOCTitle = styled(Typography)(({ theme }) => ({
 
 const TOCListItem = styled(ListItemButton, {
   shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'active',
-})<{ depth?: number; active?: boolean }>(({ theme, depth = 0, active = false }) => ({
-  padding: theme.spacing(0.5, 1, 0.5, 1 + depth * 2),
-  borderLeft: `2px solid ${active ? theme.palette.primary.main : 'transparent'}`,
-  backgroundColor: active ? alpha(theme.palette.primary.main, 0.08) : 'transparent',
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.primary.main, 0.04),
-  },
-  transition: theme.transitions.create(['background-color', 'border-left'], {
-    duration: theme.transitions.duration.shorter,
-  }),
-}));
+})<{ depth?: number; active?: boolean }>(
+  ({ theme, depth = 0, active = false }) => ({
+    padding: theme.spacing(0.5, 1, 0.5, 1 + depth * 2),
+    borderLeft: `2px solid ${active ? theme.palette.primary.main : 'transparent'}`,
+    backgroundColor: active
+      ? alpha(theme.palette.primary.main, 0.08)
+      : 'transparent',
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.primary.main, 0.04),
+    },
+    transition: theme.transitions.create(['background-color', 'border-left'], {
+      duration: theme.transitions.duration.shorter,
+    }),
+  })
+);
 
 const TOCText = styled(Typography, {
   shouldForwardProp: (prop) => prop !== 'active',
@@ -103,51 +118,55 @@ const DrawerContent = styled(Box)(({ theme }) => ({
 
 const themeDescriptions = [
   {
-    title: "Theme 1: Consequences of the Israel-Gaza Conflict",
+    title: 'Theme 1: Consequences of the Israel-Gaza Conflict',
     subtopics: [
-      "Humanitarian Crisis and Civilian Impact",
-      "Regional Stability and International Response",
-      "Economic and Infrastructure Damage"
-    ]
+      'Humanitarian Crisis and Civilian Impact',
+      'Regional Stability and International Response',
+      'Economic and Infrastructure Damage',
+    ],
   },
   {
-    title: "Theme 2: Global Economic Implications",
+    title: 'Theme 2: Global Economic Implications',
     subtopics: [
-      "Market Volatility and Oil Prices",
-      "Trade Route Disruptions",
-      "International Aid and Support"
-    ]
+      'Market Volatility and Oil Prices',
+      'Trade Route Disruptions',
+      'International Aid and Support',
+    ],
   },
   {
-    title: "Theme 3: Diplomatic Developments",
+    title: 'Theme 3: Diplomatic Developments',
     subtopics: [
-      "Peace Negotiation Efforts",
-      "International Mediation",
-      "Regional Alliance Shifts"
-    ]
+      'Peace Negotiation Efforts',
+      'International Mediation',
+      'Regional Alliance Shifts',
+    ],
   },
   {
-    title: "Theme 4: Humanitarian Response",
+    title: 'Theme 4: Humanitarian Response',
     subtopics: [
-      "Aid Distribution Challenges",
-      "Medical Emergency Management",
-      "Civilian Evacuation Efforts"
-    ]
-  }
+      'Aid Distribution Challenges',
+      'Medical Emergency Management',
+      'Civilian Evacuation Efforts',
+    ],
+  },
 ];
 
-export default function TableOfContents({ themesSection }: TableOfContentsProps) {
+export default function TableOfContents({
+  themesSection,
+}: TableOfContentsProps) {
   const [activeSection, setActiveSection] = useState<string>('');
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [parsedHeaders, setParsedHeaders] = useState<{[key: number]: ParsedHeader[]}>({});
+  const [parsedHeaders, setParsedHeaders] = useState<{
+    [key: number]: ParsedHeader[];
+  }>({});
   const observerRef = useRef<IntersectionObserver | null>(null);
   const tocRef = useRef<HTMLDivElement>(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
-    const allHeaders: {[key: number]: ParsedHeader[]} = {};
-    
+    const allHeaders: { [key: number]: ParsedHeader[] } = {};
+
     themesSection.forEach((theme, index) => {
       if (typeof theme.content === 'string') {
         const headerRegex = /^(#{1,6})\s+(.+?)\s*$/gm;
@@ -157,26 +176,32 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
         while ((match = headerRegex.exec(theme.content)) !== null) {
           const level = match[1].length;
           const text = match[2].trim();
-          const id = text.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-');
+          const id = text
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-');
           headers.push({ level, text, id });
         }
-        
+
         allHeaders[index] = headers;
       } else {
-        allHeaders[index] = theme.content.map(item => ({
+        allHeaders[index] = theme.content.map((item) => ({
           level: 2,
           text: item.subtitle,
-          id: item.subtitle.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-'),
+          id: item.subtitle
+            .toLowerCase()
+            .replace(/[^\w\s-]/g, '')
+            .replace(/\s+/g, '-'),
         }));
       }
     });
-    
+
     setParsedHeaders(allHeaders);
   }, [themesSection]);
 
   useEffect(() => {
     const callback = (entries: IntersectionObserverEntry[]) => {
-      entries.forEach(entry => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
           setActiveSection(entry.target.id);
         }
@@ -189,7 +214,7 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
     });
 
     const sections = document.querySelectorAll('[id^="section-"]');
-    sections.forEach(section => {
+    sections.forEach((section) => {
       if (observerRef.current) {
         observerRef.current.observe(section);
       }
@@ -222,13 +247,16 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
               active={activeSection === `section-${themeIndex + 1}`}
             >
               <TOCText active={activeSection === `section-${themeIndex + 1}`}>
-                {themeDescriptions[themeIndex]?.title || `Theme ${themeIndex + 1}`}
+                {themeDescriptions[themeIndex]?.title ||
+                  `Theme ${themeIndex + 1}`}
               </TOCText>
             </TOCListItem>
 
             {parsedHeaders[themeIndex]?.map((header, headerIndex) => {
-              const displayText = themeDescriptions[themeIndex]?.subtopics[headerIndex] || header.text;
-              
+              const displayText =
+                themeDescriptions[themeIndex]?.subtopics[headerIndex] ||
+                header.text;
+
               return (
                 <TOCListItem
                   key={`${themeIndex}-${headerIndex}`}
@@ -259,14 +287,16 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
           >
             <MenuIcon />
           </FloatingButton>
-          
+
           <Drawer
             anchor="right"
             open={drawerOpen}
             onClose={() => setDrawerOpen(false)}
           >
             <DrawerContent>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+              <Box
+                sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}
+              >
                 <TOCTitle>Contents</TOCTitle>
                 <IconButton onClick={() => setDrawerOpen(false)}>
                   <CloseIcon />
@@ -277,9 +307,7 @@ export default function TableOfContents({ themesSection }: TableOfContentsProps)
           </Drawer>
         </>
       ) : (
-        <TOCContainer ref={tocRef}>
-          {renderTOCContent()}
-        </TOCContainer>
+        <TOCContainer ref={tocRef}>{renderTOCContent()}</TOCContainer>
       )}
     </>
   );

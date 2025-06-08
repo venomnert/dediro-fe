@@ -1,4 +1,12 @@
-import { Box, Typography, Grid, Button, Tooltip, useTheme, useMediaQuery } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Grid,
+  Button,
+  Tooltip,
+  useTheme,
+  useMediaQuery,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React, { useState } from 'react';
 import ExpertCard from './ExpertCard';
@@ -47,10 +55,10 @@ const experts = [
     title: 'AI Ethics Researcher',
     image: {
       src: 'https://images.pexels.com/photos/3796217/pexels-photo-3796217.jpeg',
-      alt: 'Dr. Sarah Chen'
+      alt: 'Dr. Sarah Chen',
     },
     bio: 'Leading researcher in AI ethics and algorithmic bias at MIT, focusing on creating more equitable artificial intelligence systems.',
-    domain: 'Technology & Ethics'
+    domain: 'Technology & Ethics',
   },
   {
     id: 2,
@@ -58,10 +66,10 @@ const experts = [
     title: 'Climate Scientist',
     image: {
       src: 'https://images.pexels.com/photos/5397723/pexels-photo-5397723.jpeg',
-      alt: 'Prof. James Rodriguez'
+      alt: 'Prof. James Rodriguez',
     },
     bio: 'Distinguished professor of Environmental Science at Stanford, pioneering research in climate change mitigation strategies.',
-    domain: 'Environmental Science'
+    domain: 'Environmental Science',
   },
   {
     id: 3,
@@ -69,10 +77,10 @@ const experts = [
     title: 'Neuroscience Pioneer',
     image: {
       src: 'https://images.pexels.com/photos/5327656/pexels-photo-5327656.jpeg',
-      alt: 'Dr. Aisha Patel'
+      alt: 'Dr. Aisha Patel',
     },
     bio: 'Breakthrough researcher in neuroplasticity and cognitive enhancement at Johns Hopkins University.',
-    domain: 'Neuroscience'
+    domain: 'Neuroscience',
   },
   {
     id: 4,
@@ -80,10 +88,10 @@ const experts = [
     title: 'Policy Innovator',
     image: {
       src: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg',
-      alt: 'Marcus Thompson'
+      alt: 'Marcus Thompson',
     },
     bio: 'Former UN advisor and current director of the Institute for Future Policy, specializing in global governance frameworks.',
-    domain: 'Policy & Governance'
+    domain: 'Policy & Governance',
   },
   {
     id: 5,
@@ -91,10 +99,10 @@ const experts = [
     title: 'Quantum Computing Expert',
     image: {
       src: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg',
-      alt: 'Dr. Elena Kovac'
+      alt: 'Dr. Elena Kovac',
     },
     bio: 'Leading quantum computing researcher at IBM, developing next-generation quantum systems.',
-    domain: 'Quantum Computing'
+    domain: 'Quantum Computing',
   },
   {
     id: 6,
@@ -102,11 +110,11 @@ const experts = [
     title: 'Biotech Innovator',
     image: {
       src: 'https://images.pexels.com/photos/5490276/pexels-photo-5490276.jpeg',
-      alt: 'Dr. Michael Chang'
+      alt: 'Dr. Michael Chang',
     },
     bio: 'Pioneering researcher in CRISPR technology and founder of GenomeTech Solutions.',
-    domain: 'Biotechnology'
-  }
+    domain: 'Biotechnology',
+  },
 ];
 
 function ExpertsHighlights() {
@@ -120,17 +128,21 @@ function ExpertsHighlights() {
   return (
     <Container>
       <Header>
-        <Typography variant="h2" sx={{ 
-          fontSize: { xs: '24px', md: '36px' },
-          fontWeight: 700,
-          mb: 2
-        }}>
+        <Typography
+          variant="h2"
+          sx={{
+            fontSize: { xs: '24px', md: '36px' },
+            fontWeight: 700,
+            mb: 2,
+          }}
+        >
           Expert Highlights
         </Typography>
         <Introduction variant="body1">
-          Our synthesis draws from the insights of world-leading experts across multiple disciplines.
-          These thought leaders bring diverse perspectives and cutting-edge research to provide you
-          with the most comprehensive understanding of the topic.
+          Our synthesis draws from the insights of world-leading experts across
+          multiple disciplines. These thought leaders bring diverse perspectives
+          and cutting-edge research to provide you with the most comprehensive
+          understanding of the topic.
         </Introduction>
       </Header>
 
@@ -150,10 +162,7 @@ function ExpertsHighlights() {
 
       {remainingExperts > 0 && (
         <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-          <ViewMoreButton
-            onClick={() => setShowAll(true)}
-            variant="contained"
-          >
+          <ViewMoreButton onClick={() => setShowAll(true)} variant="contained">
             View More Profiles +{remainingExperts}
           </ViewMoreButton>
         </Box>

@@ -1,4 +1,15 @@
-import { Box, Typography, List, ListItemButton, IconButton, Drawer, useTheme, useMediaQuery, Button, Tooltip } from '@mui/material';
+import {
+  Box,
+  Typography,
+  List,
+  ListItemButton,
+  IconButton,
+  Drawer,
+  useTheme,
+  useMediaQuery,
+  Button,
+  Tooltip,
+} from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
 import React, { useEffect, useState, useRef } from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -139,10 +150,10 @@ function SynthesisHeader() {
             alt="Dediro"
             priority
           />
-          <Typography 
-            variant="h6" 
-            sx={{ 
-              fontWeight: 'bold', 
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: 'bold',
               display: { xs: 'none', sm: 'block' },
               color: theme.palette.primary.main,
             }}
@@ -160,13 +171,13 @@ function SynthesisHeader() {
               {hasNotifications && <NotificationBadge />}
             </IconButtonStyled>
           </Tooltip>
-          
+
           <Tooltip title="Bookmarks">
             <IconButtonStyled size="large">
               <BookmarkBorderIcon />
             </IconButtonStyled>
           </Tooltip>
-          
+
           <Tooltip title="Share">
             <IconButtonStyled size="large">
               <ShareIcon />
@@ -175,17 +186,14 @@ function SynthesisHeader() {
 
           {!isMobile && (
             <>
-              <HeaderButton 
-                variant="outlined" 
+              <HeaderButton
+                variant="outlined"
                 color="primary"
                 startIcon={<AccountCircleIcon />}
               >
                 Sign In
               </HeaderButton>
-              <HeaderButton 
-                variant="contained" 
-                color="primary"
-              >
+              <HeaderButton variant="contained" color="primary">
                 Try Dediro
               </HeaderButton>
             </>

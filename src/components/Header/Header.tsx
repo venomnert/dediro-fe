@@ -35,8 +35,9 @@ function Header({ disableSearch = false }: HeaderProps) {
     <Box sx={headerStyles}>
       <Box sx={desktopHeaderContainer}>
         <Box sx={logoContainer} onClick={handleGoHome}>
-          <img
-            style={logoImage}
+          <Box
+            component="img"
+            sx={logoImage}
             src="images/dediro-logo-white.webp"
             alt="Dediro"
           />
@@ -48,7 +49,7 @@ function Header({ disableSearch = false }: HeaderProps) {
             ))}
           </Box>
         </Box>
-        
+
         {!disableSearch && (
           <TextField
             id="search"
@@ -65,7 +66,7 @@ function Header({ disableSearch = false }: HeaderProps) {
             size="small"
           />
         )}
-        
+
         <CTAForm
           ctaTextValue="Join for free"
           buttonCustomStyles={ctaButton}
@@ -73,7 +74,7 @@ function Header({ disableSearch = false }: HeaderProps) {
         />
         <BurgerMenu addBlackIcon={disableSearch} />
       </Box>
-      
+
       <Box sx={mobileHeaderContainer}>
         <MobileHeader disableSearch={disableSearch} />
       </Box>

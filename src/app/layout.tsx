@@ -4,7 +4,7 @@ import Head from 'next/head';
 import './globals.css';
 import { Montserrat, Poppins } from 'next/font/google';
 
-const montserrat = Montserrat({ 
+const montserrat = Montserrat({
   subsets: ['latin'],
   display: 'swap', // Optimize font loading
 });
@@ -40,13 +40,19 @@ export default function RootLayout({
       <Head>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
         <link rel="preload" href="/images/hero/hero-bg.webp" as="image" />
-        <link rel="preload" href="/images/hero/side-hero-images.webp" as="image" />
+        <link
+          rel="preload"
+          href="/images/hero/side-hero-images.webp"
+          as="image"
+        />
       </Head>
-      <body>
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

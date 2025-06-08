@@ -1,5 +1,14 @@
 import { Box, Typography, Divider, Paper } from '@mui/material';
-import { container, h3, h4, themeText, sectionContainer, sectionTitle, citationLink, wikiContent } from './ThemesSection.styles';
+import {
+  container,
+  h3,
+  h4,
+  themeText,
+  sectionContainer,
+  sectionTitle,
+  citationLink,
+  wikiContent,
+} from './ThemesSection.styles';
 import MarkdownIt from 'markdown-it';
 
 import ExpertQuote from './ExpertQuote';
@@ -18,7 +27,9 @@ const SafeHtml = ({ content }: { content: string }) => {
 
   // On the server or during initial hydration, render plain text
   if (!mounted) {
-    return <span>{content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</span>;
+    return (
+      <span>{content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</span>
+    );
   }
 
   // After hydration on the client, render the HTML
@@ -40,7 +51,7 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
   // Helper function to ensure HTML content has proper IDs for headers
   const ensureHeaderIds = (content: string): string => {
     if (!content) return '';
-    
+
     // If the content is already HTML, return it as is
     // This assumes the HTML content already has proper IDs for headers
     return content.trim();
@@ -52,27 +63,36 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
           return (
             <Paper key={i} elevation={0} sx={sectionContainer}>
               {/* Wikipedia-style section heading */}
-              <Typography id={`section-${i+1}`} variant="h2" sx={sectionTitle}>
-                {i+1}. {el.title || `Theme ${i+1}`}
+              <Typography
+                id={`section-${i + 1}`}
+                variant="h2"
+                sx={sectionTitle}
+              >
+                {i + 1}. {el.title || `Theme ${i + 1}`}
               </Typography>
               <Divider sx={{ mb: 3 }} />
-              
+
               {/* Wikipedia-style content */}
               <Box sx={container}>
                 {/* Handle content based on whether it's a string or an array */}
                 <Box sx={wikiContent}>
                   {typeof el.content === 'string' ? (
-                    <div dangerouslySetInnerHTML={{ 
-                      __html: ensureHeaderIds(el.content) 
-                    }} />
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: ensureHeaderIds(el.content),
+                      }}
+                    />
                   ) : (
                     <div>
                       {el.content.map((item, index) => (
                         <div key={index} style={{ marginBottom: '24px' }}>
-                          <Typography 
-                            variant="h4" 
+                          <Typography
+                            variant="h4"
                             sx={h4}
-                            id={item.subtitle.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}
+                            id={item.subtitle
+                              .toLowerCase()
+                              .replace(/[^\w\s-]/g, '')
+                              .replace(/\s+/g, '-')}
                           >
                             {item.subtitle}
                           </Typography>
@@ -84,20 +104,26 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                     </div>
                   )}
                 </Box>
-                
+
                 {el.quote && (
-                  <Box sx={{ 
-                    my: 3, 
-                    pl: 2, 
-                    borderLeft: '3px solid #c8ccd1',
-                    backgroundColor: '#f8f9fa',
-                    padding: '16px 20px',
-                    borderRadius: '2px'
-                  }}>
+                  <Box
+                    sx={{
+                      my: 3,
+                      pl: 2,
+                      borderLeft: '3px solid #c8ccd1',
+                      backgroundColor: '#f8f9fa',
+                      padding: '16px 20px',
+                      borderRadius: '2px',
+                    }}
+                  >
                     <Typography id={el.quote?.text} variant="h3" sx={h3}>
-                      "{el.quote?.text}"
+                      &ldquo;{el.quote?.text}&rdquo;
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 1, fontStyle: 'italic' }}>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mt: 1, fontStyle: 'italic' }}
+                    >
                       — {el.quote?.expertName}, {el.quote?.profession}
                     </Typography>
                   </Box>
@@ -106,15 +132,32 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                 {/* Citation section like Wikipedia */}
                 {experts && experts.length > 0 && (
                   <Box sx={{ mt: 3, mb: 2 }}>
-                    <Typography variant="h6" sx={{ fontSize: '16px', fontWeight: 'bold', mb: 1 }}>
+                    <Typography
+                      variant="h6"
+                      sx={{ fontSize: '16px', fontWeight: 'bold', mb: 1 }}
+                    >
                       References
                     </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: '5px' }}>
+                    <Box
+                      sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '5px',
+                      }}
+                    >
                       {experts.slice(0, 3).map((expert, idx: number) => (
                         <Box key={idx} sx={{ display: 'flex', gap: '5px' }}>
-                          <Typography variant="body2" sx={{ fontWeight: 'bold' }}>[{idx + 1}]</Typography>
+                          <Typography
+                            variant="body2"
+                            sx={{ fontWeight: 'bold' }}
+                          >
+                            [{idx + 1}]
+                          </Typography>
                           <Typography variant="body2">
-                            {expert.name}, <Box component="span" sx={citationLink}>{expert.profession}</Box>
+                            {expert.name},{' '}
+                            <Box component="span" sx={citationLink}>
+                              {expert.profession}
+                            </Box>
                           </Typography>
                         </Box>
                       ))}

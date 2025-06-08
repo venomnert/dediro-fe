@@ -1,4 +1,12 @@
-import { Box, Typography, Divider, Avatar, Chip, Stack, Paper } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Divider,
+  Avatar,
+  Chip,
+  Stack,
+  Paper,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CalendarMonthRoundedIcon from '@mui/icons-material/CalendarMonthRounded';
 import PersonIcon from '@mui/icons-material/Person';
@@ -19,7 +27,9 @@ const SafeHtml = ({ content }: { content: string }) => {
 
   // On the server or during initial hydration, render plain text
   if (!mounted) {
-    return <span>{content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</span>;
+    return (
+      <span>{content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</span>
+    );
   }
 
   // After hydration on the client, render the HTML
@@ -86,8 +96,8 @@ function MainContentInfo({ date, summary }: IMainContentInfo) {
   return (
     <Container elevation={0}>
       <AuthorSection>
-        <Avatar 
-          src="/path/to/author-image.jpg" 
+        <Avatar
+          src="/path/to/author-image.jpg"
           sx={{ width: 56, height: 56 }}
         />
         <Box>
@@ -119,19 +129,13 @@ function MainContentInfo({ date, summary }: IMainContentInfo) {
       </MetadataSection>
 
       <Stack direction="row" spacing={1} sx={{ mb: 4 }}>
-        <StyledChip 
+        <StyledChip
           icon={<LocalOfferIcon />}
-          label="Research" 
+          label="Research"
           variant="outlined"
         />
-        <StyledChip 
-          label="Psychology" 
-          variant="outlined"
-        />
-        <StyledChip 
-          label="Well-being" 
-          variant="outlined"
-        />
+        <StyledChip label="Psychology" variant="outlined" />
+        <StyledChip label="Well-being" variant="outlined" />
       </Stack>
 
       <Box sx={{ fontSize: '1.125rem', lineHeight: 1.8 }}>

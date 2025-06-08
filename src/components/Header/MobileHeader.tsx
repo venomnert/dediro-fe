@@ -46,14 +46,15 @@ function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
   return (
     <Box sx={mainContainer}>
       <Box sx={logoContainer}>
-        <img
-          style={logoImage}
+        <Box
+          component="img"
+          sx={logoImage}
           src="images/dediro-logo-white.webp"
           alt="Dediro"
           onClick={handleGoHome}
         />
       </Box>
-      
+
       <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
         {!disableSearch && (
           <IconButton onClick={toggleSearch} sx={iconButton}>
@@ -67,11 +68,7 @@ function MobileHeader({ disableSearch = false }: MobileHeaderProps) {
         <ClickAwayListener onClickAway={handleClickAway}>
           <Slide direction="down" in={searchOpen} mountOnEnter unmountOnExit>
             <Box sx={inputContainer}>
-              <InputBase
-                placeholder="Search..."
-                sx={inputStyles}
-                autoFocus
-              />
+              <InputBase placeholder="Search..." sx={inputStyles} autoFocus />
               <IconButton onClick={toggleSearch} size="small">
                 <CloseIcon />
               </IconButton>

@@ -1,4 +1,17 @@
-import { Box, Typography, useMediaQuery, useTheme, Fade, Chip, Stack, Container, Avatar, Button, IconButton, Tooltip } from '@mui/material';
+import {
+  Box,
+  Typography,
+  useMediaQuery,
+  useTheme,
+  Fade,
+  Chip,
+  Stack,
+  Container,
+  Avatar,
+  Button,
+  IconButton,
+  Tooltip,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
@@ -12,7 +25,11 @@ import ShareIcon from '@mui/icons-material/Share';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from 'react-share';
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+} from 'react-share';
 
 const HeroContainer = styled(motion.div)(({ theme }) => ({
   position: 'relative',
@@ -41,7 +58,8 @@ const Overlay = styled(Box)(() => ({
   left: 0,
   right: 0,
   bottom: 0,
-  background: 'linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)',
+  background:
+    'linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%)',
   zIndex: 1,
 }));
 
@@ -170,18 +188,18 @@ interface MainContentProps {
 const defaultAuthor = {
   name: 'Anonymous',
   role: 'Contributor',
-  avatar: '/images/default-avatar.png'
+  avatar: '/images/default-avatar.png',
 };
 
-function MainContent({ 
-  title, 
+function MainContent({
+  title,
   image,
-  category = "Featured",
+  category = 'Featured',
   publishDate = new Date().toISOString(),
   readingTime = 5,
   author = defaultAuthor,
   subtitle,
-  onBack
+  onBack,
 }: MainContentProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -217,7 +235,7 @@ function MainContent({
           priority
           quality={90}
           sizes="100vw"
-          style={{ 
+          style={{
             objectFit: 'cover',
             objectPosition: 'center',
           }}
@@ -233,44 +251,32 @@ function MainContent({
 
       <ContentContainer>
         <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
-          <CategoryChip 
-            label={category.toUpperCase()} 
-            onClick={() => {}} 
-          />
-          <MetadataChip 
+          <CategoryChip label={category.toUpperCase()} onClick={() => {}} />
+          <MetadataChip
             icon={<TrendingUpIcon />}
-            label="Trending" 
+            label="Trending"
             variant="outlined"
           />
         </Stack>
 
-        <Title variant="h1">
-          {title}
-        </Title>
+        <Title variant="h1">{title}</Title>
 
-        {subtitle && (
-          <Subtitle>
-            {subtitle}
-          </Subtitle>
-        )}
+        {subtitle && <Subtitle>{subtitle}</Subtitle>}
 
         <Stack direction="row" spacing={2} sx={{ mb: 3 }}>
-          <MetadataChip 
+          <MetadataChip
             icon={<AccessTimeIcon />}
-            label={`${readingTime} min read`} 
+            label={`${readingTime} min read`}
           />
-          <MetadataChip 
+          <MetadataChip
             icon={<CalendarTodayIcon />}
-            label={format(new Date(publishDate), 'MMM d, yyyy')} 
+            label={format(new Date(publishDate), 'MMM d, yyyy')}
           />
-          <MetadataChip 
-            icon={<LocalOfferIcon />}
-            label={category} 
-          />
+          <MetadataChip icon={<LocalOfferIcon />} label={category} />
         </Stack>
 
         <AuthorSection>
-          <Avatar 
+          <Avatar
             src={author.avatar}
             alt={author.name}
             sx={{ width: 48, height: 48 }}
@@ -284,19 +290,19 @@ function MainContent({
             </Typography>
           </Box>
           <Stack direction="row" spacing={2} sx={{ ml: 'auto' }}>
-            <Tooltip title={isBookmarked ? "Remove bookmark" : "Save article"}>
-              <ActionButton 
-                startIcon={<BookmarkBorderIcon />} 
+            <Tooltip title={isBookmarked ? 'Remove bookmark' : 'Save article'}>
+              <ActionButton
+                startIcon={<BookmarkBorderIcon />}
                 variant="outlined"
                 onClick={handleBookmark}
-                aria-label={isBookmarked ? "Remove bookmark" : "Save article"}
+                aria-label={isBookmarked ? 'Remove bookmark' : 'Save article'}
               >
                 {isBookmarked ? 'Saved' : 'Save'}
               </ActionButton>
             </Tooltip>
             <Tooltip title="Share article">
-              <ActionButton 
-                startIcon={<ShareIcon />} 
+              <ActionButton
+                startIcon={<ShareIcon />}
                 variant="outlined"
                 onClick={handleShare}
                 aria-label="Share article"
@@ -311,17 +317,32 @@ function MainContent({
           <ShareMenu>
             <FacebookShareButton url={shareUrl}>
               <IconButton size="small" sx={{ color: 'white' }}>
-                <img src="/images/social/facebook.svg" alt="Share on Facebook" width={24} height={24} />
+                <img
+                  src="/images/social/facebook.svg"
+                  alt="Share on Facebook"
+                  width={24}
+                  height={24}
+                />
               </IconButton>
             </FacebookShareButton>
             <TwitterShareButton url={shareUrl}>
               <IconButton size="small" sx={{ color: 'white' }}>
-                <img src="/images/social/twitter.svg" alt="Share on Twitter" width={24} height={24} />
+                <img
+                  src="/images/social/twitter.svg"
+                  alt="Share on Twitter"
+                  width={24}
+                  height={24}
+                />
               </IconButton>
             </TwitterShareButton>
             <LinkedinShareButton url={shareUrl}>
               <IconButton size="small" sx={{ color: 'white' }}>
-                <img src="/images/social/linked-in.svg" alt="Share on LinkedIn" width={24} height={24} />
+                <img
+                  src="/images/social/linked-in.svg"
+                  alt="Share on LinkedIn"
+                  width={24}
+                  height={24}
+                />
               </IconButton>
             </LinkedinShareButton>
           </ShareMenu>

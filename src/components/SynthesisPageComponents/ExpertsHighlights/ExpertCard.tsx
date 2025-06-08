@@ -1,4 +1,13 @@
-import { Box, Typography, Card, CardContent, Avatar, Chip, IconButton, Tooltip } from '@mui/material';
+import {
+  Box,
+  Typography,
+  Card,
+  CardContent,
+  Avatar,
+  Chip,
+  IconButton,
+  Tooltip,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import React from 'react';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -52,48 +61,60 @@ interface ExpertCardProps {
 function ExpertCard({ name, title, image, bio, domain }: ExpertCardProps) {
   return (
     <StyledCard elevation={1}>
-      <CardContent sx={{ 
-        display: 'flex', 
-        flexDirection: 'column',
-        alignItems: 'center',
-        textAlign: 'center',
-        p: 3,
-      }}>
-        <ExpertAvatar
-          src={image.src}
-          alt={image.alt}
-        />
-        
+      <CardContent
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center',
+          p: 3,
+        }}
+      >
+        <ExpertAvatar src={image.src} alt={image.alt} />
+
         <DomainChip label={domain} />
 
-        <Typography variant="h6" sx={{ 
-          fontWeight: 600,
-          mb: 0.5,
-          fontSize: '1.1rem',
-        }}>
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: 600,
+            mb: 0.5,
+            fontSize: '1.1rem',
+          }}
+        >
           {name}
         </Typography>
 
-        <Typography variant="subtitle1" color="text.secondary" sx={{
-          mb: 2,
-          fontSize: '0.9rem',
-        }}>
+        <Typography
+          variant="subtitle1"
+          color="text.secondary"
+          sx={{
+            mb: 2,
+            fontSize: '0.9rem',
+          }}
+        >
           {title}
         </Typography>
 
-        <Typography variant="body2" color="text.secondary" sx={{
-          mb: 2,
-          fontSize: '0.875rem',
-          lineHeight: 1.6,
-        }}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            mb: 2,
+            fontSize: '0.875rem',
+            lineHeight: 1.6,
+          }}
+        >
           {bio}
         </Typography>
 
-        <Box sx={{ 
-          display: 'flex',
-          gap: 1,
-          mt: 'auto',
-        }}>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            mt: 'auto',
+          }}
+        >
           <Tooltip title="Follow expert">
             <ActionButton size="small">
               <AddCircleOutlineIcon />

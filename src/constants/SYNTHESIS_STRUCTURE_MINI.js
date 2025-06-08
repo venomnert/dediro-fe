@@ -1,3 +1,7 @@
+/**
+ * @prettier
+ */
+
 const SYNTHESIS_STRUCTURE_MINI = {
     "introduction": "The Israel-Gaza conflict represents one of the most enduring",
     "synthesis_themes": [{
