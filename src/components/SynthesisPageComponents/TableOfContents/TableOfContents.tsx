@@ -44,7 +44,7 @@ const TOCContainer = styled(Box)(({ theme }) => ({
   maxHeight: 'calc(100vh - 100px)',
   overflowY: 'auto',
   backgroundColor: 'transparent', // Removed background
-  padding: theme.spacing(2),
+  padding: theme.spacing(1, 0),
   transition: 'all 0.3s ease',
   '&::-webkit-scrollbar': {
     width: '4px',
@@ -86,8 +86,8 @@ const TOCListItem = styled(ListItemButton, {
   shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'active',
 })<{ depth?: number; active?: boolean }>(
   ({ theme, depth = 0, active = false }) => ({
-    padding: theme.spacing(0.6, 0, 0.6, 1.5),
-    marginY: theme.spacing(0.2),
+    padding: theme.spacing(0.5, 0, 0.5, 0),
+    marginY: theme.spacing(0.5),
     borderLeft: `2px solid ${active ? 'rgba(0, 0, 0, 0.87)' : alpha(theme.palette.common.black, 0.3)}`,
     backgroundColor: 'transparent',
     '&:hover': {
@@ -95,7 +95,7 @@ const TOCListItem = styled(ListItemButton, {
       borderLeft: `2px solid rgba(0, 0, 0, 0.87)`,
     },
     transition: 'all 200ms ease',
-    minHeight: '32px',
+    minHeight: '28px',
     display: 'flex',
     alignItems: 'center',
   })
@@ -109,7 +109,7 @@ const TOCText = styled(Typography, {
   fontWeight: active ? 600 : 400,
   lineHeight: 1.4,
   letterSpacing: '0.01em',
-  paddingLeft: theme.spacing(1.5),
+  paddingLeft: theme.spacing(2),
 }));
 
 const TOCSectionHeading = styled(Typography, {
@@ -119,7 +119,7 @@ const TOCSectionHeading = styled(Typography, {
   fontWeight: active ? 700 : 600,
   color: active ? 'rgba(0, 0, 0, 0.87)' : alpha(theme.palette.common.black, 0.6),
   letterSpacing: '0.02em',
-  paddingLeft: theme.spacing(1.5),
+  paddingLeft: theme.spacing(2),
 }));
 
 const FloatingButton = styled(IconButton)(({ theme }) => ({
@@ -318,69 +318,92 @@ export default function TableOfContents({
   };
 
   // Render TOC content with different approaches for desktop and mobile
-  const renderTOCContent = () => (
-    <>
-      <List disablePadding>
-        {themesSection.map((theme, themeIndex) => {
-          const isActive = activeSection === `section-${themeIndex + 1}`;
-          const sectionTitle = themeDescriptions[themeIndex]?.title || `Theme ${themeIndex + 1}`;
-          
-          return isMobile ? (
+  const renderTOCContent = () => {
+    // For desktop view, collect all headers to display in a flat list
+    const allHeaders: Array<{header: ParsedHeader; sectionIndex: number; headerIndex: number}> = [];
+    
+    // Collect all headers from all sections for the flat list view
+    Object.entries(parsedHeaders).forEach(([sectionKey, headers]) => {
+      const sectionIndex = parseInt(sectionKey, 10);
+      headers.forEach((header, headerIndex) => {
+        allHeaders.push({
+          header,
+          sectionIndex,
+          headerIndex
+        });
+      });
+    });
+    
+    return (
+      <>
+        <List disablePadding>
+          {isMobile ? (
             // Mobile: Collapsible sections with clear headings
-            <ExpandableSection key={themeIndex}>
-              <SectionHeader onClick={() => toggleSection(themeIndex)}>
-                <TOCSectionHeading active={isActive}>
-                  {sectionTitle}
-                </TOCSectionHeading>
-                {expandedSections[themeIndex] ? 
-                  <ExpandLessIcon fontSize="small" /> : 
-                  <ExpandMoreIcon fontSize="small" />
-                }
-              </SectionHeader>
+            themesSection.map((theme, themeIndex) => {
+              const isActive = activeSection === `section-${themeIndex + 1}`;
+              const sectionTitle = themeDescriptions[themeIndex]?.title || `Theme ${themeIndex + 1}`;
               
-              <Collapse in={expandedSections[themeIndex]} timeout="auto">
-                <List disablePadding>
-                  {parsedHeaders[themeIndex]?.map((header, headerIndex) => {
-                    const displayText = themeDescriptions[themeIndex]?.subtopics[headerIndex] || header.text;
-                    const isSubActive = activeSection === header.id;
-                    
-                    return (
-                      <Fade in={expandedSections[themeIndex]} key={`${themeIndex}-${headerIndex}`}>
-                        <TOCListItem
-                          depth={header.level - 1}
-                          onClick={() => handleClick(header.id)}
-                          active={isSubActive}
-                        >
-                          <TOCText active={isSubActive}>
-                            {displayText}
-                          </TOCText>
-                        </TOCListItem>
-                      </Fade>
-                    );
-                  })}
-                </List>
-              </Collapse>
-            </ExpandableSection>
+              return (
+                <ExpandableSection key={themeIndex}>
+                  <SectionHeader onClick={() => toggleSection(themeIndex)}>
+                    <TOCSectionHeading active={isActive}>
+                      {sectionTitle}
+                    </TOCSectionHeading>
+                    {expandedSections[themeIndex] ? 
+                      <ExpandLessIcon fontSize="small" /> : 
+                      <ExpandMoreIcon fontSize="small" />
+                    }
+                  </SectionHeader>
+                  
+                  <Collapse in={expandedSections[themeIndex]} timeout="auto">
+                    <List disablePadding>
+                      {parsedHeaders[themeIndex]?.map((header, headerIndex) => {
+                        const displayText = themeDescriptions[themeIndex]?.subtopics[headerIndex] || header.text;
+                        const isSubActive = activeSection === header.id;
+                        
+                        return (
+                          <Fade in={expandedSections[themeIndex]} key={`${themeIndex}-${headerIndex}`}>
+                            <TOCListItem
+                              depth={0}
+                              onClick={() => handleClick(header.id)}
+                              active={isSubActive}
+                            >
+                              <TOCText active={isSubActive}>
+                                {displayText}
+                              </TOCText>
+                            </TOCListItem>
+                          </Fade>
+                        );
+                      })}
+                    </List>
+                  </Collapse>
+                </ExpandableSection>
+              );
+            })
           ) : (
-            // Desktop: Traditional TOC with visual hierarchy
-            <Box key={themeIndex}>
-              <TOCListItem
-                onClick={() => handleClick(`section-${themeIndex + 1}`)}
-                active={isActive}
-              >
-                <TOCSectionHeading active={isActive}>
-                  {sectionTitle}
-                </TOCSectionHeading>
-              </TOCListItem>
-
-              {parsedHeaders[themeIndex]?.map((header, headerIndex) => {
-                const displayText = themeDescriptions[themeIndex]?.subtopics[headerIndex] || header.text;
+            // Desktop: Simplified TOC matching the mockup
+            <Box>
+              {/* Introduction as first item */}
+              {themesSection.length > 0 && (
+                <TOCListItem
+                  onClick={() => handleClick(`section-1`)}
+                  active={activeSection === `section-1`}
+                >
+                  <TOCSectionHeading active={activeSection === `section-1`}>
+                    {themeDescriptions[0]?.title || 'Introduction'}
+                  </TOCSectionHeading>
+                </TOCListItem>
+              )}
+              
+              {/* All other items as a flat list */}
+              {allHeaders.map(({header, sectionIndex, headerIndex}) => {
+                const displayText = themeDescriptions[sectionIndex]?.subtopics[headerIndex] || header.text;
                 const isSubActive = activeSection === header.id;
-
+                
                 return (
                   <TOCListItem
-                    key={`${themeIndex}-${headerIndex}`}
-                    depth={header.level - 1}
+                    key={`${sectionIndex}-${headerIndex}`}
+                    depth={0} // Keep all items at same indentation level
                     onClick={() => handleClick(header.id)}
                     active={isSubActive}
                   >
@@ -391,11 +414,11 @@ export default function TableOfContents({
                 );
               })}
             </Box>
-          );
-        })}
-      </List>
-    </>
-  );
+          )}
+        </List>
+      </>
+    );
+  };
 
   return (
     <>
