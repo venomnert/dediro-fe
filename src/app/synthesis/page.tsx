@@ -144,18 +144,7 @@ export default function Synthesis() {
       <MainContainer>
         <Box sx={styles.articleContainer}>
           {!isMobile && (
-            <Box sx={styles.sidebarContainer} aria-label="Table of Contents">
-              <Typography
-                variant="h6"
-                sx={{
-                  mb: 2,
-                  fontWeight: 700,
-                  color: 'primary.main',
-                  letterSpacing: 0.5,
-                }}
-              >
-                Contents
-              </Typography>
+            <Box  aria-label="Table of Contents">
               <TableOfContents
                 themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map(
                   (theme, index) => {
