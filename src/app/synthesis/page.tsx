@@ -176,26 +176,6 @@ export default function Synthesis() {
 
             <ExpertsHighlights />
 
-            <Typography
-              variant="body1"
-              paragraph
-              sx={{
-                lineHeight: 1.8,
-                mb: 4,
-                fontSize: '1.05rem',
-                color: 'text.primary',
-                letterSpacing: '0.015em',
-              }}
-              component="div"
-            >
-              <div
-                dangerouslySetInnerHTML={{
-                  __html:
-                    SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || '',
-                }}
-              />
-            </Typography>
-
             <ThemesSection
               themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map(
                 (theme, index) => {
