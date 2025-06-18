@@ -92,12 +92,10 @@ export interface IThemeSection {
 export interface IThemes {
   id: number;
   title: string;
-  description: string;
   quote?: IQuote;
   content: {
     id: number;
     subtitle: string;
-    description: string;
     quote?: IQuote;
   }[];
 }

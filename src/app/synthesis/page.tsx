@@ -148,34 +148,9 @@ export default function Synthesis() {
               <TableOfContents
                 themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map(
                   (theme, index) => {
-                    // Extract title from content if it's a string and contains an h2 tag
-                    let extractedTitle = `Theme ${index + 1}`;
-                    if (typeof theme.content === 'string') {
-                      const h2Match = theme.content.match(/<h2>(.*?)<\/h2>/i);
-                      if (h2Match && h2Match[1]) {
-                        extractedTitle = h2Match[1].trim();
-                      }
-                    }
-
                     return {
                       id: index,
-                      title: extractedTitle,
-                      description:
-                        typeof theme.content === 'string'
-                          ? theme.content.substring(0, 100) + '...'
-                          : 'Theme description',
-                      content: Array.isArray(theme.content)
-                        ? theme.content
-                        : [
-                            {
-                              id: index,
-                              subtitle: `Subtopic ${index + 1}`,
-                              description:
-                                typeof theme.content === 'string'
-                                  ? theme.content
-                                  : 'Content description',
-                            },
-                          ],
+                      theme: theme,
                     };
                   }
                 )}
@@ -195,7 +170,7 @@ export default function Synthesis() {
             <MainContentInfo
               date={SYNTHESIS_DATA.date}
               summary={
-                SYNTHESIS_STRUCTURE_MINI.synthesis_themes[0]?.content || ''
+                SYNTHESIS_STRUCTURE_MINI.summary
               }
             />
 
@@ -224,70 +199,20 @@ export default function Synthesis() {
             <ThemesSection
               themesSection={SYNTHESIS_STRUCTURE_MINI.synthesis_themes.map(
                 (theme, index) => {
-                  // Extract title from content if it's a string and contains an h2 tag
-                  let extractedTitle = `Theme ${index + 1}`;
-                  if (typeof theme.content === 'string') {
-                    const h2Match = theme.content.match(/<h2>(.*?)<\/h2>/i);
-                    if (h2Match && h2Match[1]) {
-                      extractedTitle = h2Match[1].trim();
-                    }
-                  }
-
+                  // console.log(theme);
                   return {
                     id: index,
-                    title: extractedTitle,
-                    description:
-                      typeof theme.content === 'string'
-                        ? theme.content.substring(0, 100) + '...'
-                        : 'Theme description',
-                    content: Array.isArray(theme.content)
-                      ? theme.content.map((item, itemIndex) => ({
-                          id: itemIndex,
-                          subtitle:
-                            item.subtitle || `Subtopic ${itemIndex + 1}`,
-                          description:
-                            item.description ||
-                            item.content ||
-                            'Content description',
-                          quote: item.quote
-                            ? {
-                                text: item.quote.text,
-                                expertName: item.quote.expert_name,
-                                profession: 'Expert',
-                                image: '',
-                              }
-                            : undefined,
-                        }))
-                      : [
-                          {
-                            id: index,
-                            subtitle: `Subtopic ${index + 1}`,
-                            description:
-                              typeof theme.content === 'string'
-                                ? theme.content
-                                : 'Content description',
-                            quote: theme.quote
-                              ? {
-                                  text: theme.quote.text,
-                                  expertName: theme.quote.expert_name,
-                                  profession: 'Expert',
-                                  image: '',
-                                }
-                              : undefined,
-                          },
-                        ],
-                    quote: theme.quote
-                      ? {
-                          text: theme.quote.text,
-                          expertName: theme.quote.expert_name,
-                          profession: 'Expert',
-                          image: '',
-                        }
-                      : undefined,
+                    title: theme.theme_title,
+                    content: theme.content.subtopics.map((item, itemIndex) => ({
+                      id: itemIndex,
+                      subtitle:
+                        item.subtitle || `Subtopic ${itemIndex + 1}`,
+                      description: item.description
+                    }))
                   };
                 }
               )}
-              experts={SYNTHESIS_DATA.experts}
+              experts={SYNTHESIS_STRUCTURE_MINI.experts}
             />
 
             <Divider sx={{ my: 6 }} />

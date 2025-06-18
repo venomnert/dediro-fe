@@ -60,6 +60,7 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
     return (
       <Box>
         {themesSection.map((el, i) => {
+          console.log(el);
           return (
             <Paper key={i} elevation={0} sx={sectionContainer}>
               {/* Wikipedia-style section heading */}
@@ -96,9 +97,6 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                           >
                             {item.subtitle}
                           </Typography>
-                          <Box sx={themeText}>
-                            <SafeHtml content={item.description} />
-                          </Box>
                         </div>
                       ))}
                     </div>

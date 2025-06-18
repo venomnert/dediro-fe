@@ -17,25 +17,6 @@ import { IMainContentInfo } from '@/types';
 import InfoButton from './InfoButton';
 import React, { useState, useEffect } from 'react';
 
-// A component that safely renders HTML content
-const SafeHtml = ({ content }: { content: string }) => {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // On the server or during initial hydration, render plain text
-  if (!mounted) {
-    return (
-      <span>{content.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</span>
-    );
-  }
-
-  // After hydration on the client, render the HTML
-  return <div dangerouslySetInnerHTML={{ __html: content }} />;
-};
-
 const Container = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(4),
   marginTop: '-48px',
@@ -139,7 +120,7 @@ function MainContentInfo({ date, summary }: IMainContentInfo) {
       </Stack>
 
       <Box sx={{ fontSize: '1.125rem', lineHeight: 1.8 }}>
-        <SafeHtml content={summary} />
+        {summary}
       </Box>
     </Container>
   );
