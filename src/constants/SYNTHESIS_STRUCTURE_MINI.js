@@ -15,7 +15,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
                 Cras nisi ipsum, cursus et ultrices ut, fringilla eu quam. Nam et suscipit erat. Fusce id eros ultrices, molestie diam ut, congue risus. Nulla at risus sem. Mauris ut egestas orci, nec placerat nibh. Quisque vitae ligula a elit semper posuere. Nulla ac ultricies tellus. Donec metus mauris, pellentesque a porta et, gravida eget nisi. Donec vitae dui vitae neque egestas pretium. Nunc in egestas diam, non tempor sapien. Mauris turpis mauris, posuere quis pretium at, tempus ut odio. Nunc magna mi, imperdiet sit amet aliquam a, ultricies at lorem. Nam vehicula metus vel purus fringilla, vitae aliquam nibh condimentum. Nulla eu lacus at massa pulvinar dapibus. Proin egestas velit dolor, at scelerisque nisi faucibus eget.`,
     "synthesis_themes": [
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Humanitarian Impact and Global Response",
           "content": {
             "subtopics": [
               {
@@ -67,7 +67,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Military Dynamics and Security Implications",
           "content": {
             "subtopics": [
               {
@@ -119,7 +119,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "International Law and Human Rights",
           "content": {
            "subtopics": [
               {
@@ -175,7 +175,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Historical Context of the Israel-Gaza Conflict",
+          "theme_title": "Historical Roots and Development",
           "content": {
             "subtopics": [
                {
@@ -235,7 +235,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Causes of the Israel-Gaza Conflict",
+          "theme_title": "Underlying Factors and Triggers",
           "content": {
             "subtopics": [
                {
@@ -295,7 +295,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Media Coverage and Public Opinion",
           "content": {
             "subtopics": [
                {
@@ -351,7 +351,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Economic Impact and Development Challenges",
           "content": {
             "subtopics": [
                {
@@ -415,7 +415,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Diplomatic Efforts and Peace Initiatives",
           "content": {
             "subtopics": [
                {
@@ -475,7 +475,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Regional Implications and Neighboring States",
           "content": {
             "subtopics": [
                {
@@ -522,7 +522,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           }]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Cultural and Religious Dimensions",
           "content": {
             "subtopics": [
                {
@@ -598,7 +598,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Future Scenarios and Conflict Resolution",
           "content": {
             "subtopics": [
                {
@@ -670,7 +670,7 @@ const SYNTHESIS_STRUCTURE_MINI = {
           ]
        },
        {
-          "theme_title": "Consequences of the Israel-Gaza Conflict",
+          "theme_title": "Psychological and Social Impacts",
           "content": {
             "subtopics": [
                {
