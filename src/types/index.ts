@@ -96,6 +96,7 @@ export interface IThemes {
   content: {
     id: number;
     subtitle: string;
+    description: string;
     quote?: IQuote;
   }[];
 }

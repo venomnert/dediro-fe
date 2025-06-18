@@ -60,16 +60,11 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
     return (
       <Box>
         {themesSection.map((el, i) => {
-          console.log(el);
           return (
             <Paper key={i} elevation={0} sx={sectionContainer}>
               {/* Wikipedia-style section heading */}
-              <Typography
-                id={`section-${i + 1}`}
-                variant="h2"
-                sx={sectionTitle}
-              >
-                {i + 1}. {el.title || `Theme ${i + 1}`}
+              <Typography id={`section-${i + 1}`} variant="h2" sx={sectionTitle}>
+                {el.title}
               </Typography>
               <Divider sx={{ mb: 3 }} />
 
@@ -77,13 +72,6 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
               <Box sx={container}>
                 {/* Handle content based on whether it's a string or an array */}
                 <Box sx={wikiContent}>
-                  {typeof el.content === 'string' ? (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: ensureHeaderIds(el.content),
-                      }}
-                    />
-                  ) : (
                     <div>
                       {el.content.map((item, index) => (
                         <div key={index} style={{ marginBottom: '24px' }}>
@@ -97,10 +85,10 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                           >
                             {item.subtitle}
                           </Typography>
+                          <Typography>{item.description}</Typography>
                         </div>
                       ))}
                     </div>
-                  )}
                 </Box>
 
                 {el.quote && (
