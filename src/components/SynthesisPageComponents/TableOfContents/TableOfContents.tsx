@@ -39,6 +39,74 @@ export default function TableOfContents({
   themesSection,
 }: TableOfContentsProps) {
   const [expandedThemes, setExpandedThemes] = useState<{[key: number]: boolean}>({});
+  const [activeSection, setActiveSection] = useState<string>('');
+  const haedingtoId= (heading: string) => heading.toLowerCase().replace(/[\^\w\s-]/g, '').replace(/\s+/g, '-');
+
+  const useInersectionObserver = (setActiveSection: React.Dispatch<React.SetStateAction<string>>, activeSection: string) => {
+    const headingEleRef = useRef<{[key: number]: IntersectionObserverEntry}>({});
+    
+    useEffect(() => {
+      console.log('useInersectionObserver')
+      const callback = (headings: IntersectionObserverEntry[]) => {
+        headingEleRef.current = headings.reduce((acc, heading) => {
+          acc[heading.target.id] = heading;
+          return acc;
+        }, headingEleRef.current);
+
+        const visibleHeadings = [];
+        Object.keys(headingEleRef.current).forEach((key) => {
+          const headingElement = headingEleRef.current[key];
+          if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
+        });
+
+
+        const getIndexFromId = (id) =>
+          headings.findIndex((heading) => heading.target.id === id);
+
+        console.log(visibleHeadings)
+        if (visibleHeadings.length === 0) {
+          const activeElement = headings.find((el) => el.target.id === activeSection);
+          const activeIndex = headings.findIndex(
+            (el) => el.target.id === activeSection
+          );
+    
+          const activeIdYcoord = activeElement?.boundingClientRect.y;
+          if (activeIdYcoord && activeIdYcoord > 150 && activeIndex !== 0) {
+            setActiveSection(headings[activeIndex - 1].target.id);
+          }
+        }
+
+        if (visibleHeadings.length === 1) {
+          setActiveSection(visibleHeadings[0].target.id);
+        }
+        else if (visibleHeadings.length > 1) {
+          const sortedVisibleHeadings = visibleHeadings.sort(
+            (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id)
+          );
+          setActiveSection(sortedVisibleHeadings[0].target.id);
+        }
+      };
+      console.log("activeSection: ", activeSection)
+
+      const observer = new IntersectionObserver(callback, {rootMargin: '0px'});
+
+      const headings = Array.from(document.querySelectorAll('h2, h4'));
+      headings.forEach((heading) => {
+        observer.observe(heading);
+      });
+
+      return () => observer.disconnect();
+    },[setActiveSection, activeSection])
+  }
+  
+  // Function to scroll to a section when clicking on a subtopic
+  const scrollToSection = (id: string) => {
+    console.log(id);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   /**
    * Toggles the expanded/collapsed state of a theme section
@@ -57,29 +125,94 @@ export default function TableOfContents({
     });
   };
 
+  useInersectionObserver(setActiveSection, activeSection);
+  
   return (
-    <nav aria-label="Table of contents">
+    <Box
+      component="nav"
+      aria-label="Table of contents"
+      sx={{
+        position: 'sticky',
+        top: '20px',
+        maxHeight: 'calc(100vh - 40px)',
+        overflow: 'auto',
+        padding: '16px',
+        borderRadius: '8px',
+        bgcolor: 'background.paper',
+        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.08)',
+        '&::-webkit-scrollbar': {
+          width: '6px',
+        },
+        '&::-webkit-scrollbar-thumb': {
+          backgroundColor: 'rgba(0, 0, 0, 0.2)',
+          borderRadius: '3px',
+        },
+      }}
+    >
+      <Typography variant="h6" sx={{ mb: 2, fontWeight: 'bold' }}>
+        Table of Contents
+      </Typography>
       {themesSection && themesSection.map((theme, index) => (
-        <List key={index}>
-          <ListItemButton onClick={() => toggleThemeVisibility(index)}>
-            <Box display="flex" alignItems="center">
-              <Typography variant="subtitle1">{theme?.theme?.theme_title}</Typography>
+        <List key={index} sx={{ py: 0 }}>
+          <ListItemButton
+            onClick={() => toggleThemeVisibility(index)}
+            sx={{
+              borderRadius: '4px',
+              mb: 0.5,
+              '&:hover': {
+                bgcolor: 'action.hover',
+              },
+            }}
+          >
+            <Box display="flex" alignItems="center" width="100%" justifyContent="space-between">
+              <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+                {theme?.theme?.theme_title}
+              </Typography>
               <IconButton size="small">
                 {expandedThemes[index] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
             </Box>
           </ListItemButton>
           <Collapse in={expandedThemes[index]} timeout="auto" unmountOnExit>
-            <List>
+            <List sx={{ pl: 2, py: 0 }}>
               {theme?.theme?.content?.subtopics && theme.theme.content.subtopics.map((subtopic, subtopicIndex) => (
-                <ListItem key={subtopicIndex}>
-                  <Typography variant="subtitle2">{subtopic?.subtitle}</Typography>
-                </ListItem>
+                <ListItemButton 
+                  key={subtopicIndex}
+                  sx={{
+                    ...(haedingtoId(subtopic?.subtitle) === activeSection ? styles.active : {})
+                  }}
+                  onClick={() => scrollToSection(subtopic?.subtitle
+                    .toLowerCase()
+                    .replace(/[^\w\s-]/g, '')
+                    .replace(/\s+/g, '-'))}
+                  sx={{ 
+                    py: 0.5,
+                    pl: 1,
+                    borderLeft: '2px solid',
+                    borderColor: 'divider',
+                    '&:hover': {
+                      bgcolor: 'action.hover',
+                      borderColor: 'primary.main',
+                    },
+                  }}
+                >
+                  <Typography 
+                    variant="subtitle2" 
+                    sx={{ 
+                      fontSize: '0.875rem',
+                      color: 'text.secondary',
+                      '&:hover': { color: 'primary.main' } 
+                    }}
+                  >
+                    {subtopic?.subtitle} <br />
+                    {subtopic?.subtitle.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}
+                  </Typography>
+                </ListItemButton>
               ))}
             </List>
           </Collapse>
         </List>
       ))}
-    </nav>
+    </Box>
   );
 }
