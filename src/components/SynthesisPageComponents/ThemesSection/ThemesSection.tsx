@@ -63,7 +63,7 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
           return (
             <Paper key={i} elevation={0} sx={sectionContainer}>
               {/* Wikipedia-style section heading */}
-              <Typography id={`section-${i + 1}`} variant="h2" sx={sectionTitle}>
+              <Typography id={el.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')} variant="h2" sx={sectionTitle}>
                 {el.title}
               </Typography>
               <Divider sx={{ mb: 3 }} />
