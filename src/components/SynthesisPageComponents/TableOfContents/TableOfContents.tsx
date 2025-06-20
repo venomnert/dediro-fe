@@ -56,9 +56,6 @@ export default function TableOfContents({
     // Remove any consecutive hyphens
     const cleanSlug = slug.replace(/-+/g, '-');
     
-    // Debug output
-    console.log(`Slugify: "${text}" → "${cleanSlug}"`);
-    
     return cleanSlug;
   }
   
@@ -69,6 +66,12 @@ export default function TableOfContents({
       console.log(`Section "${subtitle}" is active with slug: ${slugify(subtitle)}`);
     }
     return isActive;
+  }
+
+  const checkThemeHeadingVisibility = (element) => {
+    if (element.target.localName === 'h2') {
+      return element.target.id;
+    }
   }
 
   const useInersectionObserver = (setActiveSection: React.Dispatch<React.SetStateAction<string>>, activeSection: string) => {
@@ -98,6 +101,10 @@ export default function TableOfContents({
           const activeIndex = headings.findIndex(
             (el) => el.target.id === activeSection
           );
+
+          if (checkThemeHeadingVisibility(activeElement)) {
+            toggleThemeVisibility(activeElement.target.id);
+          }
     
           const activeIdYcoord = activeElement?.boundingClientRect.y;
           if (activeIdYcoord && activeIdYcoord > 150 && activeIndex !== 0) {
@@ -107,17 +114,23 @@ export default function TableOfContents({
 
         if (visibleHeadings.length === 1) {
           setActiveSection(visibleHeadings[0].target.id);
+          if (checkThemeHeadingVisibility(visibleHeadings[0])) {
+            toggleThemeVisibility(visibleHeadings[0].target.id);
+          }
         }
         else if (visibleHeadings.length > 1) {
           const sortedVisibleHeadings = visibleHeadings.sort(
             (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id)
           );
           setActiveSection(sortedVisibleHeadings[0].target.id);
+          if (checkThemeHeadingVisibility(sortedVisibleHeadings[0])) {
+            toggleThemeVisibility(sortedVisibleHeadings[0].target.id);
+          }
         }
       };
       console.log("activeSection: ", activeSection)
 
-      const observer = new IntersectionObserver(callback, {rootMargin: '0px'});
+      const observer = new IntersectionObserver(callback, {rootMargin: '150px'});
 
       const headings = Array.from(document.querySelectorAll('h2, h4'));
       headings.forEach((heading) => {
@@ -132,14 +145,14 @@ export default function TableOfContents({
    * Toggles the expanded/collapsed state of a theme section
    * @param themeIndex - The index of the theme to toggle
    */
-  const toggleThemeVisibility = (themeIndex: number) => {
+  const toggleThemeVisibility = (themeId: string) => {
     // Update the expanded themes state
     setExpandedThemes(currentExpandedState => {
       // Create a copy of the current state
       const updatedExpandedState = { ...currentExpandedState };
 
       // Toggle the selected theme's expanded state (true becomes false, false becomes true)
-      updatedExpandedState[themeIndex] = !currentExpandedState[themeIndex];
+      updatedExpandedState[themeId] = !currentExpandedState[themeId];
       
       return updatedExpandedState;
     });
@@ -188,7 +201,7 @@ export default function TableOfContents({
       {themesSection && themesSection.map((theme, index) => (
         <List key={index} sx={{ py: 0 }}>
           <ListItemButton
-            onClick={() => toggleThemeVisibility(index)}
+            onClick={() => toggleThemeVisibility(slugify(theme?.theme?.theme_title))}
             sx={{
               borderRadius: '4px',
               mb: 0.5,
@@ -202,11 +215,11 @@ export default function TableOfContents({
                 {theme?.theme?.theme_title}
               </Typography>
               <IconButton size="small">
-                {expandedThemes[index] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                {expandedThemes[slugify(theme?.theme?.theme_title)] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
               </IconButton>
             </Box>
           </ListItemButton>
-          <Collapse in={expandedThemes[index]} timeout="auto" unmountOnExit>
+          <Collapse in={expandedThemes[slugify(theme?.theme?.theme_title)]} timeout="auto" unmountOnExit>
             <List sx={{ pl: 2, py: 0 }}>
               {theme?.theme?.content?.subtopics && theme.theme.content.subtopics.map((subtopic, subtopicIndex) => (
                 <ListItemButton 
