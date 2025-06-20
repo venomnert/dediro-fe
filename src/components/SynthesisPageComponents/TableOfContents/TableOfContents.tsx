@@ -4,21 +4,11 @@ import {
   List,
   ListItemButton,
   IconButton,
-  Drawer,
-  useTheme,
-  useMediaQuery,
-  Tooltip,
   Collapse,
-  Fade,
-  ListItem,
 } from '@mui/material';
-import { styled, alpha } from '@mui/material/styles';
 import React, { useEffect, useState, useRef } from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import * as styles from './TableOfContents.styles';
 
 interface TableOfContentsProps {
   themesSection: {
@@ -141,30 +131,17 @@ export default function TableOfContents({
     },[setActiveSection, activeSection])
   }
   
-  /**
-   * Toggles the expanded/collapsed state of a theme section
-   * @param themeIndex - The index of the theme to toggle
-   */
   const toggleThemeVisibility = (themeId: string) => {
-    // Update the expanded themes state
     setExpandedThemes(currentExpandedState => {
-      // Create a copy of the current state
       const updatedExpandedState = { ...currentExpandedState };
-
-      // Toggle the selected theme's expanded state (true becomes false, false becomes true)
       updatedExpandedState[themeId] = !currentExpandedState[themeId];
-      
       return updatedExpandedState;
     });
   };
 
-  // Function to scroll to a section when clicking on a subtopic
   const scrollToSection = (id: string) => {
     if (!id) return;
-    
-    // Set the active section directly when clicking, for immediate feedback
     setActiveSection(id);
-    
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
