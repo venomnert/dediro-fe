@@ -52,40 +52,42 @@ export default function TableOfContents({
   const isSectionActive = (subtitle: string | undefined): boolean => {
     if (!subtitle || !activeSection) return false;
     const isActive = slugify(subtitle) === activeSection;
-    if (isActive) {
-      console.log(`Section "${subtitle}" is active with slug: ${slugify(subtitle)}`);
-    }
     return isActive;
   }
 
   const checkThemeHeadingVisibility = (element) => {
-    if (element.target.localName === 'h2') {
+    if (element.target.localName === 'h3') {
       return element.target.id;
     }
   }
 
   const useInersectionObserver = (setActiveSection: React.Dispatch<React.SetStateAction<string>>, activeSection: string) => {
+    console.log('useInersectionObserver initialized')
     const headingEleRef = useRef<{[key: number]: IntersectionObserverEntry}>({});
     
     useEffect(() => {
-      console.log('useInersectionObserver')
+      console.log('effect called')
       const callback = (headings: IntersectionObserverEntry[]) => {
+        console.log('callback called')
+        
+        const visibleHeadings = [];
         headingEleRef.current = headings.reduce((acc, heading) => {
           acc[heading.target.id] = heading;
           return acc;
         }, headingEleRef.current);
-
-        const visibleHeadings = [];
+        
+        // check if any of the headings are intersecting and push them to visibleHeadings
         Object.keys(headingEleRef.current).forEach((key) => {
           const headingElement = headingEleRef.current[key];
           if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
         });
 
-
+        // helper function to get index of heading element
         const getIndexFromId = (id) =>
           headings.findIndex((heading) => heading.target.id === id);
 
-        console.log(visibleHeadings)
+        console.log('visibleHeadings: ', visibleHeadings)
+        console.log("before activeSection: ", activeSection)
         if (visibleHeadings.length === 0) {
           const activeElement = headings.find((el) => el.target.id === activeSection);
           const activeIndex = headings.findIndex(
@@ -101,7 +103,6 @@ export default function TableOfContents({
             setActiveSection(headings[activeIndex - 1].target.id);
           }
         }
-
         if (visibleHeadings.length === 1) {
           setActiveSection(visibleHeadings[0].target.id);
           if (checkThemeHeadingVisibility(visibleHeadings[0])) {
@@ -117,12 +118,13 @@ export default function TableOfContents({
             toggleThemeVisibility(sortedVisibleHeadings[0].target.id);
           }
         }
+        console.log("after activeSection: ", activeSection)
+
       };
-      console.log("activeSection: ", activeSection)
 
-      const observer = new IntersectionObserver(callback, {rootMargin: '150px'});
+      const observer = new IntersectionObserver(callback, {rootMargin: '0px'});
 
-      const headings = Array.from(document.querySelectorAll('h2, h4'));
+      const headings = Array.from(document.querySelectorAll('h3, h4'));
       headings.forEach((heading) => {
         observer.observe(heading);
       });
