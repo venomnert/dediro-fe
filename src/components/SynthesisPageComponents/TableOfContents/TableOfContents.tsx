@@ -40,7 +40,36 @@ export default function TableOfContents({
 }: TableOfContentsProps) {
   const [expandedThemes, setExpandedThemes] = useState<{[key: number]: boolean}>({});
   const [activeSection, setActiveSection] = useState<string>('');
-  const haedingtoId= (heading: string) => heading.toLowerCase().replace(/[\^\w\s-]/g, '').replace(/\s+/g, '-');
+  
+  const slugify = (text: string): string => {
+    if (!text) return '';
+    
+    // Convert to lowercase
+    const lowercased = text.toLowerCase();
+    
+    // Replace special characters with empty string (keep alphanumeric, spaces, and hyphens)
+    const withoutSpecialChars = lowercased.replace(/[^\w\s-]/g, '');
+    
+    // Replace spaces with hyphens
+    const slug = withoutSpecialChars.replace(/\s+/g, '-');
+    
+    // Remove any consecutive hyphens
+    const cleanSlug = slug.replace(/-+/g, '-');
+    
+    // Debug output
+    console.log(`Slugify: "${text}" → "${cleanSlug}"`);
+    
+    return cleanSlug;
+  }
+  
+  const isSectionActive = (subtitle: string | undefined): boolean => {
+    if (!subtitle || !activeSection) return false;
+    const isActive = slugify(subtitle) === activeSection;
+    if (isActive) {
+      console.log(`Section "${subtitle}" is active with slug: ${slugify(subtitle)}`);
+    }
+    return isActive;
+  }
 
   const useInersectionObserver = (setActiveSection: React.Dispatch<React.SetStateAction<string>>, activeSection: string) => {
     const headingEleRef = useRef<{[key: number]: IntersectionObserverEntry}>({});
@@ -99,15 +128,6 @@ export default function TableOfContents({
     },[setActiveSection, activeSection])
   }
   
-  // Function to scroll to a section when clicking on a subtopic
-  const scrollToSection = (id: string) => {
-    console.log(id);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   /**
    * Toggles the expanded/collapsed state of a theme section
    * @param themeIndex - The index of the theme to toggle
@@ -125,6 +145,19 @@ export default function TableOfContents({
     });
   };
 
+  // Function to scroll to a section when clicking on a subtopic
+  const scrollToSection = (id: string) => {
+    if (!id) return;
+    
+    // Set the active section directly when clicking, for immediate feedback
+    setActiveSection(id);
+    
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+  
   useInersectionObserver(setActiveSection, activeSection);
   
   return (
@@ -178,18 +211,18 @@ export default function TableOfContents({
               {theme?.theme?.content?.subtopics && theme.theme.content.subtopics.map((subtopic, subtopicIndex) => (
                 <ListItemButton 
                   key={subtopicIndex}
-                  sx={{
-                    ...(haedingtoId(subtopic?.subtitle) === activeSection ? styles.active : {})
-                  }}
-                  onClick={() => scrollToSection(subtopic?.subtitle
-                    .toLowerCase()
-                    .replace(/[^\w\s-]/g, '')
-                    .replace(/\s+/g, '-'))}
+                  onClick={() => scrollToSection(slugify(subtopic?.subtitle))}
                   sx={{ 
+                    // Apply active styles directly instead of spreading
+                    ...(isSectionActive(subtopic?.subtitle) && {
+                      backgroundColor: '#e3f2fd',
+                      borderLeft: '3px solid #1876d2',
+                      fontWeight: 'bold',
+                    }),
                     py: 0.5,
                     pl: 1,
-                    borderLeft: '2px solid',
-                    borderColor: 'divider',
+                    borderLeft: isSectionActive(subtopic?.subtitle) ? '3px solid #1876d2' : '2px solid',
+                    borderColor: isSectionActive(subtopic?.subtitle) ? '#1876d2' : 'divider',
                     '&:hover': {
                       bgcolor: 'action.hover',
                       borderColor: 'primary.main',

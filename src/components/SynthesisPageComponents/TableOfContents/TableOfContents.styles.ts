@@ -52,12 +52,6 @@ export const title = {
   letterSpacing: '0.01em',
 };
 
-export const active = {
-  backgroundColor: '#e3f2fd',
-  borderLeft: '3px solid #1876d2',
-  transition: 'background 0.2s, border-color 0.2s',
-}
-
 // Enhanced list item with improved touch targets for mobile
 export const listItem = (depth: number = 0, isActive: boolean = false) => ({
   py: 0.8, // Increased vertical padding for better touch targets
