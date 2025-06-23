@@ -63,7 +63,7 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
           return (
             <Paper key={i} elevation={0} sx={sectionContainer}>
               {/* Wikipedia-style section heading */}
-              <Typography id={el.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')} variant="h3" sx={sectionTitle}>
+              <Typography className={'themeHeading'} id={el.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')} variant="h3" sx={sectionTitle}>
                 {el.title}
               </Typography>
               <Divider sx={{ mb: 3 }} />
@@ -76,6 +76,8 @@ function ThemesSection({ themesSection, experts }: IThemeSection) {
                       {el.content.map((item, index) => (
                         <div key={index} style={{ marginBottom: '24px' }}>
                           <Typography
+                            data-parent-theme-id={el.title.toLowerCase().replace(/[^\w\s-]/g, '').replace(/\s+/g, '-')}
+                            className={'subThemeHeading'} 
                             variant="h4"
                             sx={h4}
                             id={item.subtitle

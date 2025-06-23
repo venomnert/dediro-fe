@@ -55,9 +55,9 @@ export default function TableOfContents({
     return isActive;
   }
 
-  const checkThemeHeadingVisibility = (element) => {
-    if (element.target.localName === 'h3') {
-      return element.target.id;
+  const isThemeHeading = (el: IntersectionObserverEntry) => {
+    if (el.target.className.includes('themeHeading')) {
+      return true;
     }
   }
 
@@ -67,6 +67,7 @@ export default function TableOfContents({
     
     useEffect(() => {
       console.log('effect called')
+      
       const callback = (headings: IntersectionObserverEntry[]) => {
         console.log('callback called')
         
@@ -88,57 +89,73 @@ export default function TableOfContents({
 
         console.log('visibleHeadings: ', visibleHeadings)
         console.log("before activeSection: ", activeSection)
+        
         if (visibleHeadings.length === 0) {
           const activeElement = headings.find((el) => el.target.id === activeSection);
           const activeIndex = headings.findIndex(
             (el) => el.target.id === activeSection
           );
 
-          if (checkThemeHeadingVisibility(activeElement)) {
-            toggleThemeVisibility(activeElement.target.id);
+          console.log('activeElement: ', activeElement)
+
+          // check if element existt and on toggle if element is theme heading
+          if (activeElement) {
+            toggleThemeVisibility(activeElement);
           }
-    
           const activeIdYcoord = activeElement?.boundingClientRect.y;
-          if (activeIdYcoord && activeIdYcoord > 150 && activeIndex !== 0) {
+          console.log('activeIdYcoord: ', activeIdYcoord)
+          if (activeIdYcoord && activeIdYcoord > 0 && activeIndex !== 0) {
+            console.log('activeSection: ', headings[activeIndex - 1].target.id)
             setActiveSection(headings[activeIndex - 1].target.id);
           }
         }
-        if (visibleHeadings.length === 1) {
+        else if (visibleHeadings.length === 1) {
+          console.log('SINGLE length ', visibleHeadings[0].target.id)
           setActiveSection(visibleHeadings[0].target.id);
-          if (checkThemeHeadingVisibility(visibleHeadings[0])) {
-            toggleThemeVisibility(visibleHeadings[0].target.id);
-          }
+            // check if element existt and on toggle if element is theme heading
+            toggleThemeVisibility(visibleHeadings[0]);
         }
         else if (visibleHeadings.length > 1) {
           const sortedVisibleHeadings = visibleHeadings.sort(
             (a, b) => getIndexFromId(a.target.id) - getIndexFromId(b.target.id)
           );
+          console.log('MULTIPLE length ', sortedVisibleHeadings[0].target.id)
           setActiveSection(sortedVisibleHeadings[0].target.id);
-          if (checkThemeHeadingVisibility(sortedVisibleHeadings[0])) {
-            toggleThemeVisibility(sortedVisibleHeadings[0].target.id);
-          }
+          toggleThemeVisibility(sortedVisibleHeadings[0]);
         }
         console.log("after activeSection: ", activeSection)
-
       };
 
-      const observer = new IntersectionObserver(callback, {rootMargin: '0px'});
+      const observer = new IntersectionObserver(callback, {rootMargin: '-500px'});
 
-      const headings = Array.from(document.querySelectorAll('h3, h4'));
+      const headings = Array.from(document.querySelectorAll('.themeHeading, .subThemeHeading'));
       headings.forEach((heading) => {
         observer.observe(heading);
       });
 
       return () => observer.disconnect();
-    },[setActiveSection, activeSection])
+    },[])
   }
   
-  const toggleThemeVisibility = (themeId: string) => {
+  const toggleThemeVisibility = (el: IntersectionObserverEntry) => {
+    console.log('themeId: ', el.target.id)
     setExpandedThemes(currentExpandedState => {
-      const updatedExpandedState = { ...currentExpandedState };
-      updatedExpandedState[themeId] = !currentExpandedState[themeId];
-      return updatedExpandedState;
-    });
+      if (isThemeHeading(el)) {
+        return {
+          [el.target.id]: true
+        }
+      }
+      else {
+        const parentThemeId = el.target.getAttribute('data-parent-theme-id');
+        // check if subtopic heading is different from active section, if true replace active section with new subtopic parent
+        if (!currentExpandedState[parentThemeId]) {
+          return {
+            [parentThemeId]: true
+          }
+        }
+        return currentExpandedState;
+      }
+    })
   };
 
   const scrollToSection = (id: string) => {
