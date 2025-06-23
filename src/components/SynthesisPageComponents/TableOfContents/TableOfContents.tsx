@@ -138,24 +138,38 @@ export default function TableOfContents({
   }
   
   const toggleThemeVisibility = (el: IntersectionObserverEntry) => {
-    console.log('themeId: ', el.target.id)
-    setExpandedThemes(currentExpandedState => {
-      if (isThemeHeading(el)) {
+    // Theme heading click event
+    if(el.constructor.name.includes('SyntheticBaseEvent')) {
+      console.log('SyntheticBaseEvent')
+      const themeId = el.currentTarget.getAttribute('data-theme-id');
+      console.log('themeId: ', themeId)
+      setExpandedThemes(currentExpandedState => {
         return {
-          [el.target.id]: true
+          [themeId]: !currentExpandedState[themeId]
         }
-      }
-      else {
-        const parentThemeId = el.target.getAttribute('data-parent-theme-id');
-        // check if subtopic heading is different from active section, if true replace active section with new subtopic parent
-        if (!currentExpandedState[parentThemeId]) {
+      })
+    }
+    // Theme heading intersection event
+    else {
+      console.log('themeId: ', el.target.id)
+      setExpandedThemes(currentExpandedState => {
+        if (isThemeHeading(el)) {
           return {
-            [parentThemeId]: true
+            [el.target.id]: true
           }
         }
-        return currentExpandedState;
-      }
-    })
+        else {
+          const parentThemeId = el.target.getAttribute('data-parent-theme-id');
+          // check if subtopic heading is different from active section, if true replace active section with new subtopic parent
+          if (!currentExpandedState[parentThemeId]) {
+            return {
+              [parentThemeId]: true
+            }
+          }
+          return currentExpandedState;
+        }
+      })
+    }
   };
 
   const scrollToSection = (id: string) => {
@@ -197,7 +211,8 @@ export default function TableOfContents({
       {themesSection && themesSection.map((theme, index) => (
         <List key={index} sx={{ py: 0 }}>
           <ListItemButton
-            onClick={() => toggleThemeVisibility(slugify(theme?.theme?.theme_title))}
+            onClick={(e) => toggleThemeVisibility(e)}
+            data-theme-id={slugify(theme?.theme?.theme_title)}
             sx={{
               borderRadius: '4px',
               mb: 0.5,
