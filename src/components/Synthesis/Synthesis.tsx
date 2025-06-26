@@ -15,7 +15,7 @@ import SynthesisList from './SynthesisList';
 import { topics } from './utils';
 import { SynthesisContent } from '@/types';
 import useContentful from '@/hooks/useContentful';
-import { getContentTypes, getContentTypesWithEntries } from '@/lib/contentfulManagement';
+import { fetchContentTypes } from '@/lib/contentfulApi';
 
 function Synthesis() {
   const [tabValue, setTabValue] = useState(0);
@@ -29,24 +29,21 @@ function Synthesis() {
   console.log('error:', error);
   console.log('content data:', data);
 
-  // Debug function to check available content types
+  // Debug function to check available content types (proper client-side)
   const debugContentTypes = async () => {
     console.log('=== DEBUGGING CONTENT TYPES (Browser Console) ===');
     
     try {
-      // Method 1: Get all content types (requires CONTENTFUL_MANAGEMENT_TOKEN)
-      const allContentTypes = await getContentTypes();
-      console.log('All content types:', allContentTypes);
+      const result = await fetchContentTypes();
+      console.log('API Response:', result);
+      console.log('All content types:', result.allContentTypes);
+      console.log('Content types with entries:', result.contentTypesWithEntries);
+      console.log('Success:', result.success);
+      if (result.message) {
+        console.log('Message:', result.message);
+      }
     } catch (error) {
-      console.error('Error getting all content types:', error);
-    }
-    
-    try {
-      // Method 2: Get content types that have published entries
-      const contentTypesWithEntries = await getContentTypesWithEntries();
-      console.log('Content types with entries:', contentTypesWithEntries);
-    } catch (error) {
-      console.error('Error getting content types with entries:', error);
+      console.error('Error fetching content types:', error);
     }
     
     console.log('=== END DEBUG ===');
