@@ -70,6 +70,11 @@ export interface WhyUsCard {
   iconUrl: string;
 }
 
+export interface SynthesisContent {
+  title: string;
+  text: string;
+}
+
 export interface WhyUsContent {
   title: string;
   subtitle: string;
